@@ -3,10 +3,12 @@ import sys
 from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 
-sys.path.append(os.path.abspath(
-    os.path.join(os.getcwd(), '..')))  # Add the parent directory to the path since we work with notebooks
+# Add the parent directory to the path since we work with notebooks
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 from helper_functions import *
 from evaluation.evalute_rag import *
 

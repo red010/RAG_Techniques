@@ -9,7 +9,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from langchain_community.docstore.in_memory import InMemoryDocstore
 
 # Add the parent directory to the path since we work with notebooks
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))
+# Add the parent directory to the path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 
 from helper_functions import *
 from evaluation.evalute_rag import *

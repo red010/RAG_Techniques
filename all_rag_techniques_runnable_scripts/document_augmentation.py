@@ -2,7 +2,7 @@ import sys
 import os
 import re
 from langchain.docstore.document import Document
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from enum import Enum
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
@@ -16,7 +16,10 @@ load_dotenv()
 
 os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY')
 
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))  # Add the parent directory to the path
+# Add the parent directory to the path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 
 from helper_functions import *
 

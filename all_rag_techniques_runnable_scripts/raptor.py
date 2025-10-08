@@ -5,7 +5,7 @@ from typing import List, Dict, Any
 from langchain.chains.llm import LLMChain
 from sklearn.mixture import GaussianMixture
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.retrievers import ContextualCompressionRetriever
@@ -18,7 +18,10 @@ import os
 import sys
 from dotenv import load_dotenv
 
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))  # Add the parent directory to the path
+# Add the parent directory to the path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 from helper_functions import *
 from evaluation.evalute_rag import *
 

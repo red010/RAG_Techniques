@@ -8,7 +8,9 @@ from langchain_experimental.text_splitter import SemanticChunker, BreakpointThre
 from langchain_openai.embeddings import OpenAIEmbeddings
 
 # Add the parent directory to the path since we work with notebooks
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 
 # Load environment variables from a .env file (e.g., OpenAI API key)
 load_dotenv()
