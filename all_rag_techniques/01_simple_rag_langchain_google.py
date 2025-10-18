@@ -1,39 +1,40 @@
 """
-Simple RAG (Retrieval-Augmented Generation) System with Gemini
+Sistema RAG (Retrieval-Augmented Generation) Semplice con Gemini
 
-Overview:
-This script implements a basic Retrieval-Augmented Generation (RAG) system for processing and querying PDF documents.
-The system encodes the document content into a vector store using Gemini embeddings, which can then be queried to retrieve relevant information.
+Panoramica:
+Questo script implementa un sistema RAG di base per elaborare e interrogare documenti PDF.
+Il sistema codifica il contenuto del documento in un vector store usando embeddings Gemini,
+che può essere interrogato per recuperare informazioni rilevanti.
 
-Key Components:
-1. PDF processing and text extraction
-2. Text chunking for manageable processing
-3. Vector store creation using Chroma and Gemini embeddings
-4. Retriever setup for querying the processed documents
-5. Evaluation of the RAG system
+Componenti Chiave:
+1. Elaborazione PDF ed estrazione testo
+2. Suddivisione testo in chunk per elaborazione gestibile
+3. Creazione vector store usando Chroma e embeddings Gemini
+4. Configurazione retriever per interrogare i documenti elaborati
+5. Valutazione del sistema RAG
 
-Method Details:
-- Document Preprocessing: PDF loading and text splitting into chunks
-- Text Cleaning: Custom function to clean extracted text
-- Vector Store Creation: Gemini embeddings with Chroma for efficient similarity search
-- Retriever Setup: Configuration to fetch top-k most relevant chunks
-- Encoding Function: Modular function encapsulating the entire PDF-to-vector-store process
+Dettagli Metodo:
+- Pre-elaborazione Documento: Caricamento PDF e suddivisione in chunk
+- Pulizia Testo: Funzione personalizzata per pulire il testo estratto
+- Creazione Vector Store: Embeddings Gemini con Chroma per ricerca similarità efficiente
+- Configurazione Retriever: Setup per recuperare i top-k chunk più rilevanti
+- Funzione Encoding: Funzione modulare che incapsula l'intero processo PDF-to-vector-store
 
-Key Features:
-- Modular Design: Encoding process encapsulated in reusable functions
-- Configurable Chunking: Adjustable chunk size and overlap parameters
-- Efficient Retrieval: Chroma for fast similarity search in high-dimensional spaces
-- Gemini Integration: Uses Google's Gemini embeddings for text representation
-- Evaluation: Built-in performance assessment capabilities
+Caratteristiche Principali:
+- Design Modulare: Processo di encoding incapsulato in funzioni riutilizzabili
+- Chunking Configurabile: Parametri chunk size e overlap regolabili
+- Retrieval Efficente: Chroma per ricerca similarità veloce in spazi ad alta dimensione
+- Integrazione Gemini: Usa embeddings Gemini di Google per rappresentazione testo
+- Valutazione: Capacità di valutazione prestazioni integrate
 
-Benefits:
-- Scalability: Handles large documents by processing them in chunks
-- Flexibility: Easy parameter adjustment for different use cases
-- Efficiency: Optimized retrieval with Chroma and Gemini embeddings
-- Google Integration: Ready for Google AI ecosystem integration
+Benefici:
+- Scalabilità: Gestisce documenti grandi elaborandoli in chunk
+- Flessibilità: Facile regolazione parametri per diversi casi d'uso
+- Efficienza: Retrieval ottimizzato con Chroma e embeddings Gemini
+- Integrazione Google: Pronto per ecosistema AI Google
 
-Usage:
-python 01_simple_rag_langchain_google.py --path data/document.pdf --query "What is the main topic?"
+Utilizzo:
+python 01_simple_rag_langchain_google.py --path data/document.pdf --query "Qual è l'argomento principale?"
 """
 
 import os
@@ -42,14 +43,14 @@ import argparse
 import time
 from dotenv import load_dotenv
 
-# Add the parent directory to the path since we work with notebooks
+# Aggiunge la directory genitore al path per accedere alle helper functions
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
-# Load environment variables from a .env file
+# Carica variabili d'ambiente dal file .env
 load_dotenv()
-# Set the Google API key environment variable (using GEMINI_API_KEY from .env)
+# Imposta la chiave API Google usando GEMINI_API_KEY dal file .env
 os.environ["GOOGLE_API_KEY"] = os.getenv('GEMINI_API_KEY', '')
 
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
@@ -68,103 +69,103 @@ from langchain_community.vectorstores import Chroma
 
 class SimpleRAGGemini:
     """
-    A class to handle the Simple RAG process for document chunking and query retrieval using Gemini embeddings.
+    Classe per gestire il processo RAG semplice con chunking documenti e retrieval query usando embeddings Gemini.
 
-    This class encapsulates the entire RAG pipeline from document preprocessing to query retrieval,
-    providing a clean interface for encoding PDF documents and performing similarity-based queries with Gemini.
+    Questa classe incapsula l'intero pipeline RAG dalla pre-elaborazione documenti al retrieval query,
+    fornendo un'interfaccia pulita per codificare documenti PDF ed eseguire query basate su similarità con Gemini.
     """
 
     def __init__(self, path, chunk_size=1000, chunk_overlap=200, n_retrieved=2):
         """
-        Initializes the SimpleRAGGemini by encoding the PDF document and creating the retriever.
+        Inizializza SimpleRAGGemini codificando il documento PDF e creando il retriever.
 
-        This method performs the core document preprocessing pipeline:
-        1. PDF loading and text extraction using PyPDFLoader
-        2. Text splitting into manageable chunks with specified overlap
-        3. Text cleaning to handle formatting issues
-        4. Vector embedding creation using Gemini embeddings
-        5. FAISS vector store creation for efficient similarity search
-        6. Retriever configuration for query processing
+        Questo metodo esegue il pipeline core di pre-elaborazione documenti:
+        1. Caricamento PDF ed estrazione testo usando PyPDFLoader
+        2. Suddivisione testo in chunk gestibili con overlap specificato
+        3. Pulizia testo per gestire problemi di formattazione
+        4. Creazione embeddings vettoriali usando Gemini embeddings
+        5. Creazione vector store Chroma per ricerca similarità efficiente
+        6. Configurazione retriever per processamento query
 
         Args:
-            path (str): Path to the PDF file to encode.
-            chunk_size (int): Size of each text chunk in characters (default: 1000).
-                         Larger chunks preserve more context but may reduce retrieval precision.
-            chunk_overlap (int): Number of characters to overlap between consecutive chunks (default: 200).
-                         Helps maintain context continuity across chunk boundaries.
-            n_retrieved (int): Number of most relevant chunks to retrieve for each query (default: 2).
-                         More chunks provide richer context but increase processing time.
+            path (str): Percorso al file PDF da codificare.
+            chunk_size (int): Dimensione di ogni chunk di testo in caratteri (default: 1000).
+                         Chunk più grandi preservano più contesto ma possono ridurre precisione retrieval.
+            chunk_overlap (int): Numero di caratteri di overlap tra chunk consecutivi (default: 200).
+                         Aiuta a mantenere continuità contesto tra confini chunk.
+            n_retrieved (int): Numero di chunk più rilevanti da recuperare per ogni query (default: 2).
+                         Più chunk forniscono contesto più ricco ma aumentano tempo processamento.
         """
-        print("\n--- Initializing Simple RAG Retriever with Gemini ---")
+        print("\n--- Inizializzazione Retriever RAG con Gemini ---")
 
-        # Document Preprocessing: Encode PDF into vector store using Gemini embeddings
-        # This involves loading, chunking, cleaning, and embedding the document content
+        # Pre-elaborazione Documento: Codifica PDF in vector store usando embeddings Gemini
+        # Questo coinvolge caricamento, chunking, pulizia e embedding del contenuto documento
         start_time = time.time()
         self.vector_store = encode_pdf(path, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
         self.time_records = {'Chunking': time.time() - start_time}
-        print(f"Chunking Time: {self.time_records['Chunking']:.2f} seconds")
+        print(f"Tempo Chunking: {self.time_records['Chunking']:.2f} secondi")
 
-        # Retriever Setup: Create retriever configured to fetch top-k most relevant chunks
-        # The retriever uses Chroma for efficient similarity search in the vector space
+        # Setup Retriever: Crea retriever configurato per recuperare top-k chunk più rilevanti
+        # Il retriever usa Chroma per ricerca similarità efficiente nello spazio vettoriale
         self.chunks_query_retriever = self.vector_store.as_retriever(search_kwargs={"k": n_retrieved})
 
     def run(self, query):
         """
-        Executes the retrieval phase of RAG for a given query using Gemini embeddings.
+        Esegue la fase di retrieval del RAG per una query data usando embeddings Gemini.
 
-        This method performs the core retrieval operation:
-        1. Embeds the input query using Gemini embedding model
-        2. Performs similarity search in the FAISS vector space
-        3. Retrieves the top-k most relevant document chunks
-        4. Displays the retrieved context for user inspection
+        Questo metodo esegue l'operazione core di retrieval:
+        1. Effettua embedding della query di input usando modello Gemini
+        2. Esegue ricerca similarità nello spazio vettoriale Chroma
+        3. Recupera i top-k chunk documenti più rilevanti
+        4. Mostra il contesto recuperato per ispezione utente
 
         Args:
-            query (str): The user's question or query to retrieve relevant context for.
-                        The query will be embedded and matched against document chunks.
+            query (str): La domanda o query dell'utente per cui recuperare contesto rilevante.
+                        La query sarà embedded e confrontata con i chunk documenti.
 
         Returns:
-            None: Results are displayed directly to console for immediate user feedback.
+            None: I risultati sono mostrati direttamente in console per feedback immediato.
         """
-        # Retrieval Phase: Perform similarity search to find relevant document chunks
-        # The query is embedded using Gemini and compared against all document chunks in vector space
+        # Fase Retrieval: Esegue ricerca similarità per trovare chunk documenti rilevanti
+        # La query è embedded usando Gemini e confrontata con tutti i chunk documenti nello spazio vettoriale
         start_time = time.time()
         context = retrieve_context_per_question(query, self.chunks_query_retriever)
         self.time_records['Retrieval'] = time.time() - start_time
-        print(f"Retrieval Time: {self.time_records['Retrieval']:.2f} seconds")
+        print(f"Tempo Retrieval: {self.time_records['Retrieval']:.2f} secondi")
 
-        # Display retrieved context: Show the most relevant chunks found by the retriever
-        # This allows users to inspect the quality and relevance of retrieved information
+        # Mostra contesto recuperato: Visualizza i chunk più rilevanti trovati dal retriever
+        # Questo permette agli utenti di ispezionare qualità e rilevanza delle informazioni recuperate
         show_context(context)
 
 
 def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     """
-    Encodes a PDF book into a vector store using Gemini embeddings.
+    Codifica un libro PDF in un vector store usando embeddings Gemini.
 
     Args:
-        path: The path to the PDF file.
-        chunk_size: The desired size of each text chunk.
-        chunk_overlap: The amount of overlap between consecutive chunks.
+        path: Il percorso al file PDF.
+        chunk_size: La dimensione desiderata di ogni chunk di testo.
+        chunk_overlap: La quantità di overlap tra chunk consecutivi.
 
     Returns:
-        A Chroma vector store containing the encoded book content.
+        Un vector store Chroma contenente il contenuto del libro codificato.
     """
 
-    # Load PDF documents
+    # Carica documenti PDF
     loader = PyPDFLoader(path)
     documents = loader.load()
 
-    # Split documents into chunks
+    # Suddivide documenti in chunk
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size, chunk_overlap=chunk_overlap, length_function=len
     )
     texts = text_splitter.split_documents(documents)
     cleaned_texts = replace_t_with_space(texts)
 
-    # Create Gemini embeddings
+    # Crea embeddings Gemini
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
-    # Create vector store with Chroma
+    # Crea vector store con Chroma
     vectorstore = Chroma.from_documents(cleaned_texts, embeddings)
 
     return vectorstore
@@ -172,83 +173,83 @@ def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
 
 def validate_args(args):
     """
-    Validates command-line arguments to ensure they meet the requirements for RAG processing.
+    Valida argomenti da linea di comando per assicurare che soddisfino i requisiti RAG.
 
-    This function performs input validation to prevent runtime errors and ensure
-    that the chunking and retrieval parameters are within acceptable ranges.
+    Questa funzione esegue validazione input per prevenire errori runtime e assicurare
+    che i parametri di chunking e retrieval siano in range accettabili.
 
     Args:
-        args: Parsed command-line arguments from argparse.
+        args: Argomenti da linea di comando parsati da argparse.
 
     Returns:
-        args: Validated arguments (returned unchanged if validation passes).
+        args: Argomenti validati (restituiti invariati se validazione passa).
 
     Raises:
-        ValueError: If any argument fails validation criteria.
+        ValueError: Se qualche argomento fallisce i criteri di validazione.
     """
     if args.chunk_size <= 0:
-        raise ValueError("chunk_size must be a positive integer.")
+        raise ValueError("chunk_size deve essere un intero positivo.")
     if args.chunk_overlap < 0:
-        raise ValueError("chunk_overlap must be a non-negative integer.")
+        raise ValueError("chunk_overlap deve essere un intero non-negativo.")
     if args.n_retrieved <= 0:
-        raise ValueError("n_retrieved must be a positive integer.")
+        raise ValueError("n_retrieved deve essere un intero positivo.")
     return args
 
 
 def parse_args():
     """
-    Parses and validates command-line arguments for the Simple RAG Gemini system.
+    Parsea e valida argomenti da linea di comando per il sistema RAG Gemini semplice.
 
-    This function sets up the argument parser with all configurable parameters
-    for the RAG pipeline, providing sensible defaults while allowing full customization.
+    Questa funzione configura il parser di argomenti con tutti i parametri configurabili
+    per il pipeline RAG, fornendo valori di default ragionevoli permettendo personalizzazione completa.
 
     Returns:
-        args: Validated command-line arguments ready for use.
+        args: Argomenti da linea di comando validati pronti per l'uso.
     """
     parser = argparse.ArgumentParser(
-        description="Encode a PDF document and test a simple RAG system with Gemini.",
+        description="Codifica un documento PDF e testa un sistema RAG semplice con Gemini.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-Examples:
-  python 01_simple_rag_langchain_google.py --path data/document.pdf --query "What is machine learning?"
+Esempi:
+  python 01_simple_rag_langchain_google.py --path data/document.pdf --query "Cos'è il machine learning?"
   python 01_simple_rag_langchain_google.py --chunk_size 500 --chunk_overlap 100 --n_retrieved 3 --evaluate
         """
     )
 
     parser.add_argument("--path", type=str, default="data/Understanding_Climate_Change.pdf",
-                        help="Path to the PDF file to encode and process.")
+                        help="Percorso al file PDF da codificare ed elaborare.")
     parser.add_argument("--chunk_size", type=int, default=1000,
-                        help="Size of each text chunk in characters (default: 1000). "
-                             "Larger values preserve more context but may reduce precision.")
+                        help="Dimensione di ogni chunk di testo in caratteri (default: 1000). "
+                             "Valori più grandi preservano più contesto ma possono ridurre precisione.")
     parser.add_argument("--chunk_overlap", type=int, default=200,
-                        help="Overlap between consecutive chunks in characters (default: 200). "
-                             "Helps maintain context continuity across chunk boundaries.")
+                        help="Overlap tra chunk consecutivi in caratteri (default: 200). "
+                             "Aiuta a mantenere continuità contesto tra confini chunk.")
     parser.add_argument("--n_retrieved", type=int, default=2,
-                        help="Number of most relevant chunks to retrieve per query (default: 2). "
-                             "More chunks provide richer context but increase processing time.")
-    parser.add_argument("--query", type=str, default="What is the main cause of climate change?",
-                        help="Query to test the retriever with (default: climate change question).")
+                        help="Numero di chunk più rilevanti da recuperare per query (default: 2). "
+                             "Più chunk forniscono contesto più ricco ma aumentano tempo processamento.")
+    parser.add_argument("--query", type=str, default="Qual è la causa principale del cambiamento climatico?",
+                        help="Query per testare il retriever (default: domanda cambiamento climatico).")
     parser.add_argument("--evaluate", action="store_true",
-                        help="Enable performance evaluation of the RAG system (default: False). "
-                             "When enabled, runs comprehensive evaluation metrics.")
+                        help="Abilita valutazione prestazioni del sistema RAG (default: False). "
+                             "Quando abilitato, esegue metriche di valutazione complete.")
 
-    # Parse and validate arguments
+    # Parsea e valida argomenti
     return validate_args(parser.parse_args())
 
 
 def main(args):
     """
-    Main execution function that orchestrates the complete RAG pipeline with Gemini.
+    Funzione di esecuzione principale che orchestra il completo pipeline RAG con Gemini.
 
-    This function serves as the entry point that:
-    1. Initializes the SimpleRAGGemini system with user-specified parameters
-    2. Executes the retrieval query
-    3. Optionally evaluates system performance
+    Questa funzione serve come punto di ingresso che:
+    1. Inizializza il sistema SimpleRAGGemini con parametri utente specificati
+    2. Esegue la query di retrieval
+    3. Opzionalmente valuta le prestazioni del sistema
 
     Args:
-        args: Parsed and validated command-line arguments.
+        args: Argomenti da linea di comando parsati e validati.
     """
-    # Initialize the RAG system with document encoding and retriever setup
+    # Inizializza il sistema RAG con codifica documento e setup retriever
     simple_rag = SimpleRAGGemini(
         path=args.path,
         chunk_size=args.chunk_size,
@@ -256,17 +257,17 @@ def main(args):
         n_retrieved=args.n_retrieved
     )
 
-    # Execute the retrieval query and display results
+    # Esegue la query di retrieval e mostra risultati
     simple_rag.run(args.query)
 
-    # Optional evaluation phase: Assess retrieval quality and performance metrics
+    # Fase di valutazione opzionale: Valuta qualità retrieval e metriche prestazioni
     if args.evaluate:
-        print("\n--- Evaluating RAG System Performance ---")
+        print("\n--- Valutazione Prestazioni Sistema RAG ---")
         evaluate_rag(simple_rag.chunks_query_retriever)
 
 
 if __name__ == '__main__':
-    # Call the main function with parsed arguments
+    # Chiama la funzione main con argomenti parsati
     main(parse_args())
 
 
