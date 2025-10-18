@@ -382,6 +382,49 @@ def get_langchain_embedding_provider(provider: EmbeddingProvider, model_id: str 
         raise ValueError(f"Provider embeddings non supportato: {provider}")
 
 
+def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200, embedding_provider=EmbeddingProvider.GOOGLE):
+    """
+    Gestisce caricamento/creazione vector store con caching intelligente.
+
+    Args:
+        pdf_path (str): Percorso PDF.
+        chunk_size (int): Dimensione chunk.
+        chunk_overlap (int): Overlap chunk.
+        embedding_provider (EmbeddingProvider): Provider embeddings.
+
+    Returns:
+        Chroma: Vector store pronto.
+    """
+    # Setup directory e path caching
+    persist_dir = os.path.join(os.path.dirname(pdf_path), ".vector_stores")
+    os.makedirs(persist_dir, exist_ok=True)
+    file_hash = get_file_hash(pdf_path)
+    vectorstore_path = os.path.join(persist_dir, f"pdf_{file_hash[:16]}")
+
+    # Ottieni funzione embeddings
+    embeddings = get_langchain_embedding_provider(embedding_provider)
+
+    # Carica vector store esistente se valido
+    if os.path.exists(vectorstore_path):
+        try:
+            from langchain_community.vectorstores import Chroma
+            vectorstore = Chroma(persist_directory=vectorstore_path, embedding_function=embeddings)
+            if vectorstore._collection.count() > 0:
+                print(f"✅ Carico vector store esistente: {vectorstore._collection.count()} documenti")
+                return vectorstore
+        except Exception:
+            pass  # Ricrea se errore
+
+    # Crea nuovo vector store
+    print(f"🔄 Creo nuovo vector store per {os.path.basename(pdf_path)}")
+    documents = encode_pdf(pdf_path, chunk_size, chunk_overlap)
+    from langchain_community.vectorstores import Chroma
+    vectorstore = Chroma.from_documents(documents, embeddings, persist_directory=vectorstore_path)
+    print(f"✅ Vector store creato: {vectorstore._collection.count()} documenti")
+
+    return vectorstore
+
+
 def get_langchain_model_provider(provider: ModelProvider, model_id: str = None, temperature: float = 0.7):
     """
     Factory provider modelli LLM LangChain.
@@ -414,3 +457,62 @@ def get_langchain_model_provider(provider: ModelProvider, model_id: str = None, 
         return ChatGoogleGenerativeAI(model=model_id, temperature=temperature) if model_id else ChatGoogleGenerativeAI(model="gemini-pro", temperature=temperature)
     else:
         raise ValueError(f"Provider modello non supportato: {provider}")
+
+
+def validate_args(args):
+    """
+    Valida parametri CLI per RAG.
+
+    Args:
+        args: Argomenti da validare.
+
+    Returns:
+        args: Parametri validati.
+
+    Raises:
+        ValueError: Per parametri invalidi.
+    """
+    if args.chunk_size <= 0:
+        raise ValueError("chunk_size deve essere > 0")
+    if args.chunk_overlap < 0:
+        raise ValueError("chunk_overlap deve essere >= 0")
+    if args.n_retrieved <= 0:
+        raise ValueError("n_retrieved deve essere > 0")
+    return args
+
+
+def create_rag_parser(default_pdf="data/Understanding_Climate_Change.pdf"):
+    """
+    Crea parser CLI per script RAG.
+
+    Args:
+        default_pdf (str): PDF di default.
+
+    Returns:
+        ArgumentParser configurato.
+    """
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Sistema RAG per processamento PDF.",
+        epilog="""
+Esempi:
+  python script.py --path data/document.pdf --query "Cos'è il machine learning?"
+  python script.py --chunk_size 500 --chunk_overlap 100 --n_retrieved 3
+        """
+    )
+
+    parser.add_argument("--path", type=str, default=default_pdf,
+                        help="Percorso file PDF da processare.")
+    parser.add_argument("--chunk_size", type=int, default=1000,
+                        help="Dimensione chunk (default: 1000).")
+    parser.add_argument("--chunk_overlap", type=int, default=200,
+                        help="Overlap chunk (default: 200).")
+    parser.add_argument("--n_retrieved", type=int, default=2,
+                        help="Chunk da recuperare (default: 2).")
+    parser.add_argument("--query", type=str, default="Qual è la causa principale del cambiamento climatico?",
+                        help="Query di test.")
+    parser.add_argument("--evaluate", action="store_true",
+                        help="Abilita valutazione prestazioni RAG.")
+
+    return parser
