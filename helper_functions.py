@@ -17,59 +17,59 @@ from enum import Enum
 
 def replace_t_with_space(list_of_documents):
     """
-    Replaces all tab characters ('\t') with spaces in the page content of each document
+    Sostituisce tab con spazi nei documenti.
 
     Args:
-        list_of_documents: A list of document objects, each with a 'page_content' attribute.
+        list_of_documents: Lista documenti da pulire.
 
     Returns:
-        The modified list of documents with tab characters replaced by spaces.
+        Documenti con tab sostituiti da spazi.
     """
 
     for doc in list_of_documents:
-        doc.page_content = doc.page_content.replace('\t', ' ')  # Replace tabs with spaces
+        doc.page_content = doc.page_content.replace('\t', ' ')  # Pulizia tab
     return list_of_documents
 
 
 def text_wrap(text, width=120):
     """
-    Wraps the input text to the specified width.
+    Formatta testo a larghezza fissa.
 
     Args:
-        text (str): The input text to wrap.
-        width (int): The width at which to wrap the text.
+        text (str): Testo da formattare.
+        width (int): Larghezza massima righe.
 
     Returns:
-        str: The wrapped text.
+        str: Testo formattato.
     """
     return textwrap.fill(text, width=width)
 
 
 def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     """
-    Encodes a PDF book into a vector store using OpenAI embeddings.
+    Pipeline PDF → vector store OpenAI.
 
     Args:
-        path: The path to the PDF file.
-        chunk_size: The desired size of each text chunk.
-        chunk_overlap: The amount of overlap between consecutive chunks.
+        path: Percorso file PDF.
+        chunk_size: Dimensione chunk caratteri.
+        chunk_overlap: Sovrapposizione tra chunk.
 
     Returns:
-        A FAISS vector store containing the encoded book content.
+        FAISS vector store con contenuto embedded.
     """
 
-    # Load PDF documents
+    # Caricamento PDF
     loader = PyPDFLoader(path)
     documents = loader.load()
 
-    # Split documents into chunks
+    # Chunking testo
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size, chunk_overlap=chunk_overlap, length_function=len
     )
     texts = text_splitter.split_documents(documents)
     cleaned_texts = replace_t_with_space(texts)
 
-    # Create embeddings and vector store
+    # Embeddings e vector store
     embeddings = OpenAIEmbeddings()
     vectorstore = FAISS.from_documents(cleaned_texts, embeddings)
 
@@ -78,32 +78,32 @@ def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
 
 def encode_from_string(content, chunk_size=1000, chunk_overlap=200):
     """
-    Encodes a string into a vector store using OpenAI embeddings.
+    Pipeline testo → vector store OpenAI.
 
     Args:
-        content (str): The text content to be encoded.
-        chunk_size (int): The size of each chunk of text.
-        chunk_overlap (int): The overlap between chunks.
+        content (str): Testo da processare.
+        chunk_size (int): Dimensione chunk.
+        chunk_overlap (int): Sovrapposizione chunk.
 
     Returns:
-        FAISS: A vector store containing the encoded content.
+        FAISS vector store con contenuto embedded.
 
     Raises:
-        ValueError: If the input content is not valid.
-        RuntimeError: If there is an error during the encoding process.
+        ValueError: Per input non validi.
+        RuntimeError: Per errori durante encoding.
     """
 
     if not isinstance(content, str) or not content.strip():
-        raise ValueError("Content must be a non-empty string.")
+        raise ValueError("Content deve essere stringa non vuota.")
 
     if not isinstance(chunk_size, int) or chunk_size <= 0:
-        raise ValueError("chunk_size must be a positive integer.")
+        raise ValueError("chunk_size deve essere intero positivo.")
 
     if not isinstance(chunk_overlap, int) or chunk_overlap < 0:
-        raise ValueError("chunk_overlap must be a non-negative integer.")
+        raise ValueError("chunk_overlap deve essere intero non negativo.")
 
     try:
-        # Split the content into chunks
+        # Chunking contenuto
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
@@ -112,38 +112,36 @@ def encode_from_string(content, chunk_size=1000, chunk_overlap=200):
         )
         chunks = text_splitter.create_documents([content])
 
-        # Assign metadata to each chunk
+        # Metadata per chunk
         for chunk in chunks:
             chunk.metadata['relevance_score'] = 1.0
 
-        # Generate embeddings and create the vector store
+        # Embeddings e vector store
         embeddings = OpenAIEmbeddings()
         vectorstore = FAISS.from_documents(chunks, embeddings)
 
     except Exception as e:
-        raise RuntimeError(f"An error occurred during the encoding process: {str(e)}")
+        raise RuntimeError(f"Errore durante encoding: {str(e)}")
 
     return vectorstore
 
 
 def retrieve_context_per_question(question, chunks_query_retriever):
     """
-    Retrieves relevant context and unique URLs for a given question using the chunks query retriever.
+    Retrieval contesto per domanda.
 
     Args:
-        question: The question for which to retrieve context and URLs.
+        question: Domanda utente.
+        chunks_query_retriever: Retriever per ricerca similarità.
 
     Returns:
-        A tuple containing:
-        - A string with the concatenated content of relevant documents.
-        - A list of unique URLs from the metadata of the relevant documents.
+        Lista contenuti documenti rilevanti.
     """
 
-    # Retrieve relevant documents for the given question
+    # Ricerca documenti rilevanti
     docs = chunks_query_retriever.invoke(question)
 
-    # Concatenate document content
-    # context = " ".join(doc.page_content for doc in docs)
+    # Estrazione contenuti
     context = [doc.page_content for doc in docs]
 
     return context
@@ -151,33 +149,33 @@ def retrieve_context_per_question(question, chunks_query_retriever):
 
 class QuestionAnswerFromContext(BaseModel):
     """
-    Model to generate an answer to a query based on a given context.
-    
+    Modello per risposta basata su contesto.
+
     Attributes:
-        answer_based_on_content (str): The generated answer based on the context.
+        answer_based_on_content (str): Risposta generata dal contesto.
     """
-    answer_based_on_content: str = Field(description="Generates an answer to a query based on a given context.")
+    answer_based_on_content: str = Field(description="Genera risposta alla domanda basata sul contesto fornito.")
 
 
 def create_question_answer_from_context_chain(llm):
-    # Initialize the ChatOpenAI model with specific parameters
+    # Configurazione LLM per risposte contestuali
     question_answer_from_context_llm = llm
 
-    # Define the prompt template for chain-of-thought reasoning
-    question_answer_prompt_template = """ 
-    For the question below, provide a concise but suffice answer based ONLY on the provided context:
+    # Template prompt per risposte basate su contesto
+    question_answer_prompt_template = """
+    Fornisci risposta concisa basata SOLO sul contesto fornito:
     {context}
-    Question
+    Domanda
     {question}
     """
 
-    # Create a PromptTemplate object with the specified template and input variables
+    # Creazione prompt template
     question_answer_from_context_prompt = PromptTemplate(
         template=question_answer_prompt_template,
         input_variables=["context", "question"],
     )
 
-    # Create a chain by combining the prompt template and the language model
+    # Chain: prompt + LLM con output strutturato
     question_answer_from_context_cot_chain = question_answer_from_context_prompt | question_answer_from_context_llm.with_structured_output(
         QuestionAnswerFromContext)
     return question_answer_from_context_cot_chain
@@ -185,20 +183,21 @@ def create_question_answer_from_context_chain(llm):
 
 def answer_question_from_context(question, context, question_answer_from_context_chain):
     """
-    Answer a question using the given context by invoking a chain of reasoning.
+    Risponde domanda usando contesto fornito.
 
     Args:
-        question: The question to be answered.
-        context: The context to be used for answering the question.
+        question: Domanda da rispondere.
+        context: Contesto per risposta.
+        question_answer_from_context_chain: Chain LLM per risposte.
 
     Returns:
-        A dictionary containing the answer, context, and question.
+        Dict con risposta, contesto e domanda.
     """
     input_data = {
         "question": question,
         "context": context
     }
-    print("Answering the question from the retrieved context...")
+    print("Risposta basata su contesto recuperato...")
 
     output = question_answer_from_context_chain.invoke(input_data)
     answer = output.answer_based_on_content
@@ -207,12 +206,12 @@ def answer_question_from_context(question, context, question_answer_from_context
 
 def show_context(context):
     """
-    Display the contents of the provided context list.
+    Visualizza lista contesti recuperati.
 
     Args:
-        context (list): A list of context items to be displayed.
+        context (list): Lista contesti da mostrare.
 
-    Prints each context item in the list with a heading indicating its position.
+    Visualizza ogni contesto con numerazione.
     """
     for i, c in enumerate(context):
         print(f"Context {i + 1}:")
@@ -222,52 +221,50 @@ def show_context(context):
 
 def read_pdf_to_string(path):
     """
-    Read a PDF document from the specified path and return its content as a string.
+    Estrae testo completo da PDF.
 
     Args:
-        path (str): The file path to the PDF document.
+        path (str): Percorso file PDF.
 
     Returns:
-        str: The concatenated text content of all pages in the PDF document.
+        str: Testo concatenato di tutte le pagine.
 
-    The function uses the 'fitz' library (PyMuPDF) to open the PDF document, iterate over each page,
-    extract the text content from each page, and append it to a single string.
+    Usa PyMuPDF per estrarre testo da ogni pagina.
     """
-    # Open the PDF document located at the specified path
+    # Apertura PDF
     doc = fitz.open(path)
     content = ""
-    # Iterate over each page in the document
+    # Iterazione pagine
     for page_num in range(len(doc)):
-        # Get the current page
         page = doc[page_num]
-        # Extract the text content from the current page and append it to the content string
+        # Estrazione testo pagina
         content += page.get_text()
     return content
 
 
 def bm25_retrieval(bm25: BM25Okapi, cleaned_texts: List[str], query: str, k: int = 5) -> List[str]:
     """
-    Perform BM25 retrieval and return the top k cleaned text chunks.
+    Retrieval BM25 per query.
 
     Args:
-    bm25 (BM25Okapi): Pre-computed BM25 index.
-    cleaned_texts (List[str]): List of cleaned text chunks corresponding to the BM25 index.
-    query (str): The query string.
-    k (int): The number of text chunks to retrieve.
+        bm25 (BM25Okapi): Indice BM25 precalcolato.
+        cleaned_texts (List[str]): Lista testi puliti.
+        query (str): Query di ricerca.
+        k (int): Numero risultati top.
 
     Returns:
-    List[str]: The top k cleaned text chunks based on BM25 scores.
+        List[str]: Top k testi basati su punteggi BM25.
     """
-    # Tokenize the query
+    # Tokenizzazione query
     query_tokens = query.split()
 
-    # Get BM25 scores for the query
+    # Calcolo punteggi BM25
     bm25_scores = bm25.get_scores(query_tokens)
 
-    # Get the indices of the top k scores
+    # Indici top k risultati
     top_k_indices = np.argsort(bm25_scores)[::-1][:k]
 
-    # Retrieve the top k cleaned text chunks
+    # Recupero testi top k
     top_k_texts = [cleaned_texts[i] for i in top_k_indices]
 
     return top_k_texts
@@ -275,59 +272,59 @@ def bm25_retrieval(bm25: BM25Okapi, cleaned_texts: List[str], query: str, k: int
 
 async def exponential_backoff(attempt):
     """
-    Implements exponential backoff with a jitter.
-    
-    Args:
-        attempt: The current retry attempt number.
-        
-    Waits for a period of time before retrying the operation.
-    The wait time is calculated as (2^attempt) + a random fraction of a second.
-    """
-    # Calculate the wait time with exponential backoff and jitter
-    wait_time = (2 ** attempt) + random.uniform(0, 1)
-    print(f"Rate limit hit. Retrying in {wait_time:.2f} seconds...")
+    Backoff esponenziale con jitter per retry.
 
-    # Asynchronously sleep for the calculated wait time
+    Args:
+        attempt: Numero tentativo corrente.
+
+    Attende periodo calcolato prima retry.
+    Tempo: (2^tentativo) + frazione casuale secondi.
+    """
+    # Calcolo tempo attesa con backoff e jitter
+    wait_time = (2 ** attempt) + random.uniform(0, 1)
+    print(f"Rate limit superato. Retry tra {wait_time:.2f} secondi...")
+
+    # Sleep asincrono
     await asyncio.sleep(wait_time)
 
 
 async def retry_with_exponential_backoff(coroutine, max_retries=5):
     """
-    Retries a coroutine using exponential backoff upon encountering a RateLimitError.
-    
+    Retry coroutine con backoff esponenziale su RateLimitError.
+
     Args:
-        coroutine: The coroutine to be executed.
-        max_retries: The maximum number of retry attempts.
-        
+        coroutine: Coroutine da eseguire.
+        max_retries: Numero massimo tentativi.
+
     Returns:
-        The result of the coroutine if successful.
-        
+        Risultato coroutine se riuscita.
+
     Raises:
-        The last encountered exception if all retry attempts fail.
+        Ultima eccezione se tutti retry falliscono.
     """
     for attempt in range(max_retries):
         try:
-            # Attempt to execute the coroutine
+            # Tentativo esecuzione coroutine
             return await coroutine
         except RateLimitError as e:
-            # If the last attempt also fails, raise the exception
+            # Se ultimo tentativo fallisce, rilancia eccezione
             if attempt == max_retries - 1:
                 raise e
 
-            # Wait for an exponential backoff period before retrying
+            # Attesa backoff esponenziale prima retry
             await exponential_backoff(attempt)
 
-    # If max retries are reached without success, raise an exception
-    raise Exception("Max retries reached")
+    # Se max retry raggiunti senza successo
+    raise Exception("Max tentativi raggiunti")
 
 
-# Enum class representing different embedding providers
+# Provider embeddings disponibili
 class EmbeddingProvider(Enum):
     OPENAI = "openai"
     COHERE = "cohere"
     AMAZON_BEDROCK = "bedrock"
 
-# Enum class representing different model providers
+# Provider modelli disponibili
 class ModelProvider(Enum):
     OPENAI = "openai"
     GROQ = "groq"
@@ -337,17 +334,17 @@ class ModelProvider(Enum):
 
 def get_langchain_embedding_provider(provider: EmbeddingProvider, model_id: str = None):
     """
-    Returns an embedding provider based on the specified provider and model ID.
+    Restituisce provider embeddings LangChain.
 
     Args:
-        provider (EmbeddingProvider): The embedding provider to use.
-        model_id (str): Optional -  The specific embeddings model ID to use .
+        provider (EmbeddingProvider): Provider da usare.
+        model_id (str): ID modello specifico (opzionale).
 
     Returns:
-        A LangChain embedding provider instance.
+        Istanza provider embeddings LangChain.
 
     Raises:
-        ValueError: If the specified provider is not supported.
+        ValueError: Se provider non supportato.
     """
     if provider == EmbeddingProvider.OPENAI:
         from langchain_openai import OpenAIEmbeddings
@@ -359,4 +356,4 @@ def get_langchain_embedding_provider(provider: EmbeddingProvider, model_id: str 
         from langchain_community.embeddings import BedrockEmbeddings
         return BedrockEmbeddings(model_id=model_id) if model_id else BedrockEmbeddings(model_id="amazon.titan-embed-text-v2:0")
     else:
-        raise ValueError(f"Unsupported embedding provider: {provider}")
+        raise ValueError(f"Provider embeddings non supportato: {provider}")
