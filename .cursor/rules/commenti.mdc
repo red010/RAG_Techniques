@@ -1,0 +1,83 @@
+---
+description: Standard per commenti sintetici e chiari nel progetto RAG Techniques
+autoAttached: true
+globs: ["*.py"]
+---
+
+# 📝 Standard Commenti - Progetto RAG Techniques
+
+## 🎯 **Principio Fondamentale**
+**Commenti sintetici, in italiano, immediatamente comprensibili per studenti italiani.**
+
+## 📋 **Regole Commenti**
+
+### **1. Linguaggio**
+- ✅ **Italiano** per tutte le spiegazioni e descrizioni
+- ✅ **Inglese** per termini tecnici specifici:
+  - `RAG` (Retrieval-Augmented Generation)
+  - `embeddings`, `vector store`, `chunking`
+  - `retriever`, `similarity search`
+  - Nomi di librerie e modelli
+
+### **2. Lunghezza e Concisione**
+- ✅ **Docstring:** 1-3 righe massimo, formato pipeline con frecce `→`
+- ✅ **Commenti in-line:** 1 riga, essenziale ma informativo
+- ❌ **NO:** Descrizioni verbose o ridondanti
+
+### **3. Formato Pipeline**
+```
+# Pipeline RAG: caricamento PDF → chunking → embeddings → retrieval
+```
+
+### **4. Esempi Corretti**
+
+#### **Docstring Metodo:**
+```python
+def run(self, query):
+    """
+    Retrieval RAG: embedding query → ricerca similarità → top-k risultati → visualizzazione.
+
+    Args:
+        query (str): Domanda utente da processare.
+
+    Returns:
+        None: Risultati mostrati in console.
+    """
+```
+
+#### **Commento In-line:**
+```python
+# Pipeline preprocessing: PDF → chunks → embeddings → vector store
+start_time = time.time()
+self.vector_store = encode_pdf(path, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+```
+
+#### **Import Commentati:**
+```python
+# Vector store Chroma per storage efficiente di embeddings
+from langchain_community.vectorstores import Chroma
+```
+
+### **5. Contenuto Essenziale**
+
+#### **Cosa Includere:**
+- ✅ Scopo della funzione/classe (1 frase)
+- ✅ Flusso di lavoro principale
+- ✅ Parametri critici
+- ✅ Dipendenze importanti
+
+#### **Cosa Evitare:**
+- ❌ Spiegazioni ovvie
+- ❌ Dettagli implementativi non necessari
+- ❌ Ripetizioni del nome della funzione
+
+### **6. Pubblico Target**
+- 🎓 **Studenti italiani** di corsi AI/ML
+- 📖 **Lettura veloce** durante esercitazioni pratiche
+- 🔍 **Comprensione immediata** senza distrazioni
+
+## 🚀 **Applicazione Automatica**
+
+Questa regola si attiva automaticamente per tutti i file `*.py` del progetto RAG Techniques.
+
+**Obiettivo:** Codice didattico chiaro e professionale per formazione italiana in AI! 🇮🇹🤖
