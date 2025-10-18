@@ -331,6 +331,7 @@ class ModelProvider(Enum):
     GROQ = "groq"
     ANTHROPIC = "anthropic"
     AMAZON_BEDROCK = "bedrock"
+    GOOGLE = "google"
 
 
 def get_langchain_embedding_provider(provider: EmbeddingProvider, model_id: str = None):
@@ -361,3 +362,37 @@ def get_langchain_embedding_provider(provider: EmbeddingProvider, model_id: str 
         return GoogleGenerativeAIEmbeddings(model=model_id) if model_id else GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     else:
         raise ValueError(f"Provider embeddings non supportato: {provider}")
+
+
+def get_langchain_model_provider(provider: ModelProvider, model_id: str = None, temperature: float = 0.7):
+    """
+    Factory provider modelli LLM LangChain.
+
+    Args:
+        provider (ModelProvider): Provider da usare (OPENAI, GROQ, ANTHROPIC, BEDROCK, GOOGLE).
+        model_id (str): ID modello specifico (opzionale).
+        temperature (float): Temperatura per generazione (default: 0.7).
+
+    Returns:
+        Istanza modello LLM LangChain.
+
+    Raises:
+        ValueError: Se provider non supportato.
+    """
+    if provider == ModelProvider.OPENAI:
+        from langchain_openai import ChatOpenAI
+        return ChatOpenAI(model=model_id, temperature=temperature) if model_id else ChatOpenAI(temperature=temperature)
+    elif provider == ModelProvider.GROQ:
+        from langchain_groq import ChatGroq
+        return ChatGroq(model=model_id, temperature=temperature) if model_id else ChatGroq(temperature=temperature)
+    elif provider == ModelProvider.ANTHROPIC:
+        from langchain_anthropic import ChatAnthropic
+        return ChatAnthropic(model=model_id, temperature=temperature) if model_id else ChatAnthropic(temperature=temperature)
+    elif provider == ModelProvider.AMAZON_BEDROCK:
+        from langchain_community.chat_models import BedrockChat
+        return BedrockChat(model_id=model_id, temperature=temperature) if model_id else BedrockChat(model_id="anthropic.claude-3-sonnet-20240229-v1:0", temperature=temperature)
+    elif provider == ModelProvider.GOOGLE:
+        from langchain_google_genai import ChatGoogleGenerativeAI
+        return ChatGoogleGenerativeAI(model=model_id, temperature=temperature) if model_id else ChatGoogleGenerativeAI(model="gemini-pro", temperature=temperature)
+    else:
+        raise ValueError(f"Provider modello non supportato: {provider}")
