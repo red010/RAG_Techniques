@@ -96,13 +96,16 @@ def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200):
     vectorstore_path = os.path.join(persist_dir, collection_name)
 
     # Verifica se vector store esiste già
-    if os.path.exists(vectorstore_path) and len(os.listdir(vectorstore_path)) > 0:
-        print(f"✅ Carico vector store esistente per {os.path.basename(pdf_path)}")
+    if os.path.exists(vectorstore_path):
         try:
-            vectorstore = Chroma(persist_directory=vectorstore_path,
-                               embedding_function=GoogleGenerativeAIEmbeddings(model="models/embedding-001"))
-            # Verifica che il vector store abbia documenti
+            print(f"✅ Carico vector store esistente per {os.path.basename(pdf_path)}")
+            vectorstore = Chroma(
+                persist_directory=vectorstore_path,
+                embedding_function=GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+            )
+            # Verifica che abbia documenti
             if vectorstore._collection.count() > 0:
+                print(f"✅ Vector store caricato: {vectorstore._collection.count()} documenti")
                 return vectorstore
             else:
                 print("⚠️ Vector store vuoto, ricreo...")
@@ -111,11 +114,13 @@ def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200):
 
     # Crea nuovo vector store con persistenza automatica
     print(f"🔄 Creo nuovo vector store per {os.path.basename(pdf_path)}")
+    documents = encode_pdf(pdf_path, chunk_size, chunk_overlap)
     vectorstore = Chroma.from_documents(
-        encode_pdf(pdf_path, chunk_size, chunk_overlap).documents,
+        documents,
         GoogleGenerativeAIEmbeddings(model="models/embedding-001"),
         persist_directory=vectorstore_path
     )
+    print(f"✅ Vector store creato: {vectorstore._collection.count()} documenti")
 
     return vectorstore
 
