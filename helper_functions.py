@@ -323,6 +323,7 @@ class EmbeddingProvider(Enum):
     OPENAI = "openai"
     COHERE = "cohere"
     AMAZON_BEDROCK = "bedrock"
+    GOOGLE = "google"
 
 # Provider modelli disponibili
 class ModelProvider(Enum):
@@ -334,10 +335,10 @@ class ModelProvider(Enum):
 
 def get_langchain_embedding_provider(provider: EmbeddingProvider, model_id: str = None):
     """
-    Restituisce provider embeddings LangChain.
+    Factory provider embeddings LangChain.
 
     Args:
-        provider (EmbeddingProvider): Provider da usare.
+        provider (EmbeddingProvider): Provider da usare (OPENAI, COHERE, BEDROCK, GOOGLE).
         model_id (str): ID modello specifico (opzionale).
 
     Returns:
@@ -355,5 +356,8 @@ def get_langchain_embedding_provider(provider: EmbeddingProvider, model_id: str 
     elif provider == EmbeddingProvider.AMAZON_BEDROCK:
         from langchain_community.embeddings import BedrockEmbeddings
         return BedrockEmbeddings(model_id=model_id) if model_id else BedrockEmbeddings(model_id="amazon.titan-embed-text-v2:0")
+    elif provider == EmbeddingProvider.GOOGLE:
+        from langchain_google_genai import GoogleGenerativeAIEmbeddings
+        return GoogleGenerativeAIEmbeddings(model=model_id) if model_id else GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     else:
         raise ValueError(f"Provider embeddings non supportato: {provider}")
