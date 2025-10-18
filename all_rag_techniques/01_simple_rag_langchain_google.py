@@ -109,13 +109,13 @@ def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200):
         except Exception as e:
             print(f"⚠️ Errore caricamento vector store esistente: {e}, ricreo...")
 
-    # Crea nuovo vector store
+    # Crea nuovo vector store con persistenza automatica
     print(f"🔄 Creo nuovo vector store per {os.path.basename(pdf_path)}")
-    vectorstore = encode_pdf(pdf_path, chunk_size, chunk_overlap)
-
-    # Salva su disco
-    vectorstore.persist_directory = vectorstore_path
-    vectorstore.persist()
+    vectorstore = Chroma.from_documents(
+        encode_pdf(pdf_path, chunk_size, chunk_overlap).documents,
+        GoogleGenerativeAIEmbeddings(model="models/embedding-001"),
+        persist_directory=vectorstore_path
+    )
 
     return vectorstore
 
@@ -172,7 +172,7 @@ class SimpleRAGGemini:
 
 def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     """
-    Pipeline encoding: PDF → chunking → pulizia → embeddings Gemini → vector store Chroma.
+    Pipeline encoding: PDF → chunking → pulizia testo.
 
     Args:
         path: Percorso file PDF.
@@ -180,7 +180,7 @@ def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
         chunk_overlap: Overlap tra chunk consecutivi.
 
     Returns:
-        Vector store Chroma con contenuto embedded.
+        Documenti processati e puliti (pronti per embeddings).
     """
     # Carica e processa PDF
     loader = PyPDFLoader(path)
@@ -193,11 +193,7 @@ def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     texts = text_splitter.split_documents(documents)
     cleaned_texts = replace_t_with_space(texts)
 
-    # Embedding e storage vettoriale
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-    vectorstore = Chroma.from_documents(cleaned_texts, embeddings)
-
-    return vectorstore
+    return cleaned_texts
 
 
 def validate_args(args):
