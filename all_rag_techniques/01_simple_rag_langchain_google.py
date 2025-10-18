@@ -13,26 +13,6 @@ Componenti Chiave:
 4. Configurazione retriever per interrogare i documenti elaborati
 5. Valutazione del sistema RAG
 
-Dettagli Metodo:
-- Pre-elaborazione Documento: Caricamento PDF e suddivisione in chunk
-- Pulizia Testo: Funzione personalizzata per pulire il testo estratto
-- Creazione Vector Store: Embeddings Gemini con Chroma per ricerca similarità efficiente
-- Configurazione Retriever: Setup per recuperare i top-k chunk più rilevanti
-- Funzione Encoding: Funzione modulare che incapsula l'intero processo PDF-to-vector-store
-
-Caratteristiche Principali:
-- Design Modulare: Processo di encoding incapsulato in funzioni riutilizzabili
-- Chunking Configurabile: Parametri chunk size e overlap regolabili
-- Retrieval Efficente: Chroma per ricerca similarità veloce in spazi ad alta dimensione
-- Integrazione Gemini: Usa embeddings Gemini di Google per rappresentazione testo
-- Valutazione: Capacità di valutazione prestazioni integrate
-
-Benefici:
-- Scalabilità: Gestisce documenti grandi elaborandoli in chunk
-- Flessibilità: Facile regolazione parametri per diversi casi d'uso
-- Efficienza: Retrieval ottimizzato con Chroma e embeddings Gemini
-- Integrazione Google: Pronto per ecosistema AI Google
-
 Utilizzo:
 python 01_simple_rag_langchain_google.py --path data/document.pdf --query "Qual è l'argomento principale?"
 """
@@ -53,17 +33,26 @@ load_dotenv()
 # Imposta la chiave API Google usando GEMINI_API_KEY dal file .env
 os.environ["GOOGLE_API_KEY"] = os.getenv('GEMINI_API_KEY', '')
 
+# Import per embeddings Gemini di Google
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+
+# Loader per documenti PDF
 from langchain_community.document_loaders import PyPDFLoader
+
+# Suddivisore di testo ricorsivo per chunking
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+# Funzioni helper per RAG (provider embeddings, retrieval, pulizia testo, visualizzazione)
 from helper_functions import (EmbeddingProvider,
                               retrieve_context_per_question,
                               replace_t_with_space,
                               get_langchain_embedding_provider,
                               show_context)
 
+# Funzione per valutazione prestazioni sistema RAG
 from evaluation.evalute_rag import evaluate_rag
 
+# Vector store Chroma per storage efficiente di embeddings
 from langchain_community.vectorstores import Chroma
 
 
