@@ -21,6 +21,7 @@ import os
 import sys
 import argparse
 import time
+import hashlib
 from dotenv import load_dotenv
 
 # Aggiunge la directory genitore al path per accedere alle helper functions
@@ -56,6 +57,69 @@ from evaluation.evalute_rag import evaluate_rag
 from langchain_community.vectorstores import Chroma
 
 
+def get_file_hash(filepath):
+    """
+    Calcola hash SHA256 del file per verificare cambiamenti.
+
+    Args:
+        filepath (str): Percorso del file.
+
+    Returns:
+        str: Hash SHA256 del file.
+    """
+    hash_sha256 = hashlib.sha256()
+    with open(filepath, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_sha256.update(chunk)
+    return hash_sha256.hexdigest()
+
+
+def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200):
+    """
+    Carica vector store esistente o ne crea uno nuovo se necessario.
+
+    Args:
+        pdf_path (str): Percorso al file PDF.
+        chunk_size (int): Dimensione chunk.
+        chunk_overlap (int): Overlap tra chunk.
+
+    Returns:
+        Chroma: Vector store caricato o creato.
+    """
+    # Crea directory per vector stores se non esiste
+    persist_dir = os.path.join(os.path.dirname(pdf_path), ".vector_stores")
+    os.makedirs(persist_dir, exist_ok=True)
+
+    # Calcola hash del file per identificare versioni
+    file_hash = get_file_hash(pdf_path)
+    collection_name = f"pdf_{file_hash[:16]}"  # Nome collezione basato su hash
+    vectorstore_path = os.path.join(persist_dir, collection_name)
+
+    # Verifica se vector store esiste già
+    if os.path.exists(vectorstore_path) and len(os.listdir(vectorstore_path)) > 0:
+        print(f"✅ Carico vector store esistente per {os.path.basename(pdf_path)}")
+        try:
+            vectorstore = Chroma(persist_directory=vectorstore_path,
+                               embedding_function=GoogleGenerativeAIEmbeddings(model="models/embedding-001"))
+            # Verifica che il vector store abbia documenti
+            if vectorstore._collection.count() > 0:
+                return vectorstore
+            else:
+                print("⚠️ Vector store vuoto, ricreo...")
+        except Exception as e:
+            print(f"⚠️ Errore caricamento vector store esistente: {e}, ricreo...")
+
+    # Crea nuovo vector store
+    print(f"🔄 Creo nuovo vector store per {os.path.basename(pdf_path)}")
+    vectorstore = encode_pdf(pdf_path, chunk_size, chunk_overlap)
+
+    # Salva su disco
+    vectorstore.persist_directory = vectorstore_path
+    vectorstore.persist()
+
+    return vectorstore
+
+
 class SimpleRAGGemini:
     """
     Questa classe incapsula l'intera pipeline RAG dalla pre-elaborazione documenti al retrieval query
@@ -73,11 +137,11 @@ class SimpleRAGGemini:
         """
         print("\n--- Inizializzazione Retriever RAG con Gemini ---")
 
-        # Pipeline preprocessing: PDF → chunks → embeddings → vector store
+        # Carica vector store esistente o creane uno nuovo se necessario
         start_time = time.time()
-        self.vector_store = encode_pdf(path, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-        self.time_records = {'Chunking': time.time() - start_time}
-        print(f"Tempo Chunking: {self.time_records['Chunking']:.2f} secondi")
+        self.vector_store = load_or_create_vectorstore(path, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+        self.time_records = {'VectorStore': time.time() - start_time}
+        print(f"Tempo caricamento Vector Store: {self.time_records['VectorStore']:.2f} secondi")
 
         # Setup retriever per ricerca similarità in Chroma
         self.chunks_query_retriever = self.vector_store.as_retriever(search_kwargs={"k": n_retrieved})
@@ -97,6 +161,10 @@ class SimpleRAGGemini:
         context = retrieve_context_per_question(query, self.chunks_query_retriever)
         self.time_records['Retrieval'] = time.time() - start_time
         print(f"Tempo Retrieval: {self.time_records['Retrieval']:.2f} secondi")
+
+        # Statistiche complessive
+        total_time = self.time_records.get('VectorStore', 0) + self.time_records['Retrieval']
+        print(f"Tempo totale: {total_time:.2f} secondi")
 
         # Mostra risultati retrieval per ispezione utente
         show_context(context)
