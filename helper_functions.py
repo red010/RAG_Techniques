@@ -12,6 +12,7 @@ import asyncio
 import random
 import textwrap
 import numpy as np
+import hashlib
 from enum import Enum
 
 
@@ -43,6 +44,23 @@ def text_wrap(text, width=120):
         str: Testo formattato.
     """
     return textwrap.fill(text, width=width)
+
+
+def get_file_hash(filepath):
+    """
+    Calcola hash SHA256 del file per verificare cambiamenti.
+
+    Args:
+        filepath (str): Percorso del file.
+
+    Returns:
+        str: Hash SHA256 del file.
+    """
+    hash_sha256 = hashlib.sha256()
+    with open(filepath, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_sha256.update(chunk)
+    return hash_sha256.hexdigest()
 
 
 def encode_pdf(path, chunk_size=1000, chunk_overlap=200):

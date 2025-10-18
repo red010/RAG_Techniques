@@ -21,7 +21,6 @@ import os
 import sys
 import argparse
 import time
-import hashlib
 from dotenv import load_dotenv
 
 # Aggiunge la directory genitore al path per accedere alle helper functions
@@ -48,6 +47,7 @@ from helper_functions import (EmbeddingProvider,
                               retrieve_context_per_question,
                               replace_t_with_space,
                               get_langchain_embedding_provider,
+                              get_file_hash,
                               show_context)
 
 # Funzione per valutazione prestazioni sistema RAG
@@ -55,23 +55,6 @@ from evaluation.evalute_rag import evaluate_rag
 
 # Vector store Chroma per storage efficiente di embeddings
 from langchain_community.vectorstores import Chroma
-
-
-def get_file_hash(filepath):
-    """
-    Calcola hash SHA256 del file per verificare cambiamenti.
-
-    Args:
-        filepath (str): Percorso del file.
-
-    Returns:
-        str: Hash SHA256 del file.
-    """
-    hash_sha256 = hashlib.sha256()
-    with open(filepath, "rb") as f:
-        for chunk in iter(lambda: f.read(4096), b""):
-            hash_sha256.update(chunk)
-    return hash_sha256.hexdigest()
 
 
 def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200):
