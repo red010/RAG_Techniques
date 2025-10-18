@@ -1,83 +1,83 @@
 ---
-description: Standard per commenti sintetici e chiari nel progetto RAG Techniques
+description: Standards for concise and clear comments in RAG Techniques project
 autoAttached: true
 globs: ["*.py"]
 ---
 
-# 📝 Standard Commenti - Progetto RAG Techniques
+# 📝 Comments Standards - RAG Techniques Project
 
-## 🎯 **Principio Fondamentale**
-**Commenti sintetici, in italiano, immediatamente comprensibili per studenti italiani.**
+## 🎯 **Fundamental Principle**
+**Concise comments, in Italian, immediately understandable for Italian students.**
 
-## 📋 **Regole Commenti**
+## 📋 **Comments Rules**
 
-### **1. Linguaggio**
-- ✅ **Italiano** per tutte le spiegazioni e descrizioni
-- ✅ **Inglese** per termini tecnici specifici:
+### **1. Language**
+- ✅ **Italian** for all explanations and descriptions
+- ✅ **English** for specific technical terms:
   - `RAG` (Retrieval-Augmented Generation)
   - `embeddings`, `vector store`, `chunking`
   - `retriever`, `similarity search`
-  - Nomi di librerie e modelli
+  - Library and model names
 
-### **2. Lunghezza e Concisione**
-- ✅ **Docstring:** 1-3 righe massimo, formato pipeline con frecce `→`
-- ✅ **Commenti in-line:** 1 riga, essenziale ma informativo
-- ❌ **NO:** Descrizioni verbose o ridondanti
+### **2. Length and Conciseness**
+- ✅ **Docstrings:** 1-3 lines maximum, pipeline format with arrows `→`
+- ✅ **Inline comments:** 1 line, essential but informative
+- ❌ **NO:** Verbose or redundant descriptions
 
-### **3. Formato Pipeline**
+### **3. Pipeline Format**
 ```
-# Pipeline RAG: caricamento PDF → chunking → embeddings → retrieval
+# Pipeline RAG: PDF loading → chunking → text cleaning → Gemini embeddings → Chroma vector store → retriever
 ```
 
-### **4. Esempi Corretti**
+### **4. Correct Examples**
 
-#### **Docstring Metodo:**
+#### **Method Docstring:**
 ```python
 def run(self, query):
     """
-    Retrieval RAG: embedding query → ricerca similarità → top-k risultati → visualizzazione.
+    RAG Retrieval: query embedding → Chroma similarity search → top-k results → context display.
 
     Args:
-        query (str): Domanda utente da processare.
+        query (str): User question for processing.
 
     Returns:
-        None: Risultati mostrati in console.
+        None: Results displayed in console.
     """
 ```
 
-#### **Commento In-line:**
+#### **Inline Comment:**
 ```python
 # Pipeline preprocessing: PDF → chunks → embeddings → vector store
 start_time = time.time()
 self.vector_store = encode_pdf(path, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
 ```
 
-#### **Import Commentati:**
+#### **Commented Imports:**
 ```python
-# Vector store Chroma per storage efficiente di embeddings
+# Chroma vector store for efficient embeddings storage
 from langchain_community.vectorstores import Chroma
 ```
 
-### **5. Contenuto Essenziale**
+### **5. Essential Content**
 
-#### **Cosa Includere:**
-- ✅ Scopo della funzione/classe (1 frase)
-- ✅ Flusso di lavoro principale
-- ✅ Parametri critici
-- ✅ Dipendenze importanti
+#### **What to Include:**
+- ✅ Function/class purpose (1 sentence)
+- ✅ Main workflow
+- ✅ Critical parameters
+- ✅ Important dependencies
 
-#### **Cosa Evitare:**
-- ❌ Spiegazioni ovvie
-- ❌ Dettagli implementativi non necessari
-- ❌ Ripetizioni del nome della funzione
+#### **What to Avoid:**
+- ❌ Obvious explanations
+- ❌ Unnecessary implementation details
+- ❌ Function name repetitions
 
-### **6. Pubblico Target**
-- 🎓 **Studenti italiani** di corsi AI/ML
-- 📖 **Lettura veloce** durante esercitazioni pratiche
-- 🔍 **Comprensione immediata** senza distrazioni
+### **6. Target Audience**
+- 🎓 **Italian students** of AI/ML courses
+- 📖 **Fast reading** during practical exercises
+- 🔍 **Immediate understanding** without distractions
 
-## 🚀 **Applicazione Automatica**
+## 🚀 **Automatic Application**
 
-Questa regola si attiva automaticamente per tutti i file `*.py` del progetto RAG Techniques.
+This rule automatically activates for all `*.py` files in the RAG Techniques project.
 
-**Obiettivo:** Codice didattico chiaro e professionale per formazione italiana in AI! 🇮🇹🤖
+**Goal:** Clear and professional educational code for Italian AI training! 🇮🇹🤖
