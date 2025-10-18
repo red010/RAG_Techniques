@@ -408,7 +408,7 @@ def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200, emb
     # Carica vector store esistente se valido
     if os.path.exists(vectorstore_path):
         try:
-            from langchain_community.vectorstores import Chroma
+            from langchain_chroma import Chroma
             vectorstore = Chroma(persist_directory=vectorstore_path, embedding_function=embeddings)
             if vectorstore._collection.count() > 0:
                 print(f"✅ Carico vector store esistente: {vectorstore._collection.count()} documenti")
@@ -419,7 +419,7 @@ def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200, emb
     # Crea nuovo vector store
     print(f"🔄 Creo nuovo vector store per {os.path.basename(pdf_path)}")
     documents = encode_pdf(pdf_path, chunk_size, chunk_overlap)
-    from langchain_community.vectorstores import Chroma
+    from langchain_chroma import Chroma
     vectorstore = Chroma.from_documents(documents, embeddings, persist_directory=vectorstore_path)
     print(f"✅ Vector store creato: {vectorstore._collection.count()} documenti")
 

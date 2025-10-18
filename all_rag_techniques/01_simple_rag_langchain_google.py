@@ -51,7 +51,7 @@ from helper_functions import (EmbeddingProvider,
 from evaluation.evalute_rag import evaluate_rag
 
 # Vector store Chroma per storage efficiente di embeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 
 
 class SimpleRAGGemini:
