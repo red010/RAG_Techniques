@@ -58,32 +58,18 @@ from langchain_community.vectorstores import Chroma
 
 class SimpleRAGGemini:
     """
-    Classe per gestire il processo RAG semplice con chunking documenti e retrieval query usando embeddings Gemini.
-
-    Questa classe incapsula l'intero pipeline RAG dalla pre-elaborazione documenti al retrieval query,
-    fornendo un'interfaccia pulita per codificare documenti PDF ed eseguire query basate su similarità con Gemini.
+    Questa classe incapsula l'intera pipeline RAG dalla pre-elaborazione documenti al retrieval query
     """
 
     def __init__(self, path, chunk_size=1000, chunk_overlap=200, n_retrieved=2):
         """
-        Inizializza SimpleRAGGemini codificando il documento PDF e creando il retriever.
-
-        Questo metodo esegue il pipeline core di pre-elaborazione documenti:
-        1. Caricamento PDF ed estrazione testo usando PyPDFLoader
-        2. Suddivisione testo in chunk gestibili con overlap specificato
-        3. Pulizia testo per gestire problemi di formattazione
-        4. Creazione embeddings vettoriali usando Gemini embeddings
-        5. Creazione vector store Chroma per ricerca similarità efficiente
-        6. Configurazione retriever per processamento query
+        Pipeline RAG: caricamento PDF → chunking → pulizia testo → embeddings Gemini → vector store Chroma → retriever.
 
         Args:
-            path (str): Percorso al file PDF da codificare.
-            chunk_size (int): Dimensione di ogni chunk di testo in caratteri (default: 1000).
-                         Chunk più grandi preservano più contesto ma possono ridurre precisione retrieval.
-            chunk_overlap (int): Numero di caratteri di overlap tra chunk consecutivi (default: 200).
-                         Aiuta a mantenere continuità contesto tra confini chunk.
-            n_retrieved (int): Numero di chunk più rilevanti da recuperare per ogni query (default: 2).
-                         Più chunk forniscono contesto più ricco ma aumentano tempo processamento.
+            path (str): Percorso file PDF da processare.
+            chunk_size (int): Dimensione chunk in caratteri (default: 1000). Più grandi = più contesto ma meno precisione.
+            chunk_overlap (int): Overlap tra chunk in caratteri (default: 200). Mantiene continuità contesto.
+            n_retrieved (int): Numero chunk da recuperare per query (default: 2). Più chunk = più contesto ma più lento.
         """
         print("\n--- Inizializzazione Retriever RAG con Gemini ---")
 
