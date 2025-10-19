@@ -118,7 +118,11 @@ def evaluate_rag(retriever, llm=None, num_questions: int = 5) -> Dict[str, Any]:
         corr_metric, faith_metric, rel_metric = correctness_metric, faithfulness_metric, relevance_metric
     else:
         # Check if it's a Google model
-        if hasattr(llm, 'model_name') and 'gemini' in llm.model_name.lower():
+        is_google_model = (
+            hasattr(llm, 'model_name') and 'gemini' in str(llm.model_name).lower()
+        ) or 'google' in str(type(llm)).lower() or 'gemini' in str(type(llm)).lower()
+
+        if is_google_model:
             # For Google models, create simplified evaluation without complex metrics
             print("🔄 Usando valutazione semplificata per modello Google Gemini")
             return evaluate_rag_simple(retriever, llm, num_questions)
@@ -200,12 +204,39 @@ def evaluate_rag_simple(retriever, llm, num_questions: int = 3) -> Dict[str, Any
     """
 
     # Generate simple test questions using the provided LLM
-    question_prompt = f"Generate {num_questions} simple questions about climate change:"
+    question_prompt = f"""Generate exactly {num_questions} simple, diverse questions about climate change.
+Return each question on a separate line, numbered 1 to {num_questions}.
+Do not include any other text or explanations.
+
+Example format:
+1. What is climate change?
+2. What are the main causes of climate change?
+3. How can we reduce climate change?
+"""
     try:
         questions_response = llm.invoke(question_prompt)
-        questions = str(questions_response.content).split('\n')[:num_questions]
-        questions = [q.strip() for q in questions if q.strip() and not q.startswith(('1.', '2.', '3.', '-', '*'))]
-    except:
+        response_text = str(questions_response.content).strip()
+        # Extract questions that start with numbers
+        lines = response_text.split('\n')
+        questions = []
+        for line in lines:
+            line = line.strip()
+            if line and any(line.startswith(f"{i}.") for i in range(1, num_questions + 1)):
+                # Remove the number prefix
+                question = line.split('.', 1)[1].strip()
+                if question:
+                    questions.append(question)
+
+        # If we didn't get enough questions, use fallback
+        if len(questions) < num_questions:
+            questions = [
+                "What is climate change?",
+                "What are the main causes of climate change?",
+                "How can we reduce climate change?",
+                "What are the effects of climate change?",
+                "What is being done to combat climate change?"
+            ][:num_questions]
+    except Exception as e:
         # Fallback questions if generation fails
         questions = [
             "What is climate change?",
@@ -222,22 +253,24 @@ def evaluate_rag_simple(retriever, llm, num_questions: int = 3) -> Dict[str, Any
 
             # Simple evaluation using the LLM
             eval_prompt = f"""
-            Evaluate this RAG response for the question: "{question}"
+            Evaluate how well this retrieved context answers the question: "{question}"
 
-            Retrieved context: {context_text[:1000]}...
+            Retrieved context (first 1000 characters):
+            {context_text[:1000]}
 
-            Rate on a scale of 1-5:
-            1. Relevance (how well does the context answer the question?)
-            2. Completeness (does it contain enough information?)
+            Provide a brief evaluation (2-3 sentences) covering:
+            1. How relevant the context is to the question
+            2. How complete the information is
+            3. Overall quality (good/fair/poor)
 
-            Return only the ratings as numbers.
+            Keep your response concise and focused.
             """
 
             eval_response = llm.invoke(eval_prompt)
             results.append({
                 "question": question,
                 "context_length": len(context_text),
-                "evaluation": str(eval_response.content)
+                "evaluation": str(eval_response.content).strip()
             })
 
         except Exception as e:

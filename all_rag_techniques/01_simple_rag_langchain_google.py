@@ -173,12 +173,12 @@ def main():
         print(f"🤖 Modello usato: {eval_results.get('llm_model', 'N/A')}")
         print(f"❓ Domande valutate: {eval_results.get('questions_evaluated', 0)}")
 
-        if 'results' in eval_results:
+        if 'results' in eval_results and eval_results['results']:
             print("\n📋 Risultati dettagliati:")
             for i, result in enumerate(eval_results['results'], 1):
-                print(f"{i}. '{result.get('question', 'N/A')[:50]}...'")
+                print(f"{i}. '{result.get('question', 'N/A')[:60]}...'")
                 if 'evaluation' in result:
-                    print(f"   ⭐ Valutazione: {result['evaluation'][:100]}...")
+                    print(f"   ⭐ Valutazione: {result['evaluation'][:120]}...")
                 if 'context_length' in result:
                     print(f"   📏 Contesto: {result['context_length']} caratteri")
                 print()
