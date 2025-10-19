@@ -14,13 +14,47 @@ Componenti Chiave:
 5. Valutazione del sistema RAG
 
 Utilizzo:
-python 01_simple_rag_langchain_google.py --path data/document.pdf --query "Qual è l'argomento principale?"
+python 01_simple_rag_langchain_google.py
 """
 
 import os
 import sys
 import time
 from dotenv import load_dotenv
+
+# =============================================================================
+# CONFIGURAZIONE PARAMETRI RAG - MODIFICARE QUI PER PROVE DIVERSE
+# =============================================================================
+
+# 📄 DOCUMENTO TARGET: Percorso del file PDF da analizzare
+# Modificare questo path per testare con documenti diversi
+DOCUMENT_PATH = "data/Understanding_Climate_Change.pdf"
+
+# 📏 DIMENSIONE CHUNK: Numero di caratteri per ogni frammento di testo
+# Più grande = più contesto per chunk ma meno precisione nella ricerca
+# Più piccolo = meno contesto ma ricerca più precisa
+# Valore consigliato: 500-2000 caratteri
+CHUNK_SIZE = 1000
+
+# 🔗 SOVRAPPOSIZIONE CHUNK: Caratteri di overlap tra chunk consecutivi
+# Mantiene continuità del contesto tra chunk adiacenti
+# Valore tipico: 10-30% della dimensione chunk (qui 20%)
+CHUNK_OVERLAP = 200
+
+# 🎯 NUMERO CHUNK RECUPERATI: Quanti frammenti restituire per ogni domanda
+# Più chunk = più informazioni contestuali ma risposta più lenta
+# Meno chunk = risposta più veloce ma potenzialmente meno accurata
+# Valore consigliato: 2-5 chunk
+N_RETRIEVED = 2
+
+# ❓ DOMANDA UTENTE: La query da sottoporre al sistema RAG
+# Modificare questa stringa per testare domande diverse
+USER_QUERY = "What is the main cause of climate change?"
+
+# 📊 VALUTAZIONE: Abilita/disabilita la valutazione prestazioni del sistema
+ENABLE_EVALUATION = False
+
+# =============================================================================
 
 # Aggiunge la directory genitore al path per accedere alle helper functions
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -43,8 +77,6 @@ from helper_functions import (EmbeddingProvider,
                               get_file_hash,
                               encode_pdf,
                               load_or_create_vectorstore,
-                              validate_args,  # Aggiunto validate_args
-                              create_rag_parser,  # Aggiunto create_rag_parser
                               show_context)
 
 # Funzione per valutazione prestazioni sistema RAG
@@ -107,43 +139,30 @@ class SimpleRAGGemini:
         show_context(context)
 
 
-def parse_args():
+# Nota: I parametri sono ora definiti come costanti sopra per facilità di modifica
+# Le funzioni CLI (parse_args, validate_args) sono mantenute in helper_functions.py per riuso
+
+
+def main():
     """
-    Crea e configura parser CLI per RAG.
-
-    Returns:
-        args: Argomenti validati.
-    """
-    parser = create_rag_parser()
-    return validate_args(parser.parse_args())
-
-
-def main(args):
-    """
-    Esegue pipeline RAG completa.
-
-    Args:
-        args: Parametri CLI.
+    Esegue pipeline RAG completa con parametri configurati sopra.
     """
     # 🎯 PUNTO PRINCIPALE: Inizializzazione sistema RAG
-    rag = SimpleRAGGemini(args.path, args.chunk_size, args.chunk_overlap, args.n_retrieved)
+    rag = SimpleRAGGemini(DOCUMENT_PATH, CHUNK_SIZE, CHUNK_OVERLAP, N_RETRIEVED)
 
     # 🚀 CHIAMATA RAG PRINCIPALE: Elabora la domanda dell'utente
     print(f"\n🤖 SISTEMA RAG ATTIVO - Elaborazione in corso...")
-    rag.run(args.query)
+    rag.run(USER_QUERY)
 
     # 📊 VALUTAZIONE RAG (opzionale): Misura prestazioni del sistema
-    if args.evaluate:
+    if ENABLE_EVALUATION:
         print("\n--- 📈 VALUTAZIONE PRESTAZIONI RAG ---")
         evaluate_rag(rag.chunks_query_retriever)
 
 
 # 🎬 PUNTO DI INGRESSO: Avvio esecuzione script RAG
 if __name__ == '__main__':
-    # 📝 PARSING ARGOMENTI: Legge parametri da linea di comando
-    args = parse_args()
-
-    # 🚀 ESECUZIONE RAG: Avvia elaborazione completa
-    main(args)
+    # 🚀 ESECUZIONE RAG: Avvia elaborazione completa con parametri configurati
+    main()
 
 
