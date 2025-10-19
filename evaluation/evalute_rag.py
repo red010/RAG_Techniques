@@ -73,8 +73,8 @@ def create_evaluation_metrics(llm_model="gpt-4-turbo"):
     from deepeval.models import DeepEvalBaseLLM
 
     class GeminiModel(DeepEvalBaseLLM):
-        def __init__(self, model_name="gemini-2.0-flash"):
-            self.model_name = model_name  # Use gemini-2.0-flash as requested
+        def __init__(self, model_name="gemini-2.5-flash"):
+            self.model_name = model_name  # Use gemini-2.5-flash as requested
 
         def load_model(self):
             return self.model_name
@@ -139,7 +139,7 @@ def evaluate_rag(retriever, llm=None, num_questions: int = 5) -> Dict[str, Any]:
 
     # Determine model name for DeepEval
     if llm is None:
-        model_name = "gemini-2.0-flash"  # Default to Gemini 2.0 Flash
+        model_name = "gemini-2.5-flash"  # Default to Gemini 2.5 Flash
     else:
         # Extract model name from LangChain LLM object
         if hasattr(llm, 'model_name') and llm.model_name:
@@ -147,7 +147,7 @@ def evaluate_rag(retriever, llm=None, num_questions: int = 5) -> Dict[str, Any]:
         elif hasattr(llm, 'model') and llm.model:
             model_name = llm.model
         else:
-            model_name = "gemini-2.0-flash"  # Fallback to Gemini 2.0 Flash as requested
+            model_name = "gemini-2.5-flash"  # Fallback to Gemini 2.5 Flash as requested
 
     print(f"🔬 Usando DeepEval con modello: {model_name}")
 
@@ -156,8 +156,8 @@ def evaluate_rag(retriever, llm=None, num_questions: int = 5) -> Dict[str, Any]:
         corr_metric, faith_metric, rel_metric = create_evaluation_metrics(model_name)
     except Exception as e:
         print(f"❌ Errore creazione metriche DeepEval: {e}")
-        print("🔄 Fallback a gemini-2.0-flash")
-        corr_metric, faith_metric, rel_metric = create_evaluation_metrics("gemini-2.0-flash")
+        print("🔄 Fallback a gemini-2.5-flash")
+        corr_metric, faith_metric, rel_metric = create_evaluation_metrics("gemini-2.5-flash")
 
     # Generate test questions using the evaluation LLM
     from deepeval.test_case import LLMTestCase
