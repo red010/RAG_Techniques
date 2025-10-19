@@ -89,7 +89,9 @@ class SimpleRAGGemini:
             query (str): Domanda utente.
         """
         # 🚀 CHIAMATA RAG: Esegue retrieval della domanda utente
-        print(f"\n🔍 DOMANDA UTENTE: '{query}'")
+        print(f"\n" + "="*60)
+        print(f"🔍 DOMANDA UTENTE: {query}")
+        print(f"="*60)
 
         # Retrieval con timing
         start_time = time.time()
@@ -127,9 +129,7 @@ def main(args):
     rag = SimpleRAGGemini(args.path, args.chunk_size, args.chunk_overlap, args.n_retrieved)
 
     # 🚀 CHIAMATA RAG PRINCIPALE: Elabora la domanda dell'utente
-    print(f"\n{'='*60}")
-    print(f"🤖 SISTEMA RAG ATTIVO - Elaborazione query: '{args.query}'")
-    print(f"{'='*60}")
+    print(f"\n🤖 SISTEMA RAG ATTIVO - Elaborazione in corso...")
     rag.run(args.query)
 
     # 📊 VALUTAZIONE RAG (opzionale): Misura prestazioni del sistema

@@ -511,7 +511,7 @@ Esempi:
                         help="Overlap chunk (default: 200).")
     parser.add_argument("--n_retrieved", type=int, default=2,
                         help="Chunk da recuperare (default: 2).")
-    parser.add_argument("--query", type=str, default="Qual è la causa principale del cambiamento climatico?",
+    parser.add_argument("--query", type=str, default="What is the main cause of climate change?",
                         help="Query di test.")
     parser.add_argument("--evaluate", action="store_true",
                         help="Abilita valutazione prestazioni RAG.")
