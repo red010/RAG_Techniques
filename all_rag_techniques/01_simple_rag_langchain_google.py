@@ -166,7 +166,7 @@ def main():
         print("\n--- 📈 VALUTAZIONE PRESTAZIONI RAG ---")
         # Usa gemini-2.0-flash per valutazione DeepEval rigorosa
         eval_llm = get_langchain_model_provider(ModelProvider.GOOGLE, model_id="gemini-2.0-flash", temperature=0)
-        eval_results = evaluate_rag(rag.chunks_query_retriever, llm=eval_llm)
+        eval_results = evaluate_rag(rag.chunks_query_retriever, llm=eval_llm, num_questions=3)
 
         # Mostra risultati valutazione DeepEval
         print(f"📊 Tipo valutazione: {eval_results.get('evaluation_type', 'N/A')}")
@@ -176,17 +176,23 @@ def main():
         # Mostra punteggi medi
         if 'average_scores' in eval_results:
             avg = eval_results['average_scores']
-            print("
-📈 PUNTEGGI MEDI (0-1, più alto = migliore):"            print(".3f"            print(".3f"            print(".3f"
+            print("\n📈 PUNTEGGI MEDI (0-1, più alto = migliore):")
+            print(".3f")
+            print(".3f")
+            print(".3f")
         if 'results' in eval_results and eval_results['results']:
-            print("
-📋 RISULTATI DETTAGLIATI:"            for i, result in enumerate(eval_results['results'], 1):
+            print("\n📋 RISULTATI DETTAGLIATI:")
+            for i, result in enumerate(eval_results['results'], 1):
                 print(f"\n{i}. ❓ '{result.get('question', 'N/A')[:60]}...'")
 
                 if result.get('scores'):
                     scores = result['scores']
-                    print("   📊 Punteggi numerici:"                    print("      • Correttezza: .3f"                    print("      • Fedeltà: .3f"                    print("      • Rilevanza: .3f"
-                    print("   📝 Valutazioni testuali:"                    if 'correctness' in scores and scores['correctness'].get('reason'):
+                    print("   📊 Punteggi numerici:")
+                    print("      • Correttezza: .3f")
+                    print("      • Fedeltà: .3f")
+                    print("      • Rilevanza: .3f")
+                    print("   📝 Valutazioni testuali:")
+                    if 'correctness' in scores and scores['correctness'].get('reason'):
                         print(f"      • Correttezza: {scores['correctness']['reason'][:80]}...")
                     if 'faithfulness' in scores and scores['faithfulness'].get('reason'):
                         print(f"      • Fedeltà: {scores['faithfulness']['reason'][:80]}...")

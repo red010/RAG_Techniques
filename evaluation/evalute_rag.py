@@ -239,30 +239,42 @@ Example format:
             )
 
             # Evaluate using DeepEval metrics
-            correctness_score = corr_metric.measure(test_case)
-            faithfulness_score = faith_metric.measure(test_case)
-            relevance_score = rel_metric.measure(test_case)
+            correctness_result = corr_metric.measure(test_case)
+            faithfulness_result = faith_metric.measure(test_case)
+            relevance_result = rel_metric.measure(test_case)
+
+            # Handle both object and float results
+            def get_score_and_reason(result):
+                if hasattr(result, 'score'):
+                    return result.score, getattr(result, 'reason', 'N/A')
+                else:
+                    # Assume it's already a float score
+                    return float(result), 'N/A'
+
+            corr_score, corr_reason = get_score_and_reason(correctness_result)
+            faith_score, faith_reason = get_score_and_reason(faithfulness_result)
+            rel_score, rel_reason = get_score_and_reason(relevance_result)
 
             # Accumulate scores for averages
-            total_scores["correctness"] += correctness_score.score
-            total_scores["faithfulness"] += faithfulness_score.score
-            total_scores["relevance"] += relevance_score.score
+            total_scores["correctness"] += corr_score
+            total_scores["faithfulness"] += faith_score
+            total_scores["relevance"] += rel_score
 
             result = {
                 "question": question,
                 "context_length": len(context_text),
                 "scores": {
                     "correctness": {
-                        "score": correctness_score.score,
-                        "reason": getattr(correctness_score, 'reason', 'N/A')
+                        "score": corr_score,
+                        "reason": corr_reason
                     },
                     "faithfulness": {
-                        "score": faithfulness_score.score,
-                        "reason": getattr(faithfulness_score, 'reason', 'N/A')
+                        "score": faith_score,
+                        "reason": faith_reason
                     },
                     "relevance": {
-                        "score": relevance_score.score,
-                        "reason": getattr(relevance_score, 'reason', 'N/A')
+                        "score": rel_score,
+                        "reason": rel_reason
                     }
                 }
             }
