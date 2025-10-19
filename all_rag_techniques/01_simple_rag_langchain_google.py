@@ -45,7 +45,7 @@ CHUNK_OVERLAP = 200
 # Più chunk = più informazioni contestuali ma risposta più lenta
 # Meno chunk = risposta più veloce ma potenzialmente meno accurata
 # Valore consigliato: 2-5 chunk
-N_RETRIEVED = 2
+N_RETRIEVED = 3
 
 # ❓ DOMANDA UTENTE: La query da sottoporre al sistema RAG
 # Modificare questa stringa per testare domande diverse
@@ -134,6 +134,7 @@ class SimpleRAGGemini:
         # Statistiche totali
         total_time = self.time_records.get('VectorStore', 0) + self.time_records['Retrieval']
         print(f"Tempo totale: {total_time:.2f} secondi")
+
 
         # Mostra risultati
         show_context(context)
