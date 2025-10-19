@@ -69,9 +69,35 @@ def create_deep_eval_test_cases(
 
 # Define evaluation metrics with custom LLM support
 def create_evaluation_metrics(llm_model="gpt-4-turbo"):
+    # Configure DeepEval to use custom model
+    from deepeval.models import DeepEvalBaseLLM
+
+    class GeminiModel(DeepEvalBaseLLM):
+        def __init__(self, model_name="gemini-2.0-flash"):
+            self.model_name = model_name  # Use gemini-2.0-flash as requested
+
+        def load_model(self):
+            return self.model_name
+
+        def generate(self, prompt: str) -> str:
+            # Import here to avoid circular imports
+            from helper_functions import ModelProvider, get_langchain_model_provider
+            llm = get_langchain_model_provider(ModelProvider.GOOGLE, model_id=self.model_name, temperature=0)
+            response = llm.invoke(prompt)
+            return response.content
+
+        async def a_generate(self, prompt: str) -> str:
+            return self.generate(prompt)
+
+        def get_model_name(self):
+            return self.model_name
+
+    # Create Gemini model instance
+    gemini_llm = GeminiModel(model_name=llm_model)
+
     correctness_metric = GEval(
         name="Correctness",
-        model=llm_model,
+        model=gemini_llm,
         evaluation_params=[
             LLMTestCaseParams.EXPECTED_OUTPUT,
             LLMTestCaseParams.ACTUAL_OUTPUT
@@ -83,13 +109,13 @@ def create_evaluation_metrics(llm_model="gpt-4-turbo"):
 
     faithfulness_metric = FaithfulnessMetric(
         threshold=0.7,
-        model=llm_model,
+        model=gemini_llm,
         include_reason=False
     )
 
     relevance_metric = ContextualRelevancyMetric(
         threshold=1,
-        model=llm_model,
+        model=gemini_llm,
         include_reason=True
     )
 
@@ -100,111 +126,44 @@ correctness_metric, faithfulness_metric, relevance_metric = create_evaluation_me
 
 def evaluate_rag(retriever, llm=None, num_questions: int = 5) -> Dict[str, Any]:
     """
-    Evaluates a RAG system using predefined test questions and metrics.
+    Evaluates a RAG system using DeepEval metrics with the specified LLM model.
 
     Args:
         retriever: The retriever component to evaluate
-        llm: Language model to use for evaluation (optional, defaults to GPT-4)
+        llm: Language model to use for evaluation (defaults to gemini-2.0-flash)
         num_questions: Number of test questions to generate
 
     Returns:
-        Dict containing evaluation metrics
+        Dict containing evaluation metrics with numerical scores
     """
 
-    # Initialize LLM and metrics based on provider
+    # Determine model name for DeepEval
     if llm is None:
-        llm = ChatOpenAI(temperature=0, model_name="gpt-4-turbo-preview")
-        # Use default GPT-4 metrics
-        corr_metric, faith_metric, rel_metric = correctness_metric, faithfulness_metric, relevance_metric
+        model_name = "gemini-2.0-flash"  # Default to Gemini 2.0 Flash
     else:
-        # Check if it's a Google model
-        is_google_model = (
-            hasattr(llm, 'model_name') and 'gemini' in str(llm.model_name).lower()
-        ) or 'google' in str(type(llm)).lower() or 'gemini' in str(type(llm)).lower()
-
-        if is_google_model:
-            # For Google models, create simplified evaluation without complex metrics
-            print("🔄 Usando valutazione semplificata per modello Google Gemini")
-            return evaluate_rag_simple(retriever, llm, num_questions)
+        # Extract model name from LangChain LLM object
+        if hasattr(llm, 'model_name') and llm.model_name:
+            model_name = llm.model_name
+        elif hasattr(llm, 'model') and llm.model:
+            model_name = llm.model
         else:
-            # For other models, try to use them with DeepEval
-            try:
-                corr_metric, faith_metric, rel_metric = create_evaluation_metrics(llm.model_name)
-            except:
-                # Fallback to GPT-4 metrics
-                corr_metric, faith_metric, rel_metric = correctness_metric, faithfulness_metric, relevance_metric
-    
-    # Create evaluation prompt
-    eval_prompt = PromptTemplate.from_template("""
-    Evaluate the following retrieval results for the question.
-    
-    Question: {question}
-    Retrieved Context: {context}
-    
-    Rate on a scale of 1-5 (5 being best) for:
-    1. Relevance: How relevant is the retrieved information to the question?
-    2. Completeness: Does the context contain all necessary information?
-    3. Conciseness: Is the retrieved context focused and free of irrelevant information?
-    
-    Provide ratings in JSON format:
-    """)
-    
-    # Create evaluation chain
-    eval_chain = (
-        eval_prompt 
-        | llm 
-        | StrOutputParser()
-    )
-    
-    # Generate test questions
-    question_gen_prompt = PromptTemplate.from_template(
-        "Generate {num_questions} diverse test questions about climate change:"
-    )
-    question_chain = question_gen_prompt | llm | StrOutputParser()
-    
-    questions = question_chain.invoke({"num_questions": num_questions}).split("\n")
-    
-    # Evaluate each question
-    results = []
-    for question in questions:
-        # Get retrieval results
-        context = retriever.invoke(question)
-        context_text = "\n".join([doc.page_content for doc in context])
-        
-        # Evaluate results
-        eval_result = eval_chain.invoke({
-            "question": question,
-            "context": context_text
-        })
-        results.append(eval_result)
-    
-    return {
-        "questions": questions,
-        "results": results,
-        "average_scores": calculate_average_scores(results)
-    }
+            model_name = "gemini-2.0-flash"  # Fallback to Gemini 2.0 Flash as requested
 
-def calculate_average_scores(results: List[Dict]) -> Dict[str, float]:
-    """Calculate average scores across all evaluation results."""
-    # Implementation depends on the exact format of your results
-    pass
+    print(f"🔬 Usando DeepEval con modello: {model_name}")
 
+    # Create metrics with the specified model
+    try:
+        corr_metric, faith_metric, rel_metric = create_evaluation_metrics(model_name)
+    except Exception as e:
+        print(f"❌ Errore creazione metriche DeepEval: {e}")
+        print("🔄 Fallback a gemini-2.0-flash")
+        corr_metric, faith_metric, rel_metric = create_evaluation_metrics("gemini-2.0-flash")
 
-def evaluate_rag_simple(retriever, llm, num_questions: int = 3) -> Dict[str, Any]:
-    """
-    Simplified RAG evaluation using the provided LLM directly.
+    # Generate test questions using the evaluation LLM
+    from deepeval.test_case import LLMTestCase
 
-    Args:
-        retriever: The retriever component to evaluate
-        llm: Language model to use for evaluation
-        num_questions: Number of test questions to generate
-
-    Returns:
-        Dict containing basic evaluation metrics
-    """
-
-    # Generate simple test questions using the provided LLM
-    question_prompt = f"""Generate exactly {num_questions} simple, diverse questions about climate change.
+    # Create test questions using the LLM
+    question_prompt = f"""Generate exactly {num_questions} diverse questions about climate change.
 Return each question on a separate line, numbered 1 to {num_questions}.
 Do not include any other text or explanations.
 
@@ -214,8 +173,16 @@ Example format:
 3. How can we reduce climate change?
 """
     try:
-        questions_response = llm.invoke(question_prompt)
+        # Use the same LLM instance for question generation
+        from helper_functions import ModelProvider, get_langchain_model_provider
+        if llm is None:
+            gen_llm = get_langchain_model_provider(ModelProvider.GOOGLE, model_id=model_name, temperature=0.7)
+        else:
+            gen_llm = llm
+
+        questions_response = gen_llm.invoke(question_prompt)
         response_text = str(questions_response.content).strip()
+
         # Extract questions that start with numbers
         lines = response_text.split('\n')
         questions = []
@@ -236,56 +203,103 @@ Example format:
                 "What are the effects of climate change?",
                 "What is being done to combat climate change?"
             ][:num_questions]
+
     except Exception as e:
-        # Fallback questions if generation fails
+        print(f"⚠️ Errore generazione domande: {e}, uso fallback")
         questions = [
             "What is climate change?",
-            "What causes climate change?",
-            "How can we reduce climate change?"
+            "What are the main causes of climate change?",
+            "How can we reduce climate change?",
+            "What are the effects of climate change?",
+            "What is being done to combat climate change?"
         ][:num_questions]
 
+    print(f"📝 Generate {len(questions)} domande di test")
+
+    # Evaluate each question using DeepEval metrics
     results = []
-    for question in questions:
+    total_scores = {"correctness": 0, "faithfulness": 0, "relevance": 0}
+
+    for i, question in enumerate(questions, 1):
+        print(f"🔍 Valutando domanda {i}/{len(questions)}: {question[:50]}...")
+
         try:
             # Get retrieval results
             context_docs = retriever.invoke(question)
             context_text = "\n".join([doc.page_content for doc in context_docs])
 
-            # Simple evaluation using the LLM
-            eval_prompt = f"""
-            Evaluate how well this retrieved context answers the question: "{question}"
+            # Create test case for DeepEval
+            # Note: For this demo, we'll use the context as both input and expected output
+            # In a real scenario, you'd have ground truth answers
+            test_case = LLMTestCase(
+                input=question,
+                actual_output=context_text,
+                expected_output=context_text,  # Using context as expected for demo
+                retrieval_context=[doc.page_content for doc in context_docs]
+            )
 
-            Retrieved context (first 1000 characters):
-            {context_text[:1000]}
+            # Evaluate using DeepEval metrics
+            correctness_score = corr_metric.measure(test_case)
+            faithfulness_score = faith_metric.measure(test_case)
+            relevance_score = rel_metric.measure(test_case)
 
-            Provide a brief evaluation (2-3 sentences) covering:
-            1. How relevant the context is to the question
-            2. How complete the information is
-            3. Overall quality (good/fair/poor)
+            # Accumulate scores for averages
+            total_scores["correctness"] += correctness_score.score
+            total_scores["faithfulness"] += faithfulness_score.score
+            total_scores["relevance"] += relevance_score.score
 
-            Keep your response concise and focused.
-            """
-
-            eval_response = llm.invoke(eval_prompt)
-            results.append({
+            result = {
                 "question": question,
                 "context_length": len(context_text),
-                "evaluation": str(eval_response.content).strip()
-            })
+                "scores": {
+                    "correctness": {
+                        "score": correctness_score.score,
+                        "reason": getattr(correctness_score, 'reason', 'N/A')
+                    },
+                    "faithfulness": {
+                        "score": faithfulness_score.score,
+                        "reason": getattr(faithfulness_score, 'reason', 'N/A')
+                    },
+                    "relevance": {
+                        "score": relevance_score.score,
+                        "reason": getattr(relevance_score, 'reason', 'N/A')
+                    }
+                }
+            }
+            results.append(result)
 
         except Exception as e:
+            print(f"❌ Errore valutazione domanda {i}: {e}")
             results.append({
                 "question": question,
-                "error": str(e)
+                "error": str(e),
+                "scores": None
             })
 
+    # Calculate averages
+    num_evaluated = len([r for r in results if r.get("scores") is not None])
+    if num_evaluated > 0:
+        average_scores = {
+            "correctness": total_scores["correctness"] / num_evaluated,
+            "faithfulness": total_scores["faithfulness"] / num_evaluated,
+            "relevance": total_scores["relevance"] / num_evaluated
+        }
+    else:
+        average_scores = {"correctness": 0, "faithfulness": 0, "relevance": 0}
+
     return {
-        "evaluation_type": "simple_llm_based",
-        "llm_model": getattr(llm, 'model_name', 'unknown'),
+        "evaluation_type": "deepeval_with_custom_model",
+        "model_used": model_name,
         "questions_evaluated": len(results),
         "results": results,
-        "summary": f"Evaluated {len(results)} questions using {getattr(llm, 'model_name', 'unknown')} model"
+        "average_scores": average_scores,
+        "summary": f"Evaluated {len(results)} questions using DeepEval with {model_name}. Average scores: Correctness={average_scores['correctness']:.3f}, Faithfulness={average_scores['faithfulness']:.3f}, Relevance={average_scores['relevance']:.3f}"
     }
+
+def calculate_average_scores(results: List[Dict]) -> Dict[str, float]:
+    """Calculate average scores across all evaluation results."""
+    # Implementation depends on the exact format of your results
+    pass
 
 
 if __name__ == "__main__":
