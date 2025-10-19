@@ -69,15 +69,16 @@ class SimpleRAGGemini:
             chunk_overlap (int): Overlap chunk.
             n_retrieved (int): Numero risultati retrieval.
         """
-        print("\n--- Inizializzazione RAG con Gemini ---")
+        # 🏗️ SETUP RAG: Configurazione iniziale sistema RAG
+        print("\n--- 🏗️ SETUP RAG: Configurazione sistema con Gemini ---")
 
-        # Carica/crea vector store con caching
+        # 💾 CARICAMENTO DATI: Vector store con caching intelligente
         start_time = time.time()
         self.vector_store = load_or_create_vectorstore(path, chunk_size, chunk_overlap)
         self.time_records = {'VectorStore': time.time() - start_time}
         print(f"Tempo caricamento: {self.time_records['VectorStore']:.2f} secondi")
 
-        # Configura retriever
+        # 🔍 CONFIGURAZIONE RETRIEVER: Setup motore di ricerca
         self.chunks_query_retriever = self.vector_store.as_retriever(search_kwargs={"k": n_retrieved})
 
     def run(self, query):
@@ -87,6 +88,9 @@ class SimpleRAGGemini:
         Args:
             query (str): Domanda utente.
         """
+        # 🚀 CHIAMATA RAG: Esegue retrieval della domanda utente
+        print(f"\n🔍 DOMANDA UTENTE: '{query}'")
+
         # Retrieval con timing
         start_time = time.time()
         context = retrieve_context_per_question(query, self.chunks_query_retriever)
@@ -119,17 +123,27 @@ def main(args):
     Args:
         args: Parametri CLI.
     """
-    # Inizializza ed esegui RAG
+    # 🎯 PUNTO PRINCIPALE: Inizializzazione sistema RAG
     rag = SimpleRAGGemini(args.path, args.chunk_size, args.chunk_overlap, args.n_retrieved)
+
+    # 🚀 CHIAMATA RAG PRINCIPALE: Elabora la domanda dell'utente
+    print(f"\n{'='*60}")
+    print(f"🤖 SISTEMA RAG ATTIVO - Elaborazione query: '{args.query}'")
+    print(f"{'='*60}")
     rag.run(args.query)
 
-    # Valutazione opzionale
+    # 📊 VALUTAZIONE RAG (opzionale): Misura prestazioni del sistema
     if args.evaluate:
-        print("\n--- Valutazione RAG ---")
+        print("\n--- 📈 VALUTAZIONE PRESTAZIONI RAG ---")
         evaluate_rag(rag.chunks_query_retriever)
 
 
+# 🎬 PUNTO DI INGRESSO: Avvio esecuzione script RAG
 if __name__ == '__main__':
-    main(parse_args())
+    # 📝 PARSING ARGOMENTI: Legge parametri da linea di comando
+    args = parse_args()
+
+    # 🚀 ESECUZIONE RAG: Avvia elaborazione completa
+    main(args)
 
 
