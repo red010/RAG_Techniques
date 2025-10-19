@@ -66,7 +66,7 @@ def get_file_hash(filepath):
 
 def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     """
-    Pipeline PDF → vector store OpenAI.
+    Pipeline PDF → chunking → pulizia testo.
 
     Args:
         path: Percorso file PDF.
@@ -74,7 +74,7 @@ def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
         chunk_overlap: Sovrapposizione tra chunk.
 
     Returns:
-        FAISS vector store con contenuto embedded.
+        Documenti processati e puliti (pronti per embeddings).
     """
 
     # Caricamento PDF
@@ -88,11 +88,7 @@ def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
     texts = text_splitter.split_documents(documents)
     cleaned_texts = replace_t_with_space(texts)
 
-    # Embeddings e vector store
-    embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_documents(cleaned_texts, embeddings)
-
-    return vectorstore
+    return cleaned_texts
 
 
 def encode_from_string(content, chunk_size=1000, chunk_overlap=200):
@@ -385,7 +381,7 @@ def get_langchain_embedding_provider(provider: EmbeddingProvider, model_id: str 
 
 def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200, embedding_provider=EmbeddingProvider.GOOGLE):
     """
-    Gestisce caricamento/creazione vector store con caching intelligente.
+    Gestisce caricamento/creazione vector store con caching intelligente basato su parametri.
 
     Args:
         pdf_path (str): Percorso PDF.
@@ -396,28 +392,31 @@ def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200, emb
     Returns:
         Chroma: Vector store pronto.
     """
-    # Setup directory e path caching
+    # Setup directory e path caching basato su parametri
     persist_dir = os.path.join(os.path.dirname(pdf_path), ".vector_stores")
     os.makedirs(persist_dir, exist_ok=True)
+
+    # Crea chiave unica che include parametri di chunking e provider embeddings
     file_hash = get_file_hash(pdf_path)
-    vectorstore_path = os.path.join(persist_dir, f"pdf_{file_hash[:16]}")
+    param_hash = hashlib.md5(f"{chunk_size}_{chunk_overlap}_{embedding_provider.value}".encode()).hexdigest()[:8]
+    vectorstore_path = os.path.join(persist_dir, f"pdf_{file_hash[:8]}_c{chunk_size}_o{chunk_overlap}_{embedding_provider.value[:4]}")
 
     # Ottieni funzione embeddings
     embeddings = get_langchain_embedding_provider(embedding_provider)
 
-    # Carica vector store esistente se valido
+    # Carica vector store esistente se valido per questi parametri
     if os.path.exists(vectorstore_path):
         try:
             from langchain_chroma import Chroma
             vectorstore = Chroma(persist_directory=vectorstore_path, embedding_function=embeddings)
             if vectorstore._collection.count() > 0:
-                print(f"✅ Carico vector store esistente: {vectorstore._collection.count()} documenti")
+                print(f"✅ Carico vector store esistente per chunk_size={chunk_size}, overlap={chunk_overlap}: {vectorstore._collection.count()} documenti")
                 return vectorstore
         except Exception:
             pass  # Ricrea se errore
 
-    # Crea nuovo vector store
-    print(f"🔄 Creo nuovo vector store per {os.path.basename(pdf_path)}")
+    # Crea nuovo vector store con parametri attuali
+    print(f"🔄 Creo nuovo vector store per {os.path.basename(pdf_path)} (chunk_size={chunk_size}, overlap={chunk_overlap})")
     documents = encode_pdf(pdf_path, chunk_size, chunk_overlap)
     from langchain_chroma import Chroma
     vectorstore = Chroma.from_documents(documents, embeddings, persist_directory=vectorstore_path)
