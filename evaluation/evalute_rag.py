@@ -67,45 +67,68 @@ def create_deep_eval_test_cases(
         )
     ]
 
-# Define evaluation metrics
-correctness_metric = GEval(
-    name="Correctness",
-    model="gpt-4-turbo",
-    evaluation_params=[
-        LLMTestCaseParams.EXPECTED_OUTPUT,
-        LLMTestCaseParams.ACTUAL_OUTPUT
-    ],
-    evaluation_steps=[
-        "Determine whether the actual output is factually correct based on the expected output."
-    ],
-)
+# Define evaluation metrics with custom LLM support
+def create_evaluation_metrics(llm_model="gpt-4-turbo"):
+    correctness_metric = GEval(
+        name="Correctness",
+        model=llm_model,
+        evaluation_params=[
+            LLMTestCaseParams.EXPECTED_OUTPUT,
+            LLMTestCaseParams.ACTUAL_OUTPUT
+        ],
+        evaluation_steps=[
+            "Determine whether the actual output is factually correct based on the expected output."
+        ],
+    )
 
-faithfulness_metric = FaithfulnessMetric(
-    threshold=0.7,
-    model="gpt-4-turbo",
-    include_reason=False
-)
+    faithfulness_metric = FaithfulnessMetric(
+        threshold=0.7,
+        model=llm_model,
+        include_reason=False
+    )
 
-relevance_metric = ContextualRelevancyMetric(
-    threshold=1,
-    model="gpt-4-turbo",
-    include_reason=True
-)
+    relevance_metric = ContextualRelevancyMetric(
+        threshold=1,
+        model=llm_model,
+        include_reason=True
+    )
 
-def evaluate_rag(retriever, num_questions: int = 5) -> Dict[str, Any]:
+    return correctness_metric, faithfulness_metric, relevance_metric
+
+# Default metrics using GPT-4
+correctness_metric, faithfulness_metric, relevance_metric = create_evaluation_metrics()
+
+def evaluate_rag(retriever, llm=None, num_questions: int = 5) -> Dict[str, Any]:
     """
     Evaluates a RAG system using predefined test questions and metrics.
-    
+
     Args:
         retriever: The retriever component to evaluate
+        llm: Language model to use for evaluation (optional, defaults to GPT-4)
         num_questions: Number of test questions to generate
-    
+
     Returns:
         Dict containing evaluation metrics
     """
-    
-    # Initialize LLM
-    llm = ChatOpenAI(temperature=0, model_name="gpt-4-turbo-preview")
+
+    # Initialize LLM and metrics based on provider
+    if llm is None:
+        llm = ChatOpenAI(temperature=0, model_name="gpt-4-turbo-preview")
+        # Use default GPT-4 metrics
+        corr_metric, faith_metric, rel_metric = correctness_metric, faithfulness_metric, relevance_metric
+    else:
+        # Check if it's a Google model
+        if hasattr(llm, 'model_name') and 'gemini' in llm.model_name.lower():
+            # For Google models, create simplified evaluation without complex metrics
+            print("🔄 Usando valutazione semplificata per modello Google Gemini")
+            return evaluate_rag_simple(retriever, llm, num_questions)
+        else:
+            # For other models, try to use them with DeepEval
+            try:
+                corr_metric, faith_metric, rel_metric = create_evaluation_metrics(llm.model_name)
+            except:
+                # Fallback to GPT-4 metrics
+                corr_metric, faith_metric, rel_metric = correctness_metric, faithfulness_metric, relevance_metric
     
     # Create evaluation prompt
     eval_prompt = PromptTemplate.from_template("""
@@ -141,7 +164,7 @@ def evaluate_rag(retriever, num_questions: int = 5) -> Dict[str, Any]:
     results = []
     for question in questions:
         # Get retrieval results
-        context = retriever.get_relevant_documents(question)
+        context = retriever.invoke(question)
         context_text = "\n".join([doc.page_content for doc in context])
         
         # Evaluate results
@@ -161,6 +184,76 @@ def calculate_average_scores(results: List[Dict]) -> Dict[str, float]:
     """Calculate average scores across all evaluation results."""
     # Implementation depends on the exact format of your results
     pass
+
+
+def evaluate_rag_simple(retriever, llm, num_questions: int = 3) -> Dict[str, Any]:
+    """
+    Simplified RAG evaluation using the provided LLM directly.
+
+    Args:
+        retriever: The retriever component to evaluate
+        llm: Language model to use for evaluation
+        num_questions: Number of test questions to generate
+
+    Returns:
+        Dict containing basic evaluation metrics
+    """
+
+    # Generate simple test questions using the provided LLM
+    question_prompt = f"Generate {num_questions} simple questions about climate change:"
+    try:
+        questions_response = llm.invoke(question_prompt)
+        questions = str(questions_response.content).split('\n')[:num_questions]
+        questions = [q.strip() for q in questions if q.strip() and not q.startswith(('1.', '2.', '3.', '-', '*'))]
+    except:
+        # Fallback questions if generation fails
+        questions = [
+            "What is climate change?",
+            "What causes climate change?",
+            "How can we reduce climate change?"
+        ][:num_questions]
+
+    results = []
+    for question in questions:
+        try:
+            # Get retrieval results
+            context_docs = retriever.invoke(question)
+            context_text = "\n".join([doc.page_content for doc in context_docs])
+
+            # Simple evaluation using the LLM
+            eval_prompt = f"""
+            Evaluate this RAG response for the question: "{question}"
+
+            Retrieved context: {context_text[:1000]}...
+
+            Rate on a scale of 1-5:
+            1. Relevance (how well does the context answer the question?)
+            2. Completeness (does it contain enough information?)
+
+            Return only the ratings as numbers.
+            """
+
+            eval_response = llm.invoke(eval_prompt)
+            results.append({
+                "question": question,
+                "context_length": len(context_text),
+                "evaluation": str(eval_response.content)
+            })
+
+        except Exception as e:
+            results.append({
+                "question": question,
+                "error": str(e)
+            })
+
+    return {
+        "evaluation_type": "simple_llm_based",
+        "llm_model": getattr(llm, 'model_name', 'unknown'),
+        "questions_evaluated": len(results),
+        "results": results,
+        "summary": f"Evaluated {len(results)} questions using {getattr(llm, 'model_name', 'unknown')} model"
+    }
+
 
 if __name__ == "__main__":
     # Add any necessary setup or configuration here

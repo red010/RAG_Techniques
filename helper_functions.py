@@ -454,7 +454,7 @@ def get_langchain_model_provider(provider: ModelProvider, model_id: str = None, 
         return BedrockChat(model_id=model_id, temperature=temperature) if model_id else BedrockChat(model_id="anthropic.claude-3-sonnet-20240229-v1:0", temperature=temperature)
     elif provider == ModelProvider.GOOGLE:
         from langchain_google_genai import ChatGoogleGenerativeAI
-        return ChatGoogleGenerativeAI(model=model_id, temperature=temperature) if model_id else ChatGoogleGenerativeAI(model="gemini-pro", temperature=temperature)
+        return ChatGoogleGenerativeAI(model=model_id, temperature=temperature) if model_id else ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=temperature)
     else:
         raise ValueError(f"Provider modello non supportato: {provider}")
 

@@ -50,9 +50,14 @@ N_RETRIEVED = 3
 # ❓ DOMANDA UTENTE: La query da sottoporre al sistema RAG
 # Modificare questa stringa per testare domande diverse
 USER_QUERY = "What is the main cause of climate change?"
+# USER_QUERY = "How does deforestation in tropical regions affect biodiversity?"
+# USER_QUERY = "How does agriculture affect the climate?"
+# USER_QUERY = "Who is most vulnerable to climatic shifts?"
+# USER_QUERY = "Describe non-technological climate solutions."
+# USER_QUERY = "Explain the nexus of climate, biodiversity, and health."
 
 # 📊 VALUTAZIONE: Abilita/disabilita la valutazione prestazioni del sistema
-ENABLE_EVALUATION = False
+ENABLE_EVALUATION = True
 
 # =============================================================================
 
@@ -71,9 +76,11 @@ from langchain_community.document_loaders import PyPDFLoader
 
 # Funzioni helper per RAG (provider embeddings, retrieval, pulizia testo, visualizzazione)
 from helper_functions import (EmbeddingProvider,
+                              ModelProvider,
                               retrieve_context_per_question,
                               replace_t_with_space,
                               get_langchain_embedding_provider,
+                              get_langchain_model_provider,
                               get_file_hash,
                               encode_pdf,
                               load_or_create_vectorstore,
@@ -157,7 +164,26 @@ def main():
     # 📊 VALUTAZIONE RAG (opzionale): Misura prestazioni del sistema
     if ENABLE_EVALUATION:
         print("\n--- 📈 VALUTAZIONE PRESTAZIONI RAG ---")
-        evaluate_rag(rag.chunks_query_retriever)
+        # Usa lo stesso modello LLM del sistema RAG per valutazione
+        eval_llm = get_langchain_model_provider(ModelProvider.GOOGLE, temperature=0)
+        eval_results = evaluate_rag(rag.chunks_query_retriever, llm=eval_llm)
+
+        # Mostra risultati valutazione
+        print(f"📊 Tipo valutazione: {eval_results.get('evaluation_type', 'N/A')}")
+        print(f"🤖 Modello usato: {eval_results.get('llm_model', 'N/A')}")
+        print(f"❓ Domande valutate: {eval_results.get('questions_evaluated', 0)}")
+
+        if 'results' in eval_results:
+            print("\n📋 Risultati dettagliati:")
+            for i, result in enumerate(eval_results['results'], 1):
+                print(f"{i}. '{result.get('question', 'N/A')[:50]}...'")
+                if 'evaluation' in result:
+                    print(f"   ⭐ Valutazione: {result['evaluation'][:100]}...")
+                if 'context_length' in result:
+                    print(f"   📏 Contesto: {result['context_length']} caratteri")
+                print()
+
+        print(f"📝 Riepilogo: {eval_results.get('summary', 'Valutazione completata')}")
 
 
 # 🎬 PUNTO DI INGRESSO: Avvio esecuzione script RAG
