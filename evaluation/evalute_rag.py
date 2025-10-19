@@ -232,23 +232,31 @@ Example format:
             context_docs = retriever.invoke(question)
             context_text = "\n".join([doc.page_content for doc in context_docs])
 
-            # Create mock run and example for evaluators
-            from langsmith.schemas import Run, Example
-
-            mock_run = Run(
-                inputs={"question": question, "context": context_text},
-                outputs={"answer": context_text}
-            )
-            mock_example = Example(
-                inputs={"question": question, "context": context_text},
-                outputs={"answer": context_text}
-            )
-
-            # Evaluate using each evaluator
+            # Evaluate using each evaluator directly
             scores = {}
 
             for eval_name, eval_func in evaluators.items():
                 try:
+                    # Create simple mock objects for the evaluator
+                    class MockRun:
+                        def __init__(self, inputs, outputs):
+                            self.inputs = inputs
+                            self.outputs = outputs
+
+                    class MockExample:
+                        def __init__(self, inputs, outputs):
+                            self.inputs = inputs
+                            self.outputs = outputs
+
+                    mock_run = MockRun(
+                        inputs={"question": question, "context": context_text},
+                        outputs={"answer": context_text}
+                    )
+                    mock_example = MockExample(
+                        inputs={"question": question, "context": context_text},
+                        outputs={"answer": context_text}
+                    )
+
                     eval_result = eval_func(mock_run, mock_example)
                     # Extract score and reason from evaluator result
                     if eval_name in eval_result and isinstance(eval_result[eval_name], dict):
