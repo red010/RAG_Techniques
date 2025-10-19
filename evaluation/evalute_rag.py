@@ -218,89 +218,54 @@ Example format:
 
     print(f"📝 Generate {len(questions)} domande di test")
 
-    # Create evaluation dataset
-    from langsmith.schemas import Dataset
+    # Evaluate each question directly using the evaluators
+    results = []
+    total_scores = {"correctness": 0, "faithfulness": 0, "relevance": 0}
 
-    dataset = Dataset(name="rag_evaluation_dataset")
-    examples = []
+    print(f"📊 Avviando valutazione diretta su {len(questions)} domande...")
 
-    for question in questions:
-        # Get retrieval results
-        context_docs = retriever.invoke(question)
-        context_text = "\n".join([doc.page_content for doc in context_docs])
+    for i, question in enumerate(questions, 1):
+        print(f"🔍 Valutando domanda {i}/{len(questions)}: {question[:50]}...")
 
-        example = Example(
-            inputs={
-                "question": question,
-                "context": context_text
-            },
-            outputs={
-                "answer": context_text  # Using context as answer for demo
-            }
-        )
-        examples.append(example)
+        try:
+            # Get retrieval results
+            context_docs = retriever.invoke(question)
+            context_text = "\n".join([doc.page_content for doc in context_docs])
 
-    dataset.examples = examples
+            # Create mock run and example for evaluators
+            from langsmith.schemas import Run, Example
 
-    # Define evaluation function that simulates RAG retrieval
-    def rag_retrieval(inputs):
-        """Simulate RAG retrieval for evaluation"""
-        return {"answer": inputs["context"]}
-
-    print(f"📊 Avviando valutazione LangSmith su {len(examples)} esempi...")
-
-    try:
-        # Run evaluation with LangSmith for each evaluator
-        all_eval_results = {}
-
-        for eval_name, eval_func in evaluators.items():
-            print(f"🔍 Eseguendo valutazione {eval_name}...")
-            eval_results_langsmith = evaluate(
-                rag_retrieval,
-                data=dataset,
-                evaluators=[eval_func],
-                experiment_prefix=f"rag_evaluation_{eval_name}"
+            mock_run = Run(
+                inputs={"question": question, "context": context_text},
+                outputs={"answer": context_text}
             )
-            all_eval_results[eval_name] = eval_results_langsmith
+            mock_example = Example(
+                inputs={"question": question, "context": context_text},
+                outputs={"answer": context_text}
+            )
 
-        # Process results - combine results from all evaluators
-        results = []
-        total_scores = {"correctness": 0, "faithfulness": 0, "relevance": 0}
-
-        for i, example in enumerate(examples):
-            question = example.inputs["question"]
-            context_length = len(example.inputs["context"])
-
-            # Extract scores from all evaluation results
+            # Evaluate using each evaluator
             scores = {}
 
-            # Get results for each evaluator
-            for eval_name in ["correctness", "faithfulness", "relevance"]:
-                eval_results = all_eval_results.get(eval_name, [])
-                if i < len(eval_results):
-                    eval_result = eval_results[i]
-                    try:
-                        # Extract score from the evaluator result
-                        feedback = eval_result.get("feedback", {})
-                        eval_data = feedback.get(eval_name, {})
+            for eval_name, eval_func in evaluators.items():
+                try:
+                    eval_result = eval_func(mock_run, mock_example)
+                    # Extract score and reason from evaluator result
+                    if eval_name in eval_result and isinstance(eval_result[eval_name], dict):
+                        score_data = eval_result[eval_name]
+                        score = float(score_data.get("score", 0.5))
+                        reason = score_data.get("reason", "Evaluation completed")
+                    else:
+                        score = 0.5
+                        reason = "Unexpected result format"
 
-                        if isinstance(eval_data, dict) and "score" in eval_data:
-                            score = float(eval_data["score"])
-                            reason = eval_data.get("reason", "Evaluation completed")
-                        else:
-                            # Fallback: try to extract from the result directly
-                            score = 0.5
-                            reason = "Score extracted from evaluation"
-
-                        scores[eval_name] = {
-                            "score": score,
-                            "reason": reason
-                        }
-                    except Exception as e:
-                        print(f"⚠️ Errore estrazione {eval_name} per domanda {i+1}: {e}")
-                        scores[eval_name] = {"score": 0.5, "reason": f"Error: {e}"}
-                else:
-                    scores[eval_name] = {"score": 0.5, "reason": "Evaluation not available"}
+                    scores[eval_name] = {
+                        "score": score,
+                        "reason": reason
+                    }
+                except Exception as e:
+                    print(f"⚠️ Errore valutazione {eval_name}: {e}")
+                    scores[eval_name] = {"score": 0.5, "reason": f"Error: {e}"}
 
             # Accumulate scores
             total_scores["correctness"] += scores["correctness"]["score"]
@@ -309,42 +274,38 @@ Example format:
 
             result = {
                 "question": question,
-                "context_length": context_length,
+                "context_length": len(context_text),
                 "scores": scores
             }
             results.append(result)
 
-        # Calculate averages
-        num_evaluated = len(results)
-        if num_evaluated > 0:
-            average_scores = {
-                "correctness": total_scores["correctness"] / num_evaluated,
-                "faithfulness": total_scores["faithfulness"] / num_evaluated,
-                "relevance": total_scores["relevance"] / num_evaluated
-            }
-        else:
-            average_scores = {"correctness": 0, "faithfulness": 0, "relevance": 0}
+        except Exception as e:
+            print(f"❌ Errore valutazione domanda {i}: {e}")
+            results.append({
+                "question": question,
+                "error": str(e),
+                "scores": None
+            })
 
-        return {
-            "evaluation_type": "langsmith_with_gemini_2_5_flash",
-            "model_used": "gemini-2.5-flash",
-            "questions_evaluated": len(results),
-            "results": results,
-            "average_scores": average_scores,
-            "summary": f"Evaluated {len(results)} questions using LangSmith with gemini-2.5-flash. Average scores: Correctness={average_scores['correctness']:.3f}, Faithfulness={average_scores['faithfulness']:.3f}, Relevance={average_scores['relevance']:.3f}"
+    # Calculate averages
+    num_evaluated = len([r for r in results if r.get("scores") is not None])
+    if num_evaluated > 0:
+        average_scores = {
+            "correctness": total_scores["correctness"] / num_evaluated,
+            "faithfulness": total_scores["faithfulness"] / num_evaluated,
+            "relevance": total_scores["relevance"] / num_evaluated
         }
+    else:
+        average_scores = {"correctness": 0, "faithfulness": 0, "relevance": 0}
 
-    except Exception as e:
-        print(f"❌ Errore valutazione LangSmith: {e}")
-        # Fallback: return basic structure
-        return {
-            "evaluation_type": "langsmith_error_fallback",
-            "model_used": "gemini-2.5-flash",
-            "questions_evaluated": len(questions),
-            "results": [{"question": q, "error": str(e)} for q in questions],
-            "average_scores": {"correctness": 0, "faithfulness": 0, "relevance": 0},
-            "summary": f"LangSmith evaluation failed: {e}"
-        }
+    return {
+        "evaluation_type": "direct_langsmith_evaluators",
+        "model_used": "gemini-2.5-flash",
+        "questions_evaluated": len(results),
+        "results": results,
+        "average_scores": average_scores,
+        "summary": f"Evaluated {len(results)} questions using direct LangSmith evaluators with gemini-2.5-flash. Average scores: Correctness={average_scores['correctness']:.3f}, Faithfulness={average_scores['faithfulness']:.3f}, Relevance={average_scores['relevance']:.3f}"
+    }
 
 
 if __name__ == "__main__":
