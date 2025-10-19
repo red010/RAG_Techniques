@@ -134,7 +134,8 @@ class SimpleRAGGemini:
         # Statistiche totali
         total_time = self.time_records.get('VectorStore', 0) + self.time_records['Retrieval']
         print(f"Tempo totale: {total_time:.2f} secondi")
-
+        print()  # Riga vuota per separazione
+        print()  # Seconda riga vuota
 
         # Mostra risultati
         show_context(context)
