@@ -2,31 +2,34 @@
 RAG Evaluation Script
 
 This script evaluates the performance of a Retrieval-Augmented Generation (RAG) system
-using various metrics from the deepeval library.
+using LangSmith evaluators with gemini-2.5-flash.
 
 Dependencies:
-- deepeval
-- langchain_openai
-- json
+- langsmith
+- langchain_core
+- os, dotenv
 
 Custom modules:
 - helper_functions (for RAG-specific operations)
 """
 
-import json
-from typing import List, Tuple, Dict, Any
+import os
+from typing import List, Dict, Any
+from dotenv import load_dotenv
 
-from deepeval import evaluate
-from deepeval.metrics import GEval, FaithfulnessMetric, ContextualRelevancyMetric
-from deepeval.test_case import LLMTestCase, LLMTestCaseParams
-from langchain_openai import ChatOpenAI
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+# Load environment variables
+load_dotenv()
+
+# Set LangSmith API key
+os.environ["LANGSMITH_API_KEY"] = os.getenv("LANGSMITH_API_KEY", "")
+
+# Import LangSmith evaluators
+from langsmith.evaluation import evaluate, LangSmithEvaluator
+from langsmith.schemas import Example, Run
 
 # 09/15/24 kimmeyh Added path where helper functions is located to the path
 # Add the parent directory to the path since we work with notebooks
 import sys
-import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
@@ -37,132 +40,90 @@ from helper_functions import (
     retrieve_context_per_question
 )
 
-def create_deep_eval_test_cases(
-    questions: List[str],
-    gt_answers: List[str],
-    generated_answers: List[str],
-    retrieved_documents: List[str]
-) -> List[LLMTestCase]:
-    """
-    Create a list of LLMTestCase objects for evaluation.
 
-    Args:
-        questions (List[str]): List of input questions.
-        gt_answers (List[str]): List of ground truth answers.
-        generated_answers (List[str]): List of generated answers.
-        retrieved_documents (List[str]): List of retrieved documents.
+def create_langsmith_evaluators():
+    """
+    Create LangSmith evaluators for RAG evaluation using gemini-2.5-flash.
 
     Returns:
-        List[LLMTestCase]: List of LLMTestCase objects.
+        Dict of evaluators for correctness, faithfulness, and relevance
     """
-    return [
-        LLMTestCase(
-            input=question,
-            expected_output=gt_answer,
-            actual_output=generated_answer,
-            retrieval_context=retrieved_document
-        )
-        for question, gt_answer, generated_answer, retrieved_document in zip(
-            questions, gt_answers, generated_answers, retrieved_documents
-        )
-    ]
+    evaluators = {}
 
-# Define evaluation metrics with custom LLM support
-def create_evaluation_metrics(llm_model="gpt-4-turbo"):
-    # Configure DeepEval to use custom model
-    from deepeval.models import DeepEvalBaseLLM
+    # Correctness evaluator
+    evaluators["correctness"] = LangSmithEvaluator(
+        evaluator_type="cot_qa",
+        model="gemini-2.5-flash",
+        prompt="""
+        Evaluate how correct and accurate the answer is based on the context provided.
+        Rate on a scale of 0-1, where 1 is perfectly correct and 0 is completely incorrect.
 
-    class GeminiModel(DeepEvalBaseLLM):
-        def __init__(self, model_name="gemini-2.5-flash"):
-            self.model_name = model_name  # Use gemini-2.5-flash as requested
+        Context: {context}
+        Question: {question}
+        Answer: {answer}
 
-        def load_model(self):
-            return self.model_name
-
-        def generate(self, prompt: str) -> str:
-            # Import here to avoid circular imports
-            from helper_functions import ModelProvider, get_langchain_model_provider
-            llm = get_langchain_model_provider(ModelProvider.GOOGLE, model_id=self.model_name, temperature=0)
-            response = llm.invoke(prompt)
-            return response.content
-
-        async def a_generate(self, prompt: str) -> str:
-            return self.generate(prompt)
-
-        def get_model_name(self):
-            return self.model_name
-
-    # Create Gemini model instance
-    gemini_llm = GeminiModel(model_name=llm_model)
-
-    correctness_metric = GEval(
-        name="Correctness",
-        model=gemini_llm,
-        evaluation_params=[
-            LLMTestCaseParams.EXPECTED_OUTPUT,
-            LLMTestCaseParams.ACTUAL_OUTPUT
-        ],
-        evaluation_steps=[
-            "Determine whether the actual output is factually correct based on the expected output."
-        ],
+        Provide a score between 0 and 1, and a brief justification.
+        """,
+        feedback_key="correctness_score"
     )
 
-    faithfulness_metric = FaithfulnessMetric(
-        threshold=0.7,
-        model=gemini_llm,
-        include_reason=False
+    # Faithfulness/Groundedness evaluator
+    evaluators["faithfulness"] = LangSmithEvaluator(
+        evaluator_type="cot_qa",
+        model="gemini-2.5-flash",
+        prompt="""
+        Evaluate how well the answer is grounded in and supported by the provided context.
+        Does the answer contain information that can be directly supported by the context?
+        Rate on a scale of 0-1, where 1 is perfectly grounded and 0 contains unsupported claims.
+
+        Context: {context}
+        Question: {question}
+        Answer: {answer}
+
+        Provide a score between 0 and 1, and a brief justification.
+        """,
+        feedback_key="faithfulness_score"
     )
 
-    relevance_metric = ContextualRelevancyMetric(
-        threshold=1,
-        model=gemini_llm,
-        include_reason=True
+    # Relevance evaluator
+    evaluators["relevance"] = LangSmithEvaluator(
+        evaluator_type="cot_qa",
+        model="gemini-2.5-flash",
+        prompt="""
+        Evaluate how relevant the retrieved context is to the question asked.
+        Does the context contain information that helps answer the question?
+        Rate on a scale of 0-1, where 1 is highly relevant and 0 is completely irrelevant.
+
+        Context: {context}
+        Question: {question}
+
+        Provide a score between 0 and 1, and a brief justification.
+        """,
+        feedback_key="relevance_score"
     )
 
-    return correctness_metric, faithfulness_metric, relevance_metric
+    return evaluators
 
-# Default metrics using GPT-4
-correctness_metric, faithfulness_metric, relevance_metric = create_evaluation_metrics()
 
-def evaluate_rag(retriever, llm=None, num_questions: int = 5) -> Dict[str, Any]:
+def evaluate_rag(retriever, llm=None, num_questions: int = 3) -> Dict[str, Any]:
     """
-    Evaluates a RAG system using DeepEval metrics with the specified LLM model.
+    Evaluates a RAG system using LangSmith evaluators with gemini-2.5-flash.
 
     Args:
         retriever: The retriever component to evaluate
-        llm: Language model to use for evaluation (defaults to gemini-2.0-flash)
+        llm: Language model to use for evaluation (defaults to gemini-2.5-flash)
         num_questions: Number of test questions to generate
 
     Returns:
         Dict containing evaluation metrics with numerical scores
     """
 
-    # Determine model name for DeepEval
-    if llm is None:
-        model_name = "gemini-2.5-flash"  # Default to Gemini 2.5 Flash
-    else:
-        # Extract model name from LangChain LLM object
-        if hasattr(llm, 'model_name') and llm.model_name:
-            model_name = llm.model_name
-        elif hasattr(llm, 'model') and llm.model:
-            model_name = llm.model
-        else:
-            model_name = "gemini-2.5-flash"  # Fallback to Gemini 2.5 Flash as requested
+    print(f"🔬 Usando LangSmith evaluators con gemini-2.5-flash")
 
-    print(f"🔬 Usando DeepEval con modello: {model_name}")
+    # Create evaluators
+    evaluators = create_langsmith_evaluators()
 
-    # Create metrics with the specified model
-    try:
-        corr_metric, faith_metric, rel_metric = create_evaluation_metrics(model_name)
-    except Exception as e:
-        print(f"❌ Errore creazione metriche DeepEval: {e}")
-        print("🔄 Fallback a gemini-2.5-flash")
-        corr_metric, faith_metric, rel_metric = create_evaluation_metrics("gemini-2.5-flash")
-
-    # Generate test questions using the evaluation LLM
-    from deepeval.test_case import LLMTestCase
-
-    # Create test questions using the LLM
+    # Generate test questions using the LLM
     question_prompt = f"""Generate exactly {num_questions} diverse questions about climate change.
 Return each question on a separate line, numbered 1 to {num_questions}.
 Do not include any other text or explanations.
@@ -176,7 +137,7 @@ Example format:
         # Use the same LLM instance for question generation
         from helper_functions import ModelProvider, get_langchain_model_provider
         if llm is None:
-            gen_llm = get_langchain_model_provider(ModelProvider.GOOGLE, model_id=model_name, temperature=0.7)
+            gen_llm = get_langchain_model_provider(ModelProvider.GOOGLE, model_id="gemini-2.5-flash", temperature=0.7)
         else:
             gen_llm = llm
 
@@ -209,14 +170,12 @@ Example format:
         questions = [
             "What is climate change?",
             "What are the main causes of climate change?",
-            "How can we reduce climate change?",
-            "What are the effects of climate change?",
-            "What is being done to combat climate change?"
+            "How can we reduce climate change?"
         ][:num_questions]
 
     print(f"📝 Generate {len(questions)} domande di test")
 
-    # Evaluate each question using DeepEval metrics
+    # Evaluate each question using LangSmith evaluators
     results = []
     total_scores = {"correctness": 0, "faithfulness": 0, "relevance": 0}
 
@@ -228,55 +187,66 @@ Example format:
             context_docs = retriever.invoke(question)
             context_text = "\n".join([doc.page_content for doc in context_docs])
 
-            # Create test case for DeepEval
-            # Note: For this demo, we'll use the context as both input and expected output
-            # In a real scenario, you'd have ground truth answers
-            test_case = LLMTestCase(
-                input=question,
-                actual_output=context_text,
-                expected_output=context_text,  # Using context as expected for demo
-                retrieval_context=[doc.page_content for doc in context_docs]
+            # Create example for LangSmith evaluation
+            example = Example(
+                inputs={"question": question, "context": context_text},
+                outputs={"answer": context_text}  # Using context as answer for demo
             )
 
-            # Evaluate using DeepEval metrics
-            correctness_result = corr_metric.measure(test_case)
-            faithfulness_result = faith_metric.measure(test_case)
-            relevance_result = rel_metric.measure(test_case)
+            # Evaluate using LangSmith evaluators
+            eval_results = {}
 
-            # Handle both object and float results
-            def get_score_and_reason(result):
-                if hasattr(result, 'score'):
-                    return result.score, getattr(result, 'reason', 'N/A')
-                else:
-                    # Assume it's already a float score
-                    return float(result), 'N/A'
+            # Correctness evaluation
+            try:
+                correctness_result = evaluators["correctness"].evaluate_run(
+                    run=Run(inputs={"question": question, "context": context_text, "answer": context_text}),
+                    example=example
+                )
+                eval_results["correctness"] = {
+                    "score": float(correctness_result.get("correctness_score", {}).get("score", 0)),
+                    "reason": correctness_result.get("correctness_score", {}).get("reasoning", "N/A")
+                }
+            except Exception as e:
+                print(f"⚠️ Errore valutazione correttezza: {e}")
+                eval_results["correctness"] = {"score": 0, "reason": f"Error: {e}"}
 
-            corr_score, corr_reason = get_score_and_reason(correctness_result)
-            faith_score, faith_reason = get_score_and_reason(faithfulness_result)
-            rel_score, rel_reason = get_score_and_reason(relevance_result)
+            # Faithfulness evaluation
+            try:
+                faithfulness_result = evaluators["faithfulness"].evaluate_run(
+                    run=Run(inputs={"question": question, "context": context_text, "answer": context_text}),
+                    example=example
+                )
+                eval_results["faithfulness"] = {
+                    "score": float(faithfulness_result.get("faithfulness_score", {}).get("score", 0)),
+                    "reason": faithfulness_result.get("faithfulness_score", {}).get("reasoning", "N/A")
+                }
+            except Exception as e:
+                print(f"⚠️ Errore valutazione fedeltà: {e}")
+                eval_results["faithfulness"] = {"score": 0, "reason": f"Error: {e}"}
+
+            # Relevance evaluation (using context relevance to question)
+            try:
+                relevance_result = evaluators["relevance"].evaluate_run(
+                    run=Run(inputs={"question": question, "context": context_text}),
+                    example=example
+                )
+                eval_results["relevance"] = {
+                    "score": float(relevance_result.get("relevance_score", {}).get("score", 0)),
+                    "reason": relevance_result.get("relevance_score", {}).get("reasoning", "N/A")
+                }
+            except Exception as e:
+                print(f"⚠️ Errore valutazione rilevanza: {e}")
+                eval_results["relevance"] = {"score": 0, "reason": f"Error: {e}"}
 
             # Accumulate scores for averages
-            total_scores["correctness"] += corr_score
-            total_scores["faithfulness"] += faith_score
-            total_scores["relevance"] += rel_score
+            total_scores["correctness"] += eval_results["correctness"]["score"]
+            total_scores["faithfulness"] += eval_results["faithfulness"]["score"]
+            total_scores["relevance"] += eval_results["relevance"]["score"]
 
             result = {
                 "question": question,
                 "context_length": len(context_text),
-                "scores": {
-                    "correctness": {
-                        "score": corr_score,
-                        "reason": corr_reason
-                    },
-                    "faithfulness": {
-                        "score": faith_score,
-                        "reason": faith_reason
-                    },
-                    "relevance": {
-                        "score": rel_score,
-                        "reason": rel_reason
-                    }
-                }
+                "scores": eval_results
             }
             results.append(result)
 
@@ -300,18 +270,13 @@ Example format:
         average_scores = {"correctness": 0, "faithfulness": 0, "relevance": 0}
 
     return {
-        "evaluation_type": "deepeval_with_custom_model",
-        "model_used": model_name,
+        "evaluation_type": "langsmith_with_gemini_2_5_flash",
+        "model_used": "gemini-2.5-flash",
         "questions_evaluated": len(results),
         "results": results,
         "average_scores": average_scores,
-        "summary": f"Evaluated {len(results)} questions using DeepEval with {model_name}. Average scores: Correctness={average_scores['correctness']:.3f}, Faithfulness={average_scores['faithfulness']:.3f}, Relevance={average_scores['relevance']:.3f}"
+        "summary": f"Evaluated {len(results)} questions using LangSmith with gemini-2.5-flash. Average scores: Correctness={average_scores['correctness']:.3f}, Faithfulness={average_scores['faithfulness']:.3f}, Relevance={average_scores['relevance']:.3f}"
     }
-
-def calculate_average_scores(results: List[Dict]) -> Dict[str, float]:
-    """Calculate average scores across all evaluation results."""
-    # Implementation depends on the exact format of your results
-    pass
 
 
 if __name__ == "__main__":
