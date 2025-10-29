@@ -1,0 +1,1087 @@
+{
+  "dataset_info": {
+    "language": "it",
+    "description": "Una selezione di 100 frutti dal mondo, classificati per zona climatica e descritti con parole chiave olistiche per l'analisi semantica."
+  },
+  "items": [
+    {
+      "name": {
+        "local": "Mango",
+        "en": "Mango"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto esotico originario dell'Asia meridionale, celebre per la sua polpa dolce, succosa e aromatica. La sua forma è ovoidale e la buccia varia dal verde al rosso-arancio. La polpa, di un colore arancione intenso, avvolge un grande seme piatto e legnoso al centro. Viene consumato fresco, in macedonie, frullati, succhi, ma anche in piatti salati come chutney e insalate. Parole Chiave: Genere (Frutto, Drupa, Esotico, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, Aromatico, Resinoso; Consistenza: Fibrosa, Succosa, Morbida, Burrosa; Profumo: Intenso, Fruttato, Floreale; Colore Polpa: Arancione, Giallo; Colore Buccia: Verde, Giallo, Rosso, Arancione), Caratteristiche Fisiche (Forma: Ovoidale, Allungata; Seme: Singolo, Grande, Piatto, Legnoso; Buccia: Liscia, Non commestibile), Uso Culinario (Consumo: Fresco, Essiccato, Succo, Frullato; Preparazioni: Dessert, Gelato, Chutney, Insalata, Piatto salato; Abbinamenti: Cocco, Lime, Zenzero, Peperoncino), Proprietà Nutrizionali (Vitamine: Vitamina A, Vitamina C; Benefici: Antiossidante, Digestivo), Origine e Coltivazione (Zona Climatica: Tropicale, Subtropicale; Origine Geografica: Asia Meridionale, India).",
+      "metadata": {
+        "nome_scientifico": "Mangifera indica",
+        "famiglia": "Anacardiaceae",
+        "principali_produttori": "India, Cina, Thailandia, Messico"
+      }
+    },
+    {
+      "name": {
+        "local": "Banana",
+        "en": "Banana"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto dalla caratteristica forma allungata e ricurva, con una buccia gialla facilmente rimovibile. La polpa è morbida, cremosa e dolce, ricca di potassio. È uno dei frutti più consumati al mondo, sia fresco come spuntino energetico che come ingrediente in dolci e frullati. Parole Chiave: Genere (Frutto, Bacca, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, Delicato; Consistenza: Cremosa, Morbida, Pastosa; Profumo: Dolce, Caratteristico; Colore Polpa: Bianco, Crema; Colore Buccia: Giallo, Verde), Caratteristiche Fisiche (Forma: Allungata, Ricurva; Seme: Assente (nelle varietà coltivate); Buccia: Spessa, Non commestibile), Uso Culinario (Consumo: Fresco, Cotto, Fritto; Preparazioni: Dolci, Frullati, Banana bread, Gelato; Abbinamenti: Cioccolato, Noci, Miele, Cannella), Proprietà Nutrizionali (Minerali: Potassio, Magnesio; Benefici: Energetico, Digestivo), Origine e Coltivazione (Zona Climatica: Tropicale, Umida; Origine Geografica: Sud-est asiatico).",
+      "metadata": {
+        "nome_scientifico": "Musa",
+        "famiglia": "Musaceae",
+        "principali_produttori": "India, Ecuador, Brasile, Cina"
+      }
+    },
+    {
+      "name": {
+        "local": "Ananas",
+        "en": "Pineapple"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Grande frutto tropicale con una scorza esterna ruvida e a scaglie e un ciuffo di foglie appuntite. La polpa è gialla, fibrosa e molto succosa, con un sapore che bilancia dolcezza e acidità. Contiene bromelina, un enzima digestivo. Parole Chiave: Genere (Frutto, Infruttescenza, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, Acidulo, Rinfrescante; Consistenza: Succosa, Fibrosa, Croccante; Profumo: Intenso, Esotico; Colore Polpa: Giallo, Bianco; Colore Buccia: Marrone, Verde), Caratteristiche Fisiche (Forma: Ovale, Cilindrica; Seme: Assente; Buccia: Dura, Spinosa, Non commestibile), Uso Culinario (Consumo: Fresco, Grigliato, Succo; Preparazioni: Macedonie, Pizza, Piatti agrodolci, Cocktail; Abbinamenti: Cocco, Pollo, Prosciutto, Rum), Proprietà Nutrizionali (Enzimi: Bromelina; Vitamine: Vitamina C; Benefici: Digestivo, Antinfiammatorio), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: Sud America, Brasile).",
+      "metadata": {
+        "nome_scientifico": "Ananas comosus",
+        "famiglia": "Bromeliaceae",
+        "principali_produttori": "Costa Rica, Filippine, Brasile, Thailandia"
+      }
+    },
+    {
+      "name": {
+        "local": "Mela",
+        "en": "Apple"
+      },
+      "category": "Frutto Temperato",
+      "description": "Frutto tra i più diffusi al mondo, disponibile in migliaia di varietà. Ha forma tondeggiante, buccia di vari colori e polpa croccante e succosa. Il sapore varia da molto dolce a decisamente aspro. È estremamente versatile in cucina. Parole Chiave: Genere (Frutto, Pomo, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Acidulo, Aspro; Consistenza: Croccante, Farinosa, Succosa; Profumo: Delicato, Fruttato; Colore Polpa: Bianco, Giallastro; Colore Buccia: Rosso, Verde, Giallo), Caratteristiche Fisiche (Forma: Rotonda, Globosa; Seme: Piccolo, Nero, Contenuto nel torsolo; Buccia: Sottile, Commestibile), Uso Culinario (Consumo: Fresco, Cotto, Succo; Preparazioni: Torte, Sidro, Aceto, Salse, Essiccato; Abbinamenti: Cannella, Formaggio, Maiale, Noci), Proprietà Nutrizionali (Fibre: Pectina; Benefici: Regolarità intestinale, Salutare), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Asia Centrale).",
+      "metadata": {
+        "nome_scientifico": "Malus domestica",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Cina, Stati Uniti, Polonia, Italia"
+      }
+    },
+    {
+      "name": {
+        "local": "Arancia",
+        "en": "Orange"
+      },
+      "category": "Agrume",
+      "description": "Agrume sferico con una buccia spessa e porosa di colore arancione. La polpa è suddivisa in spicchi succosi, con un sapore dolce e leggermente acidulo. È famosa per il suo alto contenuto di Vitamina C. Consumata fresca, in spremute o come ingrediente. Parole Chiave: Genere (Frutto, Agrume, Esperidio), Caratteristiche Sensoriali (Sapore: Dolce, Acidulo; Consistenza: Succosa, Polposa; Profumo: Fresco, Agrumato; Colore Polpa: Arancione; Colore Buccia: Arancione), Caratteristiche Fisiche (Forma: Sferica; Seme: Presente o assente; Buccia: Spessa, Aromatica, Non commestibile), Uso Culinario (Consumo: Fresco, Spremuta, Succo; Preparazioni: Marmellate, Dolci, Salse, Canditi, Cocktail; Abbinamenti: Cioccolato, Anatra, Finocchio, Mandorle), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Antiossidante, Rinforza il sistema immunitario), Origine e Coltivazione (Zona Climatica: Subtropicale, Mediterranea; Origine Geografica: Cina, Sud-est asiatico).",
+      "metadata": {
+        "nome_scientifico": "Citrus × sinensis",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Brasile, Cina, India, Stati Uniti"
+      }
+    },
+    {
+      "name": {
+        "local": "Fragola",
+        "en": "Strawberry"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Falso frutto di colore rosso brillante, a forma di cuore, con piccoli semi (acheni) sulla superficie. La polpa è succosa, dolce e leggermente acidula, con un profumo inconfondibile. È uno dei frutti primaverili più amati. Parole Chiave: Genere (Falso frutto, Bacca (comunemente), Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Acidulo; Consistenza: Succosa, Morbida; Profumo: Intenso, Dolce; Colore Polpa: Rosso, Bianco; Colore Buccia: Rosso), Caratteristiche Fisiche (Forma: Conica, a cuore; Seme: Esterno, piccolo; Buccia: Sottile, Commestibile), Uso Culinario (Consumo: Fresco; Preparazioni: Dolci, Gelato, Marmellate, Frullati, Sciroppi; Abbinamenti: Panna, Cioccolato, Aceto balsamico, Menta), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Antiossidante, Antinfiammatorio), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa, Americhe).",
+      "metadata": {
+        "nome_scientifico": "Fragaria × ananassa",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Cina, Stati Uniti, Messico, Turchia"
+      }
+    },
+    {
+      "name": {
+        "local": "Uva",
+        "en": "Grape"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Frutto che cresce in grappoli, composto da bacche (acini) di forma sferica o ovoidale. La buccia può essere di vari colori (verde, rossa, nera) e la polpa è succosa e dolce. È la base per la produzione del vino, ma è ottima anche da tavola. Parole Chiave: Genere (Frutto, Bacca, Subtropicale), Caratteristiche Sensoriali (Sapore: Dolce, A volte acidulo; Consistenza: Succosa, Croccante; Profumo: Delicato, Vinoso; Colore Polpa: Traslucido; Colore Buccia: Verde, Rosso, Nero, Viola), Caratteristiche Fisiche (Forma: Sferica, Ovoidale; Seme: Presente o assente; Buccia: Sottile, Commestibile), Uso Culinario (Consumo: Fresco, Essiccato (uvetta), Succo; Preparazioni: Vino, Aceto, Marmellate, Dolci; Abbinamenti: Formaggio, Carne, Noci), Proprietà Nutrizionali (Antiossidanti: Resveratrolo; Benefici: Cardioprotettivo, Antiossidante), Origine e Coltivazione (Zona Climatica: Temperata, Mediterranea; Origine Geografica: Medio Oriente).",
+      "metadata": {
+        "nome_scientifico": "Vitis vinifera",
+        "famiglia": "Vitaceae",
+        "principali_produttori": "Cina, Italia, Stati Uniti, Spagna"
+      }
+    },
+    {
+      "name": {
+        "local": "Limone",
+        "en": "Lemon"
+      },
+      "category": "Agrume",
+      "description": "Agrume di forma ovale con una buccia gialla e aromatica. La polpa è molto succosa e caratterizzata da un sapore decisamente aspro e acido, dovuto all'alto contenuto di acido citrico. Utilizzato principalmente come condimento e per bevande. Parole Chiave: Genere (Frutto, Agrume, Esperidio), Caratteristiche Sensoriali (Sapore: Acido, Aspro; Consistenza: Succosa; Profumo: Intenso, Fresco, Agrumato; Colore Polpa: Giallo pallido; Colore Buccia: Giallo), Caratteristiche Fisiche (Forma: Ovale, Ellittica; Seme: Presente; Buccia: Rugosa, Aromatica), Uso Culinario (Consumo: Succo, Condimento; Preparazioni: Bevande (limonata), Dolci, Salse, Marinature, Liquori (limoncello); Abbinamenti: Pesce, Pollo, Tè, Menta), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Antibatterico, Digestivo, Alcalinizzante), Origine e Coltivazione (Zona Climatica: Subtropicale, Mediterranea; Origine Geografica: Asia).",
+      "metadata": {
+        "nome_scientifico": "Citrus limon",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "India, Messico, Cina, Argentina"
+      }
+    },
+    {
+      "name": {
+        "local": "Pesca",
+        "en": "Peach"
+      },
+      "category": "Frutto Temperato",
+      "description": "Frutto estivo tondeggiante con una buccia vellutata e una polpa succosa e profumata, di colore giallo o bianco. Al centro contiene un grande nocciolo legnoso. Il sapore è dolce e aromatico. La varietà senza peluria è la nettarina o pesca noce. Parole Chiave: Genere (Frutto, Drupa, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Aromatico; Consistenza: Succosa, Morbida, Vellutata; Profumo: Intenso, Dolce; Colore Polpa: Giallo, Bianco; Colore Buccia: Giallo-rossa), Caratteristiche Fisiche (Forma: Rotonda; Seme: Singolo, Grande, Legnoso; Buccia: Vellutata, Sottile), Uso Culinario (Consumo: Fresco, Sciroppato; Preparazioni: Marmellate, Dolci, Gelato, Succhi, Grigliata; Abbinamenti: Mandorle, Vino, Prosciutto, Formaggio), Proprietà Nutrizionali (Vitamine: Vitamina A, Vitamina C; Benefici: Diuretico, Rinfrescante), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Cina).",
+      "metadata": {
+        "nome_scientifico": "Prunus persica",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Cina, Spagna, Italia, Stati Uniti"
+      }
+    },
+    {
+      "name": {
+        "local": "Anguria",
+        "en": "Watermelon"
+      },
+      "category": "Cucurbitacea",
+      "description": "Grande frutto estivo, botanicamente una bacca, con una buccia verde liscia e una polpa rossa, croccante e molto acquosa, costellata di semi neri. È estremamente dissetante e rinfrescante, con un sapore dolce e delicato. Parole Chiave: Genere (Frutto, Bacca, Cucurbitacea), Caratteristiche Sensoriali (Sapore: Dolce, Acquoso, Rinfrescante; Consistenza: Croccante, Granulosa, Acquosa; Profumo: Delicato, Erbaceo; Colore Polpa: Rosso, Rosa; Colore Buccia: Verde striato), Caratteristiche Fisiche (Forma: Sferica, Ovale; Seme: Numerosi, Neri, piatti; Buccia: Spessa, Liscia), Uso Culinario (Consumo: Fresco; Preparazioni: Macedonie, Succhi, Granite, Cocktail; Abbinamenti: Feta, Menta, Lime, Prosciutto crudo), Proprietà Nutrizionali (Acqua: Elevato contenuto; Antiossidanti: Licopene; Benefici: Idratante, Diuretico), Origine e Coltivazione (Zona Climatica: Calda, Temperata-calda; Origine Geografica: Africa meridionale).",
+      "metadata": {
+        "nome_scientifico": "Citrullus lanatus",
+        "famiglia": "Cucurbitaceae",
+        "principali_produttori": "Cina, Turchia, Iran, Brasile"
+      }
+    },
+    {
+      "name": {
+        "local": "Ciliegia",
+        "en": "Cherry"
+      },
+      "category": "Frutto Temperato",
+      "description": "Piccolo frutto tondo e carnoso, di colore rosso più o meno intenso. La polpa è succosa e dolce, a volte con una nota acidula, e contiene un piccolo nocciolo duro. È un frutto tipicamente primaverile-estivo. Parole Chiave: Genere (Frutto, Drupa, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Acidulo; Consistenza: Succosa, Carnosa; Profumo: Delicato; Colore Polpa: Rosso, Giallo; Colore Buccia: Rosso, Nero, Giallo), Caratteristiche Fisiche (Forma: Sferica, a cuore; Seme: Singolo, Piccolo, Duro; Buccia: Liscia, Sottile), Uso Culinario (Consumo: Fresco; Preparazioni: Marmellate, Dolci (clafoutis, strudel), Sciroppi, Liquori (kirsch); Abbinamenti: Cioccolato, Mandorle, Vaniglia, Anatra), Proprietà Nutrizionali (Antiossidanti: Antociani; Benefici: Antinfiammatorio, Diuretico), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa, Asia occidentale).",
+      "metadata": {
+        "nome_scientifico": "Prunus avium (dolce) / Prunus cerasus (acida)",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Turchia, Stati Uniti, Iran, Italia"
+      }
+    },
+    {
+      "name": {
+        "local": "Pera",
+        "en": "Pear"
+      },
+      "category": "Frutto Temperato",
+      "description": "Frutto dalla caratteristica forma a fiaschetta, con una buccia che varia dal verde al giallo al rosso. La polpa è bianca, spesso granulosa vicino al torsolo, e il sapore è dolce e aromatico. Esistono numerose varietà con consistenze diverse. Parole Chiave: Genere (Frutto, Pomo, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Aromatico; Consistenza: Succosa, Morbida, Granulosa, Croccante; Profumo: Delicato, Floreale; Colore Polpa: Bianco, Crema; Colore Buccia: Verde, Giallo, Rosso, Marrone), Caratteristiche Fisiche (Forma: Piriforme, a fiaschetta; Seme: Piccolo, nel torsolo; Buccia: Sottile, Commestibile), Uso Culinario (Consumo: Fresco, Cotto; Preparazioni: Dolci, Marmellate, Succhi, Sciroppato, Piatti salati; Abbinamenti: Formaggio (gorgonzola), Noci, Cioccolato, Vino rosso), Proprietà Nutrizionali (Fibre: Elevato contenuto; Benefici: Digestivo, Ricco di fibre), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa, Asia).",
+      "metadata": {
+        "nome_scientifico": "Pyrus communis",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Cina, Argentina, Italia, Stati Uniti"
+      }
+    },
+    {
+      "name": {
+        "local": "Kiwi",
+        "en": "Kiwi"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Frutto ovoidale con una buccia marrone e pelosa. La polpa, di un verde brillante (o gialla in alcune varietà), è tenera e succosa, con tanti piccoli semi neri commestibili disposti a raggiera. Il sapore è dolce e acidulo. Parole Chiave: Genere (Frutto, Bacca, Subtropicale), Caratteristiche Sensoriali (Sapore: Dolce, Acidulo, Rinfrescante; Consistenza: Morbida, Succosa; Profumo: Delicato; Colore Polpa: Verde, Giallo; Colore Buccia: Marrone), Caratteristiche Fisiche (Forma: Ovoidale; Seme: Numerosi, Piccoli, Neri; Buccia: Pelosa, Non commestibile), Uso Culinario (Consumo: Fresco; Preparazioni: Macedonie, Dolci, Frullati, Salse; Abbinamenti: Fragola, Banana, Yogurt), Proprietà Nutrizionali (Vitamine: Vitamina C, Vitamina K; Benefici: Rinforza il sistema immunitario, Ricco di fibre), Origine e Coltivazione (Zona Climatica: Temperata-calda, Subtropicale; Origine Geografica: Cina).",
+      "metadata": {
+        "nome_scientifico": "Actinidia deliciosa",
+        "famiglia": "Actinidiaceae",
+        "principali_produttori": "Cina, Italia, Nuova Zelanda, Cile"
+      }
+    },
+    {
+      "name": {
+        "local": "Mirtillo",
+        "en": "Blueberry"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Piccola bacca globosa di colore blu-viola scuro, ricoperta da una patina cerosa (pruina). La polpa è succosa e il sapore è un equilibrio tra dolce e aspro. È noto per le sue elevate proprietà antiossidanti. Parole Chiave: Genere (Frutto, Bacca, Frutto di Bosco), Caratteristiche Sensoriali (Sapore: Dolce, Leggermente aspro; Consistenza: Succosa, Morbida; Profumo: Delicato; Colore Polpa: Verde-violaceo; Colore Buccia: Blu, Viola), Caratteristiche Fisiche (Forma: Sferica; Seme: Molto piccolo; Buccia: Sottile, Commestibile), Uso Culinario (Consumo: Fresco, Essiccato; Preparazioni: Dolci (muffin, pancake), Marmellate, Succhi, Yogurt; Abbinamenti: Limone, Avena, Mandorle, Cannella), Proprietà Nutrizionali (Antiossidanti: Antociani; Benefici: Migliora la vista, Protegge il cervello, Antiossidante), Origine e Coltivazione (Zona Climatica: Temperata, Fredda; Origine Geografica: Nord America).",
+      "metadata": {
+        "nome_scientifico": "Vaccinium myrtillus (europeo) / Vaccinium corymbosum (americano)",
+        "famiglia": "Ericaceae",
+        "principali_produttori": "Stati Uniti, Canada, Polonia, Germania"
+      }
+    },
+    {
+      "name": {
+        "local": "Cocco",
+        "en": "Coconut"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Grande drupa con un guscio esterno fibroso (mesocarpo), un guscio interno duro e legnoso (endocarpo), e all'interno una polpa bianca e aromatica e un liquido dolce noto come acqua di cocco. È un ingrediente fondamentale in molte cucine tropicali. Parole Chiave: Genere (Frutto, Drupa, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, Aromatico, Lattiginoso; Consistenza: Croccante, Fibrosa (polpa), Liquida (acqua); Profumo: Dolce, Esotico; Colore Polpa: Bianco; Colore Buccia: Marrone), Caratteristiche Fisiche (Forma: Sferica, Ovoidale; Guscio: Duro, Legnoso; Buccia: Fibrosa), Uso Culinario (Consumo: Fresco, Essiccato, Latte, Olio, Acqua; Preparazioni: Dolci, Curry, Piatti salati, Bevande; Abbinamenti: Lime, Cioccolato, Pesce, Riso), Proprietà Nutrizionali (Grassi: Saturi (MCT); Benefici: Idratante, Energetico), Origine e Coltivazione (Zona Climatica: Tropicale, Costiera; Origine Geografica: Incerta, probabilmente Indo-Pacifico).",
+      "metadata": {
+        "nome_scientifico": "Cocos nucifera",
+        "famiglia": "Arecaceae",
+        "principali_produttori": "Indonesia, Filippine, India, Brasile"
+      }
+    },
+    {
+      "name": {
+        "local": "Avocado",
+        "en": "Avocado"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto a forma di pera con una buccia verde scuro o nera, a volte rugosa. La polpa è verde chiaro, cremosa e burrosa, con un sapore delicato e ricco di grassi monoinsaturi. Contiene un grande seme sferico al centro. Usato in preparazioni dolci e salate. Parole Chiave: Genere (Frutto, Bacca, Tropicale), Caratteristiche Sensoriali (Sapore: Delicato, Nocciolato, Erbaceo; Consistenza: Cremosa, Burrosa, Morbida; Profumo: Leggero; Colore Polpa: Verde, Giallo; Colore Buccia: Verde, Nero), Caratteristiche Fisiche (Forma: Piriforme, Sferica; Seme: Singolo, Grande, Sferico; Buccia: Liscia o Rugosa), Uso Culinario (Consumo: Fresco; Preparazioni: Guacamole, Insalate, Toast, Frullati, Salse; Abbinamenti: Lime, Cipolla, Pomodoro, Salmone, Uova), Proprietà Nutrizionali (Grassi: Monoinsaturi; Benefici: Salutare per il cuore, Saziante), Origine e Coltivazione (Zona Climatica: Tropicale, Subtropicale; Origine Geografica: Messico, America Centrale).",
+      "metadata": {
+        "nome_scientifico": "Persea americana",
+        "famiglia": "Lauraceae",
+        "principali_produttori": "Messico, Repubblica Dominicana, Perù, Indonesia"
+      }
+    },
+    {
+      "name": {
+        "local": "Melograno",
+        "en": "Pomegranate"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Frutto sferico con una buccia coriacea di colore rosso-giallo. All'interno, è suddiviso in compartimenti contenenti numerosi semi (arilli) avvolti da una polpa traslucida, succosa e agrodolce. È ricco di antiossidanti. Parole Chiave: Genere (Frutto, Bacca, Subtropicale), Caratteristiche Sensoriali (Sapore: Agrodolce, Astringente; Consistenza: Succosa, Croccante (semi); Profumo: Delicato; Colore Polpa: Rosso, Rosa; Colore Buccia: Rosso, Giallo), Caratteristiche Fisiche (Forma: Sferica; Seme: Numerosi (arilli); Buccia: Dura, Coriacea), Uso Culinario (Consumo: Fresco, Succo; Preparazioni: Insalate, Salse (grenadine), Piatti di carne, Yogurt; Abbinamenti: Menta, Noci, Formaggio di capra, Agnello), Proprietà Nutrizionali (Antiossidanti: Polifenoli; Benefici: Antiossidante, Cardioprotettivo), Origine e Coltivazione (Zona Climatica: Mediterranea, Subtropicale; Origine Geografica: Iran, Asia Centrale).",
+      "metadata": {
+        "nome_scientifico": "Punica granatum",
+        "famiglia": "Lythraceae",
+        "principali_produttori": "India, Iran, Cina, Turchia"
+      }
+    },
+    {
+      "name": {
+        "local": "Lampone",
+        "en": "Raspberry"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Frutto aggregato composto da tante piccole drupe unite, di colore rosso o nero. È cavo all'interno una volta staccato dal picciolo. Il sapore è dolce e leggermente aspro, con un aroma intenso. Molto delicato. Parole Chiave: Genere (Frutto, Aggregato, Frutto di Bosco), Caratteristiche Sensoriali (Sapore: Dolce, Aspro; Consistenza: Morbida, Vellutata; Profumo: Intenso, Fruttato; Colore: Rosso, Nero, Giallo), Caratteristiche Fisiche (Forma: Conica; Struttura: Composto da drupeole; Cavità: Interna), Uso Culinario (Consumo: Fresco; Preparazioni: Dolci, Marmellate, Salse, Liquori, Aceto; Abbinamenti: Cioccolato bianco, Mandorle, Menta, Limone), Proprietà Nutrizionali (Fibre: Elevato contenuto; Vitamine: Vitamina C; Benefici: Antiossidante, Ricco di fibre), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa, Asia settentrionale).",
+      "metadata": {
+        "nome_scientifico": "Rubus idaeus",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Russia, Messico, Polonia, Serbia"
+      }
+    },
+    {
+      "name": {
+        "local": "Prugna",
+        "en": "Plum"
+      },
+      "category": "Frutto Temperato",
+      "description": "Frutto a drupa di forma ovale o sferica, con una buccia liscia di colore viola, rosso o giallo. La polpa è succosa e dolce, e contiene un nocciolo appuntito. La versione essiccata è nota come prugna secca. Parole Chiave: Genere (Frutto, Drupa, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, A volte acidulo; Consistenza: Succosa, Carnosa; Profumo: Delicato; Colore Polpa: Giallo, Ambra; Colore Buccia: Viola, Rosso, Giallo), Caratteristiche Fisiche (Forma: Ovale, Sferica; Seme: Singolo, Appuntito; Buccia: Liscia, Pruinosa), Uso Culinario (Consumo: Fresco, Essiccato; Preparazioni: Marmellate, Dolci, Liquori, Salse per carne; Abbinamenti: Cannella, Maiale, Anatra, Mandorle), Proprietà Nutrizionali (Fibre: Elevato contenuto; Benefici: Lassativo, Regolarità intestinale), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Cina, Europa).",
+      "metadata": {
+        "nome_scientifico": "Prunus domestica",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Cina, Romania, Serbia, Stati Uniti"
+      }
+    },
+    {
+      "name": {
+        "local": "Albicocca",
+        "en": "Apricot"
+      },
+      "category": "Frutto Temperato",
+      "description": "Piccolo frutto estivo, simile a una pesca in miniatura, con una buccia vellutata di colore arancione. La polpa è dolce e leggermente acidula, meno succosa della pesca, con un nocciolo liscio all'interno. Parole Chiave: Genere (Frutto, Drupa, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Leggermente acidulo; Consistenza: Morbida, Carnosa, a volte farinosa; Profumo: Aromatico, Dolce; Colore Polpa: Arancione; Colore Buccia: Arancione, Giallo), Caratteristiche Fisiche (Forma: Rotonda, Ovale; Seme: Singolo, Liscio; Buccia: Vellutata), Uso Culinario (Consumo: Fresco, Essiccato, Sciroppato; Preparazioni: Marmellate, Dolci, Salse, Liquori; Abbinamenti: Mandorle, Pistacchi, Agnello, Rosmarino), Proprietà Nutrizionali (Vitamine: Vitamina A (beta-carotene); Benefici: Protegge la pelle, Migliora la vista), Origine e Coltivazione (Zona Climatica: Temperata-calda; Origine Geografica: Cina, Asia Centrale).",
+      "metadata": {
+        "nome_scientifico": "Prunus armeniaca",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Turchia, Uzbekistan, Iran, Italia"
+      }
+    },
+    {
+      "name": {
+        "local": "Fico",
+        "en": "Fig"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Frutto (in realtà un'infruttescenza) a forma di goccia con una buccia sottile di colore verde o viola. L'interno è composto da una polpa rossa e carnosa, ricca di piccoli semi croccanti. Il sapore è molto dolce e mieloso. Parole Chiave: Genere (Infruttescenza, Siconio, Subtropicale), Caratteristiche Sensoriali (Sapore: Dolce, Mieloso; Consistenza: Morbida, Carnosa, Croccante (semi); Profumo: Dolce, Delicato; Colore Polpa: Rosso, Rosa; Colore Buccia: Verde, Viola, Nero), Caratteristiche Fisiche (Forma: Piriforme, a goccia; Seme: Numerosi, Piccoli; Buccia: Sottile, Commestibile), Uso Culinario (Consumo: Fresco, Essiccato; Preparazioni: Marmellate, Dolci, Piatti salati; Abbinamenti: Prosciutto crudo, Formaggio, Noci, Miele), Proprietà Nutrizionali (Fibre: Elevato contenuto; Minerali: Calcio, Potassio; Benefici: Energetico, Lassativo), Origine e Coltivazione (Zona Climatica: Mediterranea, Subtropicale; Origine Geografica: Medio Oriente, Asia occidentale).",
+      "metadata": {
+        "nome_scientifico": "Ficus carica",
+        "famiglia": "Moraceae",
+        "principali_produttori": "Turchia, Egitto, Algeria, Marocco"
+      }
+    },
+    {
+      "name": {
+        "local": "Melone",
+        "en": "Melon"
+      },
+      "category": "Cucurbitacea",
+      "description": "Frutto estivo di grandi dimensioni, con buccia retata o liscia e polpa arancione, gialla o verde. La polpa è succosa, dolce e molto profumata. La cavità centrale contiene numerosi semi. Parole Chiave: Genere (Frutto, Bacca, Cucurbitacea), Caratteristiche Sensoriali (Sapore: Dolce, Aromatico; Consistenza: Succosa, Morbida; Profumo: Intenso, Dolce; Colore Polpa: Arancione, Verde, Bianco; Colore Buccia: Giallo, Verde), Caratteristiche Fisiche (Forma: Sferica, Ovale; Seme: Numerosi, nella cavità centrale; Buccia: Liscia o Retata), Uso Culinario (Consumo: Fresco; Preparazioni: Antipasti, Macedonie, Frullati, Gelato; Abbinamenti: Prosciutto crudo, Porto, Menta), Proprietà Nutrizionali (Vitamine: Vitamina A, Vitamina C; Benefici: Idratante, Rinfrescante), Origine e Coltivazione (Zona Climatica: Calda, Temperata-calda; Origine Geografica: Africa, Asia).",
+      "metadata": {
+        "nome_scientifico": "Cucumis melo",
+        "famiglia": "Cucurbitaceae",
+        "principali_produttori": "Cina, Turchia, Iran, Egitto"
+      }
+    },
+    {
+      "name": {
+        "local": "Papaya",
+        "en": "Papaya"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto tropicale di grandi dimensioni, a forma di pera, con una buccia sottile che vira dal verde al giallo-arancio. La polpa è arancione, morbida e burrosa, con un sapore dolce e un aroma caratteristico. La cavità centrale contiene semi neri piccanti. Parole Chiave: Genere (Frutto, Bacca, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, Muschiato; Consistenza: Morbida, Burrosa, Cremosa; Profumo: Caratteristico, a volte sgradevole; Colore Polpa: Arancione, Rosa; Colore Buccia: Giallo, Arancione), Caratteristiche Fisiche (Forma: Piriforme, Ovale; Seme: Numerosi, Neri, Sferici; Buccia: Sottile), Uso Culinario (Consumo: Fresco; Preparazioni: Insalate, Frullati, Succhi, Piatti salati; Abbinamenti: Lime, Zenzero, Frutti di mare), Proprietà Nutrizionali (Enzimi: Papaina; Vitamine: Vitamina C, Vitamina A; Benefici: Digestivo, Antinfiammatorio), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: America Centrale, Messico meridionale).",
+      "metadata": {
+        "nome_scientifico": "Carica papaya",
+        "famiglia": "Caricaceae",
+        "principali_produttori": "India, Brasile, Indonesia, Nigeria"
+      }
+    },
+    {
+      "name": {
+        "local": "Mandarino",
+        "en": "Mandarin Orange"
+      },
+      "category": "Agrume",
+      "description": "Piccolo agrume simile all'arancia ma più schiacciato ai poli. La buccia è sottile, profumata e si stacca facilmente dalla polpa. Gli spicchi sono dolci e succosi. Include varietà come clementine e satsuma. Parole Chiave: Genere (Frutto, Agrume, Esperidio), Caratteristiche Sensoriali (Sapore: Dolce, Aromatico; Consistenza: Succosa, Tenera; Profumo: Intenso, Agrumato; Colore Polpa: Arancione; Colore Buccia: Arancione), Caratteristiche Fisiche (Forma: Oblata, schiacciata; Seme: Presente o assente; Buccia: Sottile, facile da sbucciare), Uso Culinario (Consumo: Fresco, Succo; Preparazioni: Dolci, Marmellate, Insalate, Liquori; Abbinamenti: Cannella, Chiodi di garofano, Cioccolato), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Antiossidante, Facile da digerire), Origine e Coltivazione (Zona Climatica: Subtropicale; Origine Geografica: Cina, Sud-est asiatico).",
+      "metadata": {
+        "nome_scientifico": "Citrus reticulata",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Cina, Spagna, Turchia, Brasile"
+      }
+    },
+    {
+      "name": {
+        "local": "Pompelmo",
+        "en": "Grapefruit"
+      },
+      "category": "Agrume",
+      "description": "Grande agrume sferico con buccia gialla o rosa. La polpa, suddivisa in spicchi, può essere gialla o rosa/rossa e ha un sapore caratteristico che unisce l'amaro, l'acido e il dolce. Parole Chiave: Genere (Frutto, Agrume, Esperidio), Caratteristiche Sensoriali (Sapore: Amaro, Acidulo, Dolce; Consistenza: Succosa, Polposa; Profumo: Fresco, Pungente; Colore Polpa: Giallo, Rosa, Rosso; Colore Buccia: Giallo, Rosa), Caratteristiche Fisiche (Forma: Sferica; Seme: Presente o assente; Buccia: Spessa), Uso Culinario (Consumo: Fresco, Spremuta; Preparazioni: Insalate, Cocktail, Marmellate; Abbinamenti: Avocado, Gamberi, Menta), Proprietà Nutrizionali (Vitamine: Vitamina C; Antiossidanti: Licopene (rosa); Benefici: Ipocolesterolemizzante, Antiossidante), Origine e Coltivazione (Zona Climatica: Subtropicale; Origine Geografica: Barbados (ibrido)).",
+      "metadata": {
+        "nome_scientifico": "Citrus × paradisi",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Cina, Stati Uniti, Messico, Sudafrica"
+      }
+    },
+    {
+      "name": {
+        "local": "Litchi",
+        "en": "Lychee"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Piccolo frutto esotico con una buccia ruvida e fragile di colore rosa-rosso. La polpa è bianca, traslucida, succosa e molto dolce, con un aroma floreale simile alla rosa. Contiene un unico seme scuro non commestibile. Parole Chiave: Genere (Frutto, Drupa, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, Floreale; Consistenza: Succosa, gelatinosa; Profumo: Aromatico, di rosa; Colore Polpa: Bianco traslucido; Colore Buccia: Rosso, Rosa), Caratteristiche Fisiche (Forma: Rotonda, Ovale; Seme: Singolo, Scuro, Lucido; Buccia: Rugosa, Fragile), Uso Culinario (Consumo: Fresco, Sciroppato; Preparazioni: Dessert, Cocktail, Insalate; Abbinamenti: Cocco, Zenzero, Lampone), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Antiossidante), Origine e Coltivazione (Zona Climatica: Subtropicale; Origine Geografica: Cina meridionale).",
+      "metadata": {
+        "nome_scientifico": "Litchi chinensis",
+        "famiglia": "Sapindaceae",
+        "principali_produttori": "Cina, India, Vietnam, Taiwan"
+      }
+    },
+    {
+      "name": {
+        "local": "Frutto della Passione",
+        "en": "Passion Fruit"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto tondo o ovale con una buccia dura che a maturità diventa rugosa. All'interno contiene una polpa gelatinosa con numerosi semi commestibili. Il sapore è intensamente aromatico, dolce e aspro. Parole Chiave: Genere (Frutto, Bacca, Tropicale), Caratteristiche Sensoriali (Sapore: Aspro, Dolce, Aromatico; Consistenza: Gelatinosa, Liquida, Croccante (semi); Profumo: Intenso, Esotico; Colore Polpa: Giallo, Arancione; Colore Buccia: Viola, Giallo), Caratteristiche Fisiche (Forma: Sferica, Ovale; Seme: Numerosi, Commestibili; Buccia: Dura, Liscia o rugosa), Uso Culinario (Consumo: Fresco (polpa), Succo; Preparazioni: Dessert (mousse), Cocktail, Salse, Yogurt; Abbinamenti: Mango, Cocco, Cioccolato bianco), Proprietà Nutrizionali (Vitamine: Vitamina A, Vitamina C; Benefici: Rilassante, Ricco di fibre), Origine e Coltivazione (Zona Climatica: Tropicale, Subtropicale; Origine Geografica: Sud America, Brasile).",
+      "metadata": {
+        "nome_scientifico": "Passiflora edulis",
+        "famiglia": "Passifloraceae",
+        "principali_produttori": "Brasile, Colombia, Ecuador, Australia"
+      }
+    },
+    {
+      "name": {
+        "local": "Mora",
+        "en": "Blackberry"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Frutto aggregato di colore nero-violaceo lucido, composto da tante piccole drupe. Ha un sapore dolce e leggermente aspro, più intenso rispetto al lampone. Cresce spontaneamente in rovi. Parole Chiave: Genere (Frutto, Aggregato, Frutto di Bosco), Caratteristiche Sensoriali (Sapore: Dolce, Aspro, Intenso; Consistenza: Succosa, Morbida; Profumo: Fruttato; Colore: Nero, Viola scuro), Caratteristiche Fisiche (Forma: Ovale, allungata; Struttura: Composto da drupeole), Uso Culinario (Consumo: Fresco; Preparazioni: Marmellate, Dolci, Sciroppi, Liquori; Abbinamenti: Mela, Limone, Vaniglia, Yogurt), Proprietà Nutrizionali (Antiossidanti: Antociani; Vitamine: Vitamina C, Vitamina K; Benefici: Antiossidante, Ricco di fibre), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Emisfero settentrionale).",
+      "metadata": {
+        "nome_scientifico": "Rubus fruticosus",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Messico, Stati Uniti, Serbia"
+      }
+    },
+    {
+      "name": {
+        "local": "Cachi",
+        "en": "Persimmon"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Frutto autunnale di colore arancione brillante, simile a un pomodoro. La polpa è molto morbida, quasi gelatinosa a piena maturazione, e molto dolce. Alcune varietà sono astringenti se non completamente mature. Parole Chiave: Genere (Frutto, Bacca, Subtropicale), Caratteristiche Sensoriali (Sapore: Dolce, Mieloso, a volte Astringente; Consistenza: Morbida, Gelatinosa, Cremosa; Profumo: Delicato; Colore Polpa: Arancione; Colore Buccia: Arancione), Caratteristiche Fisiche (Forma: Sferica, appiattita; Seme: Presente, piatto; Buccia: Sottile, Lucida), Uso Culinario (Consumo: Fresco (al cucchiaio); Preparazioni: Marmellate, Dolci, Essiccato; Abbinamenti: Cannella, Noci, Formaggio), Proprietà Nutrizionali (Vitamine: Vitamina A; Benefici: Energetico, Lassativo), Origine e Coltivazione (Zona Climatica: Temperata-calda, Subtropicale; Origine Geografica: Cina).",
+      "metadata": {
+        "nome_scientifico": "Diospyros kaki",
+        "famiglia": "Ebenaceae",
+        "principali_produttori": "Cina, Corea del Sud, Giappone, Brasile"
+      }
+    },
+    {
+      "name": {
+        "local": "Lime",
+        "en": "Lime"
+      },
+      "category": "Agrume",
+      "description": "Piccolo agrume verde, più piccolo e rotondo del limone. Ha un sapore più intenso, aromatico e meno aspro del limone. La sua buccia e il suo succo sono fondamentali in molte cucine e cocktail. Parole Chiave: Genere (Frutto, Agrume, Esperidio), Caratteristiche Sensoriali (Sapore: Acido, Aromatico, Intenso; Consistenza: Succosa; Profumo: Pungente, Fresco; Colore Polpa: Verde chiaro; Colore Buccia: Verde), Caratteristiche Fisiche (Forma: Sferica, Ovale; Seme: Presente; Buccia: Sottile, Liscia), Uso Culinario (Consumo: Succo, Condimento; Preparazioni: Cocktail (Mojito, Caipirinha), Marinature, Salse, Dessert; Abbinamenti: Menta, Cocco, Pollo, Pesce, Avocado), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Antiossidante, Aromatico), Origine e Coltivazione (Zona Climatica: Tropicale, Subtropicale; Origine Geografica: Sud-est asiatico).",
+      "metadata": {
+        "nome_scientifico": "Citrus aurantiifolia / Citrus latifolia",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Messico, India, Brasile, Argentina"
+      }
+    },
+    {
+      "name": {
+        "local": "Guava",
+        "en": "Guava"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto tropicale di forma tonda o a pera, con buccia verde o gialla. La polpa, rosa o bianca, è dolce e molto aromatica, con una consistenza che varia da morbida a granulosa. Contiene numerosi piccoli semi duri. Parole Chiave: Genere (Frutto, Bacca, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, Aromatico, Muschiato; Consistenza: Morbida, Granulosa; Profumo: Intenso, Penetrante; Colore Polpa: Rosa, Bianco; Colore Buccia: Verde, Giallo), Caratteristiche Fisiche (Forma: Sferica, Piriforme; Seme: Numerosi, Duri; Buccia: Sottile), Uso Culinario (Consumo: Fresco, Succo; Preparazioni: Marmellate, Gelatine, Dolci; Abbinamenti: Formaggio, Peperoncino), Proprietà Nutrizionali (Vitamine: Vitamina C (elevatissima); Benefici: Superfood, Antiossidante), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: America Centrale).",
+      "metadata": {
+        "nome_scientifico": "Psidium guajava",
+        "famiglia": "Myrtaceae",
+        "principali_produttori": "India, Cina, Thailandia, Pakistan"
+      }
+    },
+    {
+      "name": {
+        "local": "Noce",
+        "en": "Walnut"
+      },
+      "category": "Frutto a Guscio",
+      "description": "Frutto secco contenuto in un guscio legnoso e rugoso. Il seme commestibile (gheriglio) ha una forma che ricorda un cervello ed è ricco di acidi grassi omega-3. Ha un sapore ricco e leggermente amaro. Parole Chiave: Genere (Frutto a guscio, Drupa), Caratteristiche Sensoriali (Sapore: Ricco, Nocciolato, Leggermente amaro; Consistenza: Croccante, Oleosa; Profumo: Nocciolato; Colore: Marrone chiaro), Caratteristiche Fisiche (Forma: Sferica; Guscio: Duro, Legnoso; Seme: Gheriglio), Uso Culinario (Consumo: Fresco, Tostato; Preparazioni: Dolci, Pesto, Insalate, Pane; Abbinamenti: Formaggio, Miele, Pere, Cioccolato), Proprietà Nutrizionali (Grassi: Omega-3; Benefici: Salutare per il cervello, Cardioprotettivo), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Asia Centrale, Balcani).",
+      "metadata": {
+        "nome_scientifico": "Juglans regia",
+        "famiglia": "Juglandaceae",
+        "principali_produttori": "Cina, Stati Uniti, Iran, Turchia"
+      }
+    },
+    {
+      "name": {
+        "local": "Mandorla",
+        "en": "Almond"
+      },
+      "category": "Frutto a Guscio",
+      "description": "Seme commestibile del mandorlo, contenuto in un guscio duro. Ha una forma ovale appiattita e un sapore dolce o amaro (a seconda della varietà). È estremamente versatile, usata per dolci, latte vegetale e snack. Parole Chiave: Genere (Frutto a guscio, Drupa (seme)), Caratteristiche Sensoriali (Sapore: Dolce, Nocciolato; Consistenza: Croccante, Dura; Profumo: Delicato; Colore: Marrone (pelle), Bianco (interno)), Caratteristiche Fisiche (Forma: Ovale, Appiattita; Guscio: Duro), Uso Culinario (Consumo: Crudo, Tostato, Pelato; Preparazioni: Dolci (marzapane), Latte di mandorla, Farina, Olio; Abbinamenti: Cioccolato, Miele, Pesce, Pollo), Proprietà Nutrizionali (Vitamine: Vitamina E; Minerali: Calcio, Magnesio; Benefici: Antiossidante, Salutare per le ossa), Origine e Coltivazione (Zona Climatica: Mediterranea, Temperata-calda; Origine Geografica: Medio Oriente).",
+      "metadata": {
+        "nome_scientifico": "Prunus dulcis",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Stati Uniti (California), Spagna, Iran, Australia"
+      }
+    },
+    {
+      "name": {
+        "local": "Nocciola",
+        "en": "Hazelnut"
+      },
+      "category": "Frutto a Guscio",
+      "description": "Frutto secco di forma sferica o ovale, contenuto in un guscio legnoso. Il seme ha un sapore dolce e aromatico, particolarmente apprezzato tostato. È l'ingrediente chiave di molte creme spalmabili e dolci. Parole Chiave: Genere (Frutto a guscio, Noce), Caratteristiche Sensoriali (Sapore: Dolce, Aromatico, Nocciolato; Consistenza: Croccante; Profumo: Intenso (tostato); Colore: Marrone), Caratteristiche Fisiche (Forma: Sferica, Ovale; Guscio: Duro), Uso Culinario (Consumo: Crudo, Tostato; Preparazioni: Creme spalmabili, Dolci, Gelato, Liquori; Abbinamenti: Cioccolato, Caffè, Miele), Proprietà Nutrizionali (Vitamine: Vitamina E; Grassi: Monoinsaturi; Benefici: Antiossidante, Salutare per il cuore), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa, Asia Minore).",
+      "metadata": {
+        "nome_scientifico": "Corylus avellana",
+        "famiglia": "Betulaceae",
+        "principali_produttori": "Turchia, Italia, Stati Uniti, Azerbaigian"
+      }
+    },
+    {
+      "name": {
+        "local": "Pistacchio",
+        "en": "Pistachio"
+      },
+      "category": "Frutto a Guscio",
+      "description": "Seme di colore verde brillante contenuto in un guscio duro che si apre parzialmente a maturità. Ha un sapore unico, dolce e resinoso. Utilizzato in pasticceria, gelateria e come snack salato. Parole Chiave: Genere (Frutto a guscio, Drupa (seme)), Caratteristiche Sensoriali (Sapore: Dolce, Resinoso, Aromatico; Consistenza: Croccante; Profumo: Caratteristico; Colore: Verde), Caratteristiche Fisiche (Forma: Ovale; Guscio: Duro, semi-aperto), Uso Culinario (Consumo: Tostato, Salato; Preparazioni: Gelato, Dolci (baklava), Pesto, Mortadella; Abbinamenti: Agrumi, Rosa, Cardamomo, Agnello), Proprietà Nutrizionali (Antiossidanti: Luteina; Minerali: Potassio; Benefici: Antiossidante, Salutare per gli occhi), Origine e Coltivazione (Zona Climatica: Arida, Subtropicale; Origine Geografica: Medio Oriente, Asia Centrale).",
+      "metadata": {
+        "nome_scientifico": "Pistacia vera",
+        "famiglia": "Anacardiaceae",
+        "principali_produttori": "Iran, Stati Uniti, Turchia, Cina"
+      }
+    },
+    {
+      "name": {
+        "local": "Castagna",
+        "en": "Chestnut"
+      },
+      "category": "Frutto a Guscio",
+      "description": "Frutto autunnale contenuto in un riccio spinoso. A differenza di altra frutta a guscio, è ricca di amidi e ha una consistenza farinosa e un sapore dolce una volta cotta. Consumata arrostita, bollita o come farina. Parole Chiave: Genere (Frutto a guscio, Noce), Caratteristiche Sensoriali (Sapore: Dolce, Farinoso (cotto); Consistenza: Farinosa, Morbida (cotta); Profumo: Dolce, di bosco; Colore: Marrone), Caratteristiche Fisiche (Forma: A cuore, appiattita; Guscio: Sottile, coriaceo), Uso Culinario (Consumo: Arrostito, Bollito; Preparazioni: Farina, Dolci (Monte Bianco), Zuppe, Ripieni; Abbinamenti: Funghi, Carne di maiale, Cioccolato), Proprietà Nutrizionali (Carboidrati: Amidi; Benefici: Energetico, Senza glutine), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Emisfero settentrionale).",
+      "metadata": {
+        "nome_scientifico": "Castanea sativa",
+        "famiglia": "Fagaceae",
+        "principali_produttori": "Cina, Turchia, Corea del Sud, Italia"
+      }
+    },
+    {
+      "name": {
+        "local": "Dattero",
+        "en": "Date"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Frutto della palma da dattero, di forma ovale e colore marrone. È estremamente dolce e zuccherino, con una consistenza morbida e quasi caramellata quando essiccato. Contiene un unico seme allungato. Parole Chiave: Genere (Frutto, Drupa, Subtropicale), Caratteristiche Sensoriali (Sapore: Molto dolce, Caramellato, Mieloso; Consistenza: Morbida, Appiccicosa, Carnosa; Profumo: Dolce; Colore: Marrone), Caratteristiche Fisiche (Forma: Ovale, Allungata; Seme: Singolo, Allungato; Buccia: Sottile, Rugosa), Uso Culinario (Consumo: Fresco, Essiccato; Preparazioni: Dolci, Barrette energetiche, Sciroppi, Piatti salati (tajine); Abbinamenti: Noci, Formaggio, Pancetta, Agrumi), Proprietà Nutrizionali (Zuccheri: Elevato contenuto; Fibre: Elevato contenuto; Benefici: Energetico, Lassativo), Origine e Coltivazione (Zona Climatica: Arida, Desertica; Origine Geografica: Medio Oriente, Nord Africa).",
+      "metadata": {
+        "nome_scientifico": "Phoenix dactylifera",
+        "famiglia": "Arecaceae",
+        "principali_produttori": "Egitto, Iran, Arabia Saudita, Algeria"
+      }
+    },
+    {
+      "name": {
+        "local": "Oliva",
+        "en": "Olive"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Piccola drupa, frutto dell'olivo. Cruda è molto amara, ma dopo la lavorazione (in salamoia o pressata) diventa un alimento base della cucina mediterranea o la fonte dell'olio d'oliva. Parole Chiave: Genere (Frutto, Drupa, Mediterraneo), Caratteristiche Sensoriali (Sapore: Salato, Amaro, Acido (in salamoia); Consistenza: Carnosa, Soda; Profumo: Caratteristico; Colore: Verde, Nero, Viola), Caratteristiche Fisiche (Forma: Ovale; Seme: Singolo, Duro; Buccia: Liscia), Uso Culinario (Consumo: In salamoia, Olio; Preparazioni: Antipasti, Condimento per pasta e pizza, Pane; Abbinamenti: Formaggio, Aglio, Rosmarino, Pomodoro), Proprietà Nutrizionali (Grassi: Monoinsaturi (olio); Benefici: Cardioprotettivo, Antiossidante), Origine e Coltivazione (Zona Climatica: Mediterranea; Origine Geografica: Bacino del Mediterraneo).",
+      "metadata": {
+        "nome_scientifico": "Olea europaea",
+        "famiglia": "Oleaceae",
+        "principali_produttori": "Spagna, Italia, Grecia, Turchia"
+      }
+    },
+    {
+      "name": {
+        "local": "Fico d'India",
+        "en": "Prickly Pear"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Frutto di una pianta di cactus, con una buccia spessa coperta di piccole spine. La polpa è succosa, ricca di semi duri, e ha un sapore dolce che ricorda un misto tra anguria e pera. Parole Chiave: Genere (Frutto, Bacca, Subtropicale), Caratteristiche Sensoriali (Sapore: Dolce, Rinfrescante; Consistenza: Succosa, Granulosa, Croccante (semi); Profumo: Delicato; Colore Polpa: Rosso, Arancione, Giallo; Colore Buccia: Verde, Giallo, Rosso), Caratteristiche Fisiche (Forma: Ovale; Seme: Numerosi, Duri; Buccia: Spinosa), Uso Culinario (Consumo: Fresco; Preparazioni: Succhi, Marmellate, Liquori; Abbinamenti: Lime, Formaggio), Proprietà Nutrizionali (Vitamine: Vitamina C; Minerali: Magnesio; Benefici: Idratante, Antiossidante), Origine e Coltivazione (Zona Climatica: Arida, Mediterranea; Origine Geografica: Messico).",
+      "metadata": {
+        "nome_scientifico": "Opuntia ficus-indica",
+        "famiglia": "Cactaceae",
+        "principali_produttori": "Messico, Italia, Brasile, Cile"
+      }
+    },
+    {
+      "name": {
+        "local": "Ribes Rosso",
+        "en": "Redcurrant"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Piccola bacca sferica e traslucida di colore rosso brillante, che cresce in grappoli. Ha un sapore decisamente aspro e acidulo, che la rende più adatta a gelatine, salse e sciroppi che al consumo fresco. Parole Chiave: Genere (Frutto, Bacca, Frutto di Bosco), Caratteristiche Sensoriali (Sapore: Aspro, Acidulo, Pungente; Consistenza: Succosa, Morbida; Profumo: Leggero; Colore: Rosso traslucido), Caratteristiche Fisiche (Forma: Sferica; Seme: Piccolo; Buccia: Sottile), Uso Culinario (Consumo: Limitato (fresco); Preparazioni: Gelatine, Salse per carne, Sciroppi, Dolci; Abbinamenti: Selvaggina, Anatra, Meringa), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Ricco di fibre, Antiossidante), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa occidentale).",
+      "metadata": {
+        "nome_scientifico": "Ribes rubrum",
+        "famiglia": "Grossulariaceae",
+        "principali_produttori": "Polonia, Russia, Germania"
+      }
+    },
+    {
+      "name": {
+        "local": "Pitaya",
+        "en": "Dragon Fruit"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto esotico di un cactus, con una spettacolare buccia fucsia o gialla con brattee verdi. La polpa, bianca o rossa, è puntinata di innumerevoli piccoli semi neri commestibili e ha un sapore delicato e leggermente dolce. Parole Chiave: Genere (Frutto, Bacca, Tropicale, Esotico), Caratteristiche Sensoriali (Sapore: Delicato, Leggermente dolce, Acquoso; Consistenza: Morbida, Croccante (semi); Profumo: Quasi assente; Colore Polpa: Bianco, Rosso; Colore Buccia: Fucsia, Giallo), Caratteristiche Fisiche (Forma: Ovale; Seme: Numerosi, Piccoli, Neri; Buccia: Con brattee), Uso Culinario (Consumo: Fresco; Preparazioni: Frullati, Macedonie, Decorazioni; Abbinamenti: Lime, Altri frutti tropicali), Proprietà Nutrizionali (Fibre: Elevato contenuto; Benefici: Idratante, Antiossidante), Origine e Coltivazione (Zona Climatica: Tropicale, Arida; Origine Geografica: Messico, America Centrale).",
+      "metadata": {
+        "nome_scientifico": "Hylocereus undatus",
+        "famiglia": "Cactaceae",
+        "principali_produttori": "Vietnam, Thailandia, Indonesia, Cina"
+      }
+    },
+    {
+      "name": {
+        "local": "Carambola",
+        "en": "Star Fruit"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto tropicale dalla caratteristica sezione a stella a cinque punte. La buccia è cerosa e commestibile, di colore giallo-verde. La polpa è traslucida, croccante e succosa, con un sapore che varia da aspro a leggermente dolce. Parole Chiave: Genere (Frutto, Bacca, Tropicale), Caratteristiche Sensoriali (Sapore: Acidulo, Dolce, simile all'uva; Consistenza: Croccante, Succosa; Profumo: Delicato; Colore: Giallo, Verde), Caratteristiche Fisiche (Forma: Ovale con creste longitudinali, a stella in sezione; Buccia: Sottile, Cearosa, Commestibile), Uso Culinario (Consumo: Fresco; Preparazioni: Decorazioni per cocktail e dessert, Insalate, Succhi; Abbinamenti: Frutti di mare, Pollo), Proprietà Nutrizionali (Vitamine: Vitamina C; Attenzione: Contiene acido ossalico), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: Sud-est asiatico).",
+      "metadata": {
+        "nome_scientifico": "Averrhoa carambola",
+        "famiglia": "Oxalidaceae",
+        "principali_produttori": "Malesia, Indonesia, Filippine, India"
+      }
+    },
+    {
+      "name": {
+        "local": "Durian",
+        "en": "Durian"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Grande frutto tropicale famoso per il suo odore pungente e controverso, vietato in molti luoghi pubblici. La buccia è dura e spinosa. La polpa è cremosa, simile a una crema pasticcera, con un sapore complesso, dolce e intenso. Parole Chiave: Genere (Frutto, Tropicale, Esotico), Caratteristiche Sensoriali (Sapore: Complesso, Dolce, simile a mandorla e cipolla; Consistenza: Cremosa, Morbida; Profumo: Molto intenso, Pungente, Controverso; Colore Polpa: Giallo, Bianco), Caratteristiche Fisiche (Forma: Ovale, Rotonda; Buccia: Dura, Spinosa), Uso Culinario (Consumo: Fresco; Preparazioni: Dolci, Gelato, Caramelle; Abbinamenti: Riso glutinoso), Proprietà Nutrizionali (Calorie: Elevato contenuto; Benefici: Energetico), Origine e Coltivazione (Zona Climatica: Tropicale umida; Origine Geografica: Sud-est asiatico).",
+      "metadata": {
+        "nome_scientifico": "Durio zibethinus",
+        "famiglia": "Malvaceae",
+        "principali_produttori": "Thailandia, Malesia, Indonesia"
+      }
+    },
+    {
+      "name": {
+        "local": "Rambutan",
+        "en": "Rambutan"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto esotico simile al litchi, ma con una buccia rossa o gialla coperta da morbide spine simili a capelli. La polpa è bianca, traslucida e succosa, con un sapore dolce e leggermente acidulo. Contiene un seme centrale. Parole Chiave: Genere (Frutto, Drupa, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, Leggermente acidulo; Consistenza: Succosa, Gelatinosa; Profumo: Delicato; Colore Polpa: Bianco traslucido; Colore Buccia: Rosso, Giallo), Caratteristiche Fisiche (Forma: Ovale; Buccia: Pelosa, con spine morbide), Uso Culinario (Consumo: Fresco, Sciroppato; Preparazioni: Insalate, Cocktail, Dessert; Abbinamenti: Litchi, Ananas), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Idratante), Origine e Coltivazione (Zona Climatica: Tropicale umida; Origine Geografica: Sud-est asiatico).",
+      "metadata": {
+        "nome_scientifico": "Nephelium lappaceum",
+        "famiglia": "Sapindaceae",
+        "principali_produttori": "Thailandia, Indonesia, Malesia"
+      }
+    },
+    {
+      "name": {
+        "local": "Mangostano",
+        "en": "Mangosteen"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Considerato la 'regina dei frutti', ha una buccia spessa e viola scuro. All'interno, la polpa è suddivisa in spicchi bianchi, teneri e succosi, con un sapore squisito, dolce e leggermente aspro, e un aroma delicato. Parole Chiave: Genere (Frutto, Bacca, Tropicale, Esotico), Caratteristiche Sensoriali (Sapore: Squisito, Dolce, Aspro, Delicato; Consistenza: Morbida, Succosa, si scioglie in bocca; Profumo: Delicato, Aromatico; Colore Polpa: Bianco; Colore Buccia: Viola scuro), Caratteristiche Fisiche (Forma: Sferica; Buccia: Spessa, Coriacea), Uso Culinario (Consumo: Fresco; Preparazioni: Succhi, Dessert; Abbinamenti: Litchi), Proprietà Nutrizionali (Antiossidanti: Xantoni; Benefici: Antinfiammatorio, Antiossidante), Origine e Coltivazione (Zona Climatica: Tropicale ultra-umida; Origine Geografica: Isole della Sonda, Indonesia).",
+      "metadata": {
+        "nome_scientifico": "Garcinia mangostana",
+        "famiglia": "Clusiaceae",
+        "principali_produttori": "Thailandia, Indonesia, Malesia, Filippine"
+      }
+    },
+    {
+      "name": {
+        "local": "Giaca",
+        "en": "Jackfruit"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Il più grande frutto da albero al mondo, può pesare decine di chili. La buccia è verde e bitorzoluta. La polpa è composta da bulbi gialli dal sapore dolce che ricorda ananas e banana. I semi sono commestibili se cotti. Il frutto acerbo è usato come sostituto della carne. Parole Chiave: Genere (Frutto, Infruttescenza, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce (maturo), Neutro (acerbo); Consistenza: Fibrosa, Carnosa; Profumo: Dolce, intenso; Colore Polpa: Giallo), Caratteristiche Fisiche (Forma: Ovale, Allungata, Grande; Buccia: Bitorzoluta), Uso Culinario (Consumo: Fresco (maturo), Cotto (acerbo); Preparazioni: Sostituto della carne, Curry, Dessert, Essiccato; Abbinamenti: Spezie, Cocco), Proprietà Nutrizionali (Fibre: Elevato contenuto; Benefici: Versatile, Nutriente), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: India).",
+      "metadata": {
+        "nome_scientifico": "Artocarpus heterophyllus",
+        "famiglia": "Moraceae",
+        "principali_produttori": "India, Bangladesh, Thailandia, Indonesia"
+      }
+    },
+    {
+      "name": {
+        "local": "Clementina",
+        "en": "Clementine"
+      },
+      "category": "Agrume",
+      "description": "Ibrido tra mandarino e arancio amaro, è un piccolo agrume molto dolce, succoso e quasi sempre privo di semi. La buccia è sottile, di colore arancio intenso e si sbuccia con estrema facilità. Molto popolare in inverno. Parole Chiave: Genere (Frutto, Agrume, Ibrido), Caratteristiche Sensoriali (Sapore: Molto dolce, Poco acido; Consistenza: Succosa, Tenera; Profumo: Aromatico, Dolce; Colore: Arancione intenso), Caratteristiche Fisiche (Forma: Sferica, leggermente appiattita; Seme: Assente; Buccia: Sottile, facile da sbucciare), Uso Culinario (Consumo: Fresco; Preparazioni: Succhi, Marmellate, Dolci; Abbinamenti: Cioccolato, Frutta secca), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Antiossidante, Pratico), Origine e Coltivazione (Zona Climatica: Mediterranea; Origine Geografica: Algeria).",
+      "metadata": {
+        "nome_scientifico": "Citrus × clementina",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Spagna, Marocco, Italia, Cina"
+      }
+    },
+    {
+      "name": {
+        "local": "Susina",
+        "en": "Damson Plum"
+      },
+      "category": "Frutto Temperato",
+      "description": "Varietà di prugna di piccole dimensioni e forma ovale, con una buccia di colore blu-nero intenso. La polpa è gialla e ha un sapore ricco, aspro e astringente, che la rende ideale per marmellate, liquori e cotture. Parole Chiave: Genere (Frutto, Drupa, Temperato), Caratteristiche Sensoriali (Sapore: Aspro, Astringente, Ricco; Consistenza: Soda, Carnosa; Profumo: Fruttato; Colore Polpa: Giallo-verde; Colore Buccia: Blu-nero), Caratteristiche Fisiche (Forma: Ovale; Seme: Singolo), Uso Culinario (Consumo: Cotto; Preparazioni: Marmellate, Gin, Vino, Salse; Abbinamenti: Spezie, Anatra), Proprietà Nutrizionali (Antiossidanti: Elevato contenuto; Benefici: Astringente), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Asia Minore).",
+      "metadata": {
+        "nome_scientifico": "Prunus domestica subsp. insititia",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Regno Unito, Europa"
+      }
+    },
+    {
+      "name": {
+        "local": "Nespola Comune",
+        "en": "Medlar"
+      },
+      "category": "Frutto Temperato",
+      "description": "Frutto antico, duro e immangiabile alla raccolta. Deve essere lasciato 'ammezzire' (maturare dopo la raccolta) finché la polpa diventa scura, morbida e dolce, con un sapore simile a una composta di mele speziata. Parole Chiave: Genere (Frutto, Pomo, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Speziato (dopo ammezzimento); Consistenza: Pastosa, Morbida; Profumo: Vinoso; Colore Polpa: Marrone), Caratteristiche Fisiche (Forma: Rotonda con calice aperto), Uso Culinario (Consumo: Ammezzito; Preparazioni: Gelatine, Formaggio di nespole; Abbinamenti: Formaggio, Vino), Proprietà Nutrizionali (Pectina: Elevato contenuto), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Persia, Europa sud-orientale).",
+      "metadata": {
+        "nome_scientifico": "Mespilus germanica",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Coltivazione limitata, principalmente giardini storici"
+      }
+    },
+    {
+      "name": {
+        "local": "Mela Cotogna",
+        "en": "Quince"
+      },
+      "category": "Frutto Temperato",
+      "description": "Grande frutto a forma di pera o mela, con una buccia gialla e vellutata. Crudo è duro, aspro e astringente, ma la cottura lo trasforma, rendendolo tenero, profumato e di colore rosato, con un sapore complesso e aromatico. Parole Chiave: Genere (Frutto, Pomo, Temperato), Caratteristiche Sensoriali (Sapore: Aromatico, Floreale (cotto); Consistenza: Tenera (cotta); Profumo: Intenso, Floreale; Colore Polpa: Rosa (cotta)), Caratteristiche Fisiche (Forma: Piriforme, irregolare), Uso Culinario (Consumo: Solo cotto; Preparazioni: Gelatina (cotognata), Marmellate, Dolci, Piatti di carne; Abbinamenti: Agnello, Maiale, Mele, Spezie), Proprietà Nutrizionali (Pectina: Elevato contenuto), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Asia occidentale).",
+      "metadata": {
+        "nome_scientifico": "Cydonia oblonga",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Turchia, Cina, Uzbekistan"
+      }
+    },
+    {
+      "name": {
+        "local": "Uva Spina",
+        "en": "Gooseberry"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Bacca di dimensioni medio-piccole, di forma sferica o ovale, con una buccia traslucida che può essere verde, gialla o rossa. Il sapore varia da molto aspro a dolce a seconda della varietà e della maturazione. Parole Chiave: Genere (Frutto, Bacca, Frutto di Bosco), Caratteristiche Sensoriali (Sapore: Aspro, Dolce-aspro; Consistenza: Succosa, Soda; Profumo: Delicato; Colore: Verde, Giallo, Rosso), Caratteristiche Fisiche (Forma: Sferica, Ovale; Buccia: Liscia o leggermente pelosa), Uso Culinario (Consumo: Fresco (varietà dolci), Cotto; Preparazioni: Dolci (crumble), Marmellate, Salse per pesce; Abbinamenti: Sgombro, Panna, Fiori di sambuco), Proprietà Nutrizionali (Vitamine: Vitamina C; Fibre: Elevato contenuto), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa, Asia occidentale).",
+      "metadata": {
+        "nome_scientifico": "Ribes uva-crispa",
+        "famiglia": "Grossulariaceae",
+        "principali_produttori": "Germania, Polonia, Russia"
+      }
+    },
+    {
+      "name": {
+        "local": "Cantalupo",
+        "en": "Cantaloupe"
+      },
+      "category": "Cucurbitacea",
+      "description": "Varietà di melone con una buccia retata e una polpa arancione, dolce e molto aromatica. È uno dei meloni più popolari per il suo sapore intenso e la sua consistenza succosa. Parole Chiave: Genere (Frutto, Melone, Cucurbitacea), Caratteristiche Sensoriali (Sapore: Molto dolce, Aromatico, Muschiato; Consistenza: Succosa, Morbida; Profumo: Intenso, Dolce; Colore Polpa: Arancione), Caratteristiche Fisiche (Forma: Sferica; Buccia: Retata, ruvida), Uso Culinario (Consumo: Fresco; Preparazioni: Antipasti, Macedonie, Frullati; Abbinamenti: Prosciutto crudo, Menta), Proprietà Nutrizionali (Vitamine: Vitamina A, Vitamina C; Benefici: Idratante), Origine e Coltivazione (Zona Climatica: Calda; Origine Geografica: Persia, India).",
+      "metadata": {
+        "nome_scientifico": "Cucumis melo var. cantalupensis",
+        "famiglia": "Cucurbitaceae",
+        "principali_produttori": "Cina, Stati Uniti, Turchia"
+      }
+    },
+    {
+      "name": {
+        "local": "Bergamotto",
+        "en": "Bergamot"
+      },
+      "category": "Agrume",
+      "description": "Agrume coltivato quasi esclusivamente in Calabria, simile a una piccola arancia dalla buccia gialla. La polpa è troppo acida per essere mangiata, ma dalla buccia si estrae un olio essenziale estremamente aromatico, usato in profumeria e per aromatizzare il tè Earl Grey. Parole Chiave: Genere (Frutto, Agrume, Ibrido), Caratteristiche Sensoriali (Sapore: Molto acido, Amaro; Profumo: Intenso, Floreale, Unico (olio essenziale); Colore Buccia: Giallo, Verde), Caratteristiche Fisiche (Forma: Piriforme, Sferica), Uso Culinario (Consumo: Non fresco; Preparazioni: Olio essenziale, Aromatizzante per tè, Dolci, Liquori), Proprietà Nutrizionali (Benefici: Aromaterapia, Ipocolesterolemizzante (succo)), Origine e Coltivazione (Zona Climatica: Mediterranea; Origine Geografica: Italia (Calabria)).",
+      "metadata": {
+        "nome_scientifico": "Citrus × bergamia",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Italia (Calabria)"
+      }
+    },
+    {
+      "name": {
+        "local": "Cedro",
+        "en": "Citron"
+      },
+      "category": "Agrume",
+      "description": "Grande agrume dalla buccia molto spessa, bitorzoluta e profumatissima. La polpa è scarsa e acida. La parte più utilizzata è l'albedo (la parte bianca sotto la buccia), che viene candita o usata per produrre bevande. Parole Chiave: Genere (Frutto, Agrume, Esperidio), Caratteristiche Sensoriali (Sapore: Acido (polpa), Amaro (albedo); Profumo: Intenso, Fresco (buccia); Colore Buccia: Giallo), Caratteristiche Fisiche (Forma: Ovale, Allungata, Grande; Buccia: Molto spessa, Rugosa), Uso Culinario (Consumo: Non fresco; Preparazioni: Canditi, Sciroppi, Bevande (cedrata), Olio essenziale; Abbinamenti: Dolci, Pasticceria), Proprietà Nutrizionali (Vitamine: Vitamina C), Origine e Coltivazione (Zona Climatica: Mediterranea; Origine Geografica: Sud-est asiatico).",
+      "metadata": {
+        "nome_scientifico": "Citrus medica",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Italia, Grecia, Marocco, Corsica"
+      }
+    },
+    {
+      "name": {
+        "local": "Corbezzolo",
+        "en": "Strawberry Tree Fruit"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Piccolo frutto sferico con una superficie ruvida e granulosa, di colore rosso-arancio. La polpa è gialla, morbida e leggermente farinosa, con un sapore dolce e un retrogusto amarognolo. Matura in autunno. Parole Chiave: Genere (Frutto, Bacca, Mediterraneo), Caratteristiche Sensoriali (Sapore: Dolce, Leggermente amaro; Consistenza: Morbida, Farinosa, Granulosa; Colore: Rosso-arancio), Caratteristiche Fisiche (Forma: Sferica; Buccia: Rugosa), Uso Culinario (Consumo: Fresco; Preparazioni: Marmellate, Liquori, Miele; Abbinamenti: Formaggi), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Astringente, Antinfiammatorio), Origine e Coltivazione (Zona Climatica: Mediterranea; Origine Geografica: Bacino del Mediterraneo).",
+      "metadata": {
+        "nome_scientifico": "Arbutus unedo",
+        "famiglia": "Ericaceae",
+        "principali_produttori": "Paesi del Mediterraneo (spesso selvatico)"
+      }
+    },
+    {
+      "name": {
+        "local": "Kiwano",
+        "en": "Horned Melon"
+      },
+      "category": "Cucurbitacea",
+      "description": "Frutto esotico dalla buccia arancione brillante coperta di piccole 'corna'. L'interno contiene una polpa gelatinosa verde brillante con semi commestibili. Il sapore è rinfrescante, un misto di banana, cetriolo e lime. Parole Chiave: Genere (Frutto, Cucurbitacea, Esotico), Caratteristiche Sensoriali (Sapore: Rinfrescante, simile a banana e cetriolo; Consistenza: Gelatinosa, Acquosa; Profumo: Delicato; Colore Polpa: Verde), Caratteristiche Fisiche (Forma: Ovale; Buccia: Spinosa), Uso Culinario (Consumo: Fresco; Preparazioni: Bevande, Insalate, Decorazioni; Abbinamenti: Yogurt, Miele), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Idratante), Origine e Coltivazione (Zona Climatica: Arida, Calda; Origine Geografica: Africa).",
+      "metadata": {
+        "nome_scientifico": "Cucumis metuliferus",
+        "famiglia": "Cucurbitaceae",
+        "principali_produttori": "Nuova Zelanda, Australia, Stati Uniti, Cile"
+      }
+    },
+    {
+      "name": {
+        "local": "Guanabana",
+        "en": "Soursop"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Grande frutto tropicale dalla buccia verde con morbide spine. La polpa è bianca, fibrosa e cremosa, con un sapore distintivo che ricorda ananas e fragola con note cremose e acide. Contiene grandi semi neri non commestibili. Parole Chiave: Genere (Frutto, Tropicale), Caratteristiche Sensoriali (Sapore: Agrodolce, cremoso, simile a fragola e ananas; Consistenza: Cremosa, Fibrosa; Profumo: Aromatico; Colore Polpa: Bianco), Caratteristiche Fisiche (Forma: Ovale, a cuore; Buccia: Spinosa), Uso Culinario (Consumo: Succo, Frullato; Preparazioni: Gelato, Dolci; Abbinamenti: Latte, Zucchero), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Antiossidante), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: Americhe).",
+      "metadata": {
+        "nome_scientifico": "Annona muricata",
+        "famiglia": "Annonaceae",
+        "principali_produttori": "Paesi dell'America Latina e dei Caraibi"
+      }
+    },
+    {
+      "name": {
+        "local": "Tamarindo",
+        "en": "Tamarind"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto a baccello che contiene una polpa marrone, appiccicosa e fibrosa. Il sapore è unicamente agrodolce e molto intenso. È un ingrediente fondamentale in molte cucine asiatiche e latinoamericane per salse, bevande e curry. Parole Chiave: Genere (Frutto, Legume (baccello), Tropicale), Caratteristiche Sensoriali (Sapore: Agrodolce, Aspro; Consistenza: Pastosa, Appiccicosa, Fibrosa; Colore Polpa: Marrone), Caratteristiche Fisiche (Forma: Baccello curvo), Uso Culinario (Consumo: Pasta, Polpa; Preparazioni: Salse (Worcestershire), Curry, Bevande, Caramelle; Abbinamenti: Peperoncino, Zucchero, Pesce), Proprietà Nutrizionali (Benefici: Lassativo, Digestivo), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: Africa tropicale).",
+      "metadata": {
+        "nome_scientifico": "Tamarindus indica",
+        "famiglia": "Fabaceae",
+        "principali_produttori": "India, Thailandia, Messico"
+      }
+    },
+    {
+      "name": {
+        "local": "Acerola",
+        "en": "Acerola Cherry"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Piccolo frutto simile a una ciliegia, di colore rosso vivo. È famoso per il suo contenuto eccezionalmente alto di Vitamina C. Il sapore è aspro e pungente, con una polpa molto succosa. Parole Chiave: Genere (Frutto, Drupa, Tropicale), Caratteristiche Sensoriali (Sapore: Molto aspro, Pungente; Consistenza: Succosa; Colore: Rosso vivo), Caratteristiche Fisiche (Forma: Sferica, simile a una ciliegia), Uso Culinario (Consumo: Succo, Polvere; Preparazioni: Integratori, Bevande; Abbinamenti: Frutti dolci), Proprietà Nutrizionali (Vitamine: Vitamina C (altissima); Benefici: Superfood, Rinforza il sistema immunitario), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: America Centrale e Meridionale).",
+      "metadata": {
+        "nome_scientifico": "Malpighia emarginata",
+        "famiglia": "Malpighiaceae",
+        "principali_produttori": "Brasile, Porto Rico"
+      }
+    },
+    {
+      "name": {
+        "local": "Açai",
+        "en": "Açai Berry"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Piccola bacca viola scuro, simile a un acino d'uva, proveniente da una palma amazzonica. La polpa è sottile e ha un sapore terroso, non dolce, che ricorda frutti di bosco e cioccolato. Consumata principalmente come purea congelata. Parole Chiave: Genere (Frutto, Drupa, Tropicale), Caratteristiche Sensoriali (Sapore: Terroso, non dolce, note di bacche e cioccolato; Consistenza: Granulosa (purea); Colore: Viola scuro), Caratteristiche Fisiche (Forma: Sferica), Uso Culinario (Consumo: Purea congelata; Preparazioni: Açai bowl, Frullati, Succhi; Abbinamenti: Banana, Granola, Miele), Proprietà Nutrizionali (Antiossidanti: Antociani; Grassi: Salutari; Benefici: Superfood, Antiossidante, Energetico), Origine e Coltivazione (Zona Climatica: Tropicale (Amazzonia); Origine Geografica: Brasile, Amazzonia).",
+      "metadata": {
+        "nome_scientifico": "Euterpe oleracea",
+        "famiglia": "Arecaceae",
+        "principali_produttori": "Brasile"
+      }
+    },
+    {
+      "name": {
+        "local": "Kumquat",
+        "en": "Kumquat"
+      },
+      "category": "Agrume",
+      "description": "Piccolissimo agrume ovale, noto anche come mandarino cinese. La sua particolarità è che si mangia intero: la buccia è dolce e aromatica, mentre la polpa è aspra, creando un contrasto di sapori unico. Parole Chiave: Genere (Frutto, Agrume), Caratteristiche Sensoriali (Sapore: Dolce (buccia), Aspro (polpa); Consistenza: Croccante, Succosa; Profumo: Agrumato, Intenso), Caratteristiche Fisiche (Forma: Ovale, Piccola), Uso Culinario (Consumo: Intero, Fresco; Preparazioni: Marmellate, Canditi, Liquori, Insalate; Abbinamenti: Anatra, Cioccolato fondente), Proprietà Nutrizionali (Vitamine: Vitamina C; Fibre: Elevato contenuto), Origine e Coltivazione (Zona Climatica: Subtropicale; Origine Geografica: Cina).",
+      "metadata": {
+        "nome_scientifico": "Citrus japonica",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Cina, Giappone, Taiwan"
+      }
+    },
+    {
+      "name": {
+        "local": "Gelso",
+        "en": "Mulberry"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Frutto aggregato simile a una mora allungata, che cresce sull'albero di gelso. Può essere bianco, rosso o nero. Il sapore è molto dolce e leggermente aspro. È molto delicato e si macchia facilmente. Parole Chiave: Genere (Frutto, Infruttescenza, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Mieloso; Consistenza: Morbida, Succosa; Colore: Bianco, Rosso, Nero), Caratteristiche Fisiche (Forma: Allungata, simile a una mora), Uso Culinario (Consumo: Fresco; Preparazioni: Marmellate, Sciroppi, Dolci, Essiccato; Abbinamenti: Yogurt, Avena), Proprietà Nutrizionali (Antiossidanti: Resveratrolo; Benefici: Antiossidante), Origine e Coltivazione (Zona Climatica: Temperata, Subtropicale; Origine Geografica: Asia).",
+      "metadata": {
+        "nome_scientifico": "Morus",
+        "famiglia": "Moraceae",
+        "principali_produttori": "Cina, Turchia, Iran"
+      }
+    },
+    {
+      "name": {
+        "local": "Cherimoya",
+        "en": "Cherimoya"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto a forma di cuore con una buccia verde simile a una scaglia. La polpa è bianca, cremosa e morbida, con un sapore complesso descritto come un mix di banana, ananas, fragola e cocco. Contiene grandi semi neri non commestibili. Parole Chiave: Genere (Frutto, Tropicale), Caratteristiche Sensoriali (Sapore: Complesso, Dolce, Cremoso; Consistenza: Cremosa, Morbida, simile a un budino; Profumo: Aromatico; Colore Polpa: Bianco), Caratteristiche Fisiche (Forma: a cuore, conica; Buccia: Verde, con impronte), Uso Culinario (Consumo: Fresco (al cucchiaio); Preparazioni: Gelato, Frullati; Abbinamenti: Agrumi), Proprietà Nutrizionali (Vitamine: Vitamina B6; Benefici: Nutriente), Origine e Coltivazione (Zona Climatica: Subtropicale, d'alta quota; Origine Geografica: Ande (Ecuador, Perù)).",
+      "metadata": {
+        "nome_scientifico": "Annona cherimola",
+        "famiglia": "Annonaceae",
+        "principali_produttori": "Spagna, Cile, Perù, Stati Uniti"
+      }
+    },
+    {
+      "name": {
+        "local": "Alchechengi",
+        "en": "Physalis"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Piccola bacca arancione, simile a un pomodorino, avvolta in un calice cartaceo a forma di lanterna. Il sapore è un mix unico di dolce e aspro, con note che ricordano il pomodoro e l'ananas. Spesso usato come decorazione in pasticceria. Parole Chiave: Genere (Frutto, Bacca), Caratteristiche Sensoriali (Sapore: Agrodolce, Esotico; Consistenza: Succosa, Soda; Colore: Arancione), Caratteristiche Fisiche (Forma: Sferica; Involucro: Calice cartaceo), Uso Culinario (Consumo: Fresco; Preparazioni: Decorazioni per dolci, Marmellate, Insalate; Abbinamenti: Cioccolato, Cocco), Proprietà Nutrizionali (Vitamine: Vitamina A, Vitamina C; Benefici: Antiossidante), Origine e Coltivazione (Zona Climatica: Temperata, Subtropicale; Origine Geografica: Americhe).",
+      "metadata": {
+        "nome_scientifico": "Physalis peruviana",
+        "famiglia": "Solanaceae",
+        "principali_produttori": "Colombia, Perù, Sudafrica"
+      }
+    },
+    {
+      "name": {
+        "local": "Pomelo",
+        "en": "Pomelo"
+      },
+      "category": "Agrume",
+      "description": "Il più grande degli agrumi, con una buccia molto spessa di colore verde o giallo. La polpa è meno succosa del pompelmo, con spicchi grandi e una consistenza soda. Il sapore è dolce e delicato, con poca o nessuna amarezza. Parole Chiave: Genere (Frutto, Agrume, Esperidio), Caratteristiche Sensoriali (Sapore: Dolce, Delicato, non amaro; Consistenza: Soda, Meno succosa; Profumo: Leggero; Colore Polpa: Bianco, Rosa), Caratteristiche Fisiche (Forma: Grande, Sferica o piriforme; Buccia: Molto spessa), Uso Culinario (Consumo: Fresco; Preparazioni: Insalate, Dessert; Abbinamenti: Gamberi, Menta), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Antiossidante), Origine e Coltivazione (Zona Climatica: Subtropicale; Origine Geografica: Sud-est asiatico).",
+      "metadata": {
+        "nome_scientifico": "Citrus maxima",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Cina, Thailandia, Vietnam"
+      }
+    },
+    {
+      "name": {
+        "local": "Mirtillo Rosso Americano",
+        "en": "Cranberry"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Piccola bacca rossa, dura e molto aspra. Raramente consumata fresca, è famosa per il suo succo e la salsa che accompagna il tacchino nel Giorno del Ringraziamento. Nota per le sue proprietà benefiche per il tratto urinario. Parole Chiave: Genere (Frutto, Bacca, Frutto di Bosco), Caratteristiche Sensoriali (Sapore: Molto aspro, Astringente; Consistenza: Soda, Croccante; Colore: Rosso vivo), Caratteristiche Fisiche (Forma: Sferica), Uso Culinario (Consumo: Cotto, Succo, Essiccato; Preparazioni: Salse, Succhi, Dolci; Abbinamenti: Tacchino, Arancia, Noci), Proprietà Nutrizionali (Antiossidanti: Proantocianidine; Benefici: Salute del tratto urinario), Origine e Coltivazione (Zona Climatica: Temperata-fredda; Origine Geografica: Nord America).",
+      "metadata": {
+        "nome_scientifico": "Vaccinium macrocarpon",
+        "famiglia": "Ericaceae",
+        "principali_produttori": "Stati Uniti, Canada"
+      }
+    },
+    {
+      "name": {
+        "local": "Ribes Nero",
+        "en": "Blackcurrant"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Piccola bacca di colore nero-violaceo intenso, con un sapore forte, aspro e un aroma muschiato molto distintivo. Ricchissima di Vitamina C, è usata principalmente per sciroppi, liquori (Cassis) e marmellate. Parole Chiave: Genere (Frutto, Bacca, Frutto di Bosco), Caratteristiche Sensoriali (Sapore: Aspro, Intenso, Muschiato; Consistenza: Succosa; Profumo: Forte, Penetrante; Colore: Nero-violaceo), Caratteristiche Fisiche (Forma: Sferica), Uso Culinario (Consumo: Cotto; Preparazioni: Sciroppi, Liquori, Marmellate, Salse; Abbinamenti: Mela, Selvaggina, Champagne (Kir Royale)), Proprietà Nutrizionali (Vitamine: Vitamina C (elevata); Antiossidanti: Antociani; Benefici: Antiossidante, Antinfiammatorio), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa settentrionale e centrale).",
+      "metadata": {
+        "nome_scientifico": "Ribes nigrum",
+        "famiglia": "Grossulariaceae",
+        "principali_produttori": "Polonia, Russia, Germania"
+      }
+    },
+    {
+      "name": {
+        "local": "Pesca Noce",
+        "en": "Nectarine"
+      },
+      "category": "Frutto Temperato",
+      "description": "Varietà di pesca caratterizzata da una buccia liscia e lucida, senza la tipica peluria. La polpa è soda, succosa e dolce, di colore giallo o bianco. Il sapore è spesso più intenso e leggermente più acidulo rispetto alla pesca comune. Parole Chiave: Genere (Frutto, Drupa, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Leggermente acidulo; Consistenza: Soda, Croccante, Succosa; Profumo: Aromatico; Colore Polpa: Giallo, Bianco; Colore Buccia: Rosso, Giallo), Caratteristiche Fisiche (Forma: Rotonda; Seme: Singolo, Grande; Buccia: Liscia, Lucida), Uso Culinario (Consumo: Fresco, Grigliato; Preparazioni: Insalate, Dolci, Marmellate; Abbinamenti: Formaggio di capra, Basilico, Mandorle), Proprietà Nutrizionali (Vitamine: Vitamina A, Vitamina C; Benefici: Rinfrescante), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Cina (mutazione della pesca)).",
+      "metadata": {
+        "nome_scientifico": "Prunus persica var. nucipersica",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Cina, Spagna, Italia, Stati Uniti"
+      }
+    },
+    {
+      "name": {
+        "local": "Yuzu",
+        "en": "Yuzu"
+      },
+      "category": "Agrume",
+      "description": "Agrume originario dell'Asia orientale, simile a un piccolo pompelmo dalla buccia irregolare. È estremamente aromatico, con un profumo complesso che unisce note di pompelmo, mandarino e limone. Il succo è molto aspro e viene usato come condimento. Parole Chiave: Genere (Frutto, Agrume, Ibrido), Caratteristiche Sensoriali (Sapore: Molto aspro, Aromatico; Profumo: Intenso, Complesso, Floreale; Colore Buccia: Giallo, Verde), Caratteristiche Fisiche (Forma: Sferica, irregolare), Uso Culinario (Consumo: Succo, Buccia; Preparazioni: Salse (Ponzu), Vinaigrette, Dessert, Cocktail; Abbinamenti: Pesce, Soia, Miso), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Aromatico, Antiossidante), Origine e Coltivazione (Zona Climatica: Temperata-fredda; Origine Geografica: Cina, Giappone).",
+      "metadata": {
+        "nome_scientifico": "Citrus junos",
+        "famiglia": "Rutaceae",
+        "principali_produttori": "Giappone, Corea del Sud, Cina"
+      }
+    },
+    {
+      "name": {
+        "local": "Giuggiola",
+        "en": "Jujube"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Piccolo frutto ovale, simile a un dattero. Quando è fresco, ha la consistenza e il sapore di una mela. Essiccato, diventa rugoso e ha un sapore dolce e una consistenza gommosa, simile a un dattero. Parole Chiave: Genere (Frutto, Drupa), Caratteristiche Sensoriali (Sapore: Dolce, simile alla mela (fresco); Dolce, simile al dattero (secco); Consistenza: Croccante (fresco), Gommosa (secco)), Caratteristiche Fisiche (Forma: Ovale, Rotonda), Uso Culinario (Consumo: Fresco, Essiccato; Preparazioni: Tè, Dolci, Sciroppi, Liquori; Abbinamenti: Zenzero, Cannella), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Rilassante, Aiuta il sonno), Origine e Coltivazione (Zona Climatica: Temperata-calda, Subtropicale; Origine Geografica: Cina).",
+      "metadata": {
+        "nome_scientifico": "Ziziphus jujuba",
+        "famiglia": "Rhamnaceae",
+        "principali_produttori": "Cina"
+      }
+    },
+    {
+      "name": {
+        "local": "Feijoa",
+        "en": "Feijoa"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Frutto ovale di colore verde, con una polpa granulosa e aromatica. Il sapore è un complesso mix di ananas, guava e fragola. Si mangia tipicamente tagliandolo a metà e scavando la polpa con un cucchiaino. Parole Chiave: Genere (Frutto, Bacca, Subtropicale), Caratteristiche Sensoriali (Sapore: Complesso, Aromatico, simile ad ananas e guava; Consistenza: Granulosa, Morbida; Profumo: Intenso, Floreale), Caratteristiche Fisiche (Forma: Ovale), Uso Culinario (Consumo: Fresco; Preparazioni: Dolci, Marmellate, Frullati; Abbinamenti: Mela, Zenzero), Proprietà Nutrizionali (Vitamine: Vitamina C; Iodio: Elevato contenuto), Origine e Coltivazione (Zona Climatica: Subtropicale; Origine Geografica: Sud America).",
+      "metadata": {
+        "nome_scientifico": "Acca sellowiana",
+        "famiglia": "Myrtaceae",
+        "principali_produttori": "Nuova Zelanda, Colombia, Brasile"
+      }
+    },
+    {
+      "name": {
+        "local": "Sapodilla",
+        "en": "Sapodilla"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto tondo o ovale con una buccia marrone ruvida. La polpa è estremamente dolce, con una consistenza granulosa simile a una pera matura e un sapore che ricorda lo zucchero di canna, il caramello e la pera. Parole Chiave: Genere (Frutto, Bacca, Tropicale), Caratteristiche Sensoriali (Sapore: Molto dolce, Zucchero di canna, Caramello; Consistenza: Morbida, Granulosa; Profumo: Dolce; Colore Polpa: Marrone chiaro), Caratteristiche Fisiche (Forma: Rotonda, Ovale), Uso Culinario (Consumo: Fresco; Preparazioni: Frullati, Gelato; Abbinamenti: Cannella, Noce moscata), Proprietà Nutrizionali (Fibre: Elevato contenuto; Benefici: Energetico), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: Messico, America Centrale).",
+      "metadata": {
+        "nome_scientifico": "Manilkara zapota",
+        "famiglia": "Sapotaceae",
+        "principali_produttori": "India, Messico, Thailandia"
+      }
+    },
+    {
+      "name": {
+        "local": "Tamarillo",
+        "en": "Tamarillo"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Frutto a forma di uovo con una buccia liscia e amara di colore rosso o giallo. La polpa è gelatinosa, con semi commestibili, e ha un sapore agrodolce e complesso, simile a un pomodoro passion fruit. Parole Chiave: Genere (Frutto, Bacca), Caratteristiche Sensoriali (Sapore: Agrodolce, Pungente, simile al pomodoro; Consistenza: Gelatinosa, Succosa; Colore Polpa: Arancione, Rosso), Caratteristiche Fisiche (Forma: Ovale), Uso Culinario (Consumo: Cotto (senza buccia); Preparazioni: Chutney, Salse, Dolci, Succhi; Abbinamenti: Zucchero, Spezie), Proprietà Nutrizionali (Vitamine: Vitamina A, Vitamina C; Benefici: Antiossidante), Origine e Coltivazione (Zona Climatica: Subtropicale; Origine Geografica: Ande).",
+      "metadata": {
+        "nome_scientifico": "Solanum betaceum",
+        "famiglia": "Solanaceae",
+        "principali_produttori": "Nuova Zelanda, Colombia, Ecuador"
+      }
+    },
+    {
+      "name": {
+        "local": "Mela cannella",
+        "en": "Sugar Apple"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto dalla buccia verde e segmentata, simile a una pigna. La polpa interna è bianca, cremosa e molto dolce, con una consistenza simile a un budino e un aroma fragrante. Contiene numerosi semi neri. Parole Chiave: Genere (Frutto, Tropicale), Caratteristiche Sensoriali (Sapore: Molto dolce, Aromatico; Consistenza: Cremosa, Morbida, Granulosa; Profumo: Fragrante; Colore Polpa: Bianco), Caratteristiche Fisiche (Forma: Rotonda, a cuore; Buccia: Segmentata), Uso Culinario (Consumo: Fresco; Preparazioni: Gelato, Frullati; Abbinamenti: Cocco), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Energetico), Origine e Coltivazione (Zona Climatica: Tropicale; Origine Geografica: Americhe tropicali).",
+      "metadata": {
+        "nome_scientifico": "Annona squamosa",
+        "famiglia": "Annonaceae",
+        "principali_produttori": "India, Thailandia, Filippine"
+      }
+    },
+    {
+      "name": {
+        "local": "Salak",
+        "en": "Snake Fruit"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto esotico la cui buccia marrone e squamosa ricorda la pelle di un serpente. La polpa è suddivisa in spicchi croccanti e succosi, con un sapore che unisce dolcezza e acidità, simile a mela e ananas. Parole Chiave: Genere (Frutto, Tropicale), Caratteristiche Sensoriali (Sapore: Agrodolce, simile alla mela; Consistenza: Croccante, Succosa; Colore Polpa: Bianco-giallastro), Caratteristiche Fisiche (Forma: a goccia; Buccia: Squamosa, spinosa), Uso Culinario (Consumo: Fresco; Preparazioni: Sciroppato; Abbinamenti: Sale, Peperoncino), Proprietà Nutrizionali (Minerali: Potassio; Benefici: Astringente), Origine e Coltivazione (Zona Climatica: Tropicale umida; Origine Geografica: Indonesia).",
+      "metadata": {
+        "nome_scientifico": "Salacca zalacca",
+        "famiglia": "Arecaceae",
+        "principali_produttori": "Indonesia, Malesia, Thailandia"
+      }
+    },
+    {
+      "name": {
+        "local": "Longan",
+        "en": "Longan"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Piccolo frutto sferico, parente del litchi e del rambutan. Ha una buccia sottile e marroncina. La polpa è traslucida, succosa e dolce, con un aroma leggermente muschiato. Il seme nero e lucido al centro ricorda un occhio. Parole Chiave: Genere (Frutto, Drupa, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, Muschiato; Consistenza: Succosa, Gelatinosa; Colore Polpa: Bianco traslucido), Caratteristiche Fisiche (Forma: Sferica), Uso Culinario (Consumo: Fresco, Essiccato, Sciroppato; Preparazioni: Zuppe, Dessert, Tè; Abbinamenti: Datteri rossi), Proprietà Nutrizionali (Vitamine: Vitamina C; Benefici: Rilassante), Origine e Coltivazione (Zona Climatica: Subtropicale; Origine Geografica: Cina meridionale).",
+      "metadata": {
+        "nome_scientifico": "Dimocarpus longan",
+        "famiglia": "Sapindaceae",
+        "principali_produttori": "Cina, Thailandia, Vietnam"
+      }
+    },
+    {
+      "name": {
+        "local": "Jabuticaba",
+        "en": "Jabuticaba"
+      },
+      "category": "Frutto Tropicale",
+      "description": "Frutto unico che cresce direttamente sul tronco e sui rami dell'albero. Simile a un acino d'uva, ha una buccia viola scuro e una polpa bianca, gelatinosa e dolce. Parole Chiave: Genere (Frutto, Bacca, Tropicale), Caratteristiche Sensoriali (Sapore: Dolce, simile all'uva; Consistenza: Gelatinosa, Succosa; Colore Polpa: Bianco; Colore Buccia: Viola, Nero), Caratteristiche Fisiche (Crescita: Cauliflora (sul tronco)), Uso Culinario (Consumo: Fresco; Preparazioni: Gelatine, Vino, Liquori; Abbinamenti: Formaggio), Proprietà Nutrizionali (Antiossidanti: Antociani), Origine e Coltivazione (Zona Climatica: Subtropicale; Origine Geografica: Brasile).",
+      "metadata": {
+        "nome_scientifico": "Plinia cauliflora",
+        "famiglia": "Myrtaceae",
+        "principali_produttori": "Brasile"
+      }
+    },
+    {
+      "name": {
+        "local": "Mirabolano",
+        "en": "Cherry Plum"
+      },
+      "category": "Frutto Temperato",
+      "description": "Piccolo frutto simile a una prugna o a una ciliegia di grandi dimensioni, con un sapore che varia da dolce a molto aspro. È uno dei primi frutti a maturare in estate. Spesso usato per marmellate e liquori. Parole Chiave: Genere (Frutto, Drupa, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Aspro; Consistenza: Succosa; Colore: Giallo, Rosso, Viola), Caratteristiche Fisiche (Forma: Sferica, Ovale), Uso Culinario (Consumo: Fresco, Cotto; Preparazioni: Marmellate, Liquori, Salse; Abbinamenti: Spezie), Proprietà Nutrizionali (Vitamine: Vitamina C), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa sud-orientale, Asia occidentale).",
+      "metadata": {
+        "nome_scientifico": "Prunus cerasifera",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Coltivazione diffusa, spesso come portainnesto"
+      }
+    },
+    {
+      "name": {
+        "local": "Goji",
+        "en": "Goji Berry"
+      },
+      "category": "Frutto Temperato",
+      "description": "Piccola bacca rossa allungata, consumata quasi esclusivamente essiccata. Ha un sapore leggermente dolce e un retrogusto erbaceo. Considerata un superfood per le sue elevate proprietà antiossidanti. Parole Chiave: Genere (Frutto, Bacca, Superfood), Caratteristiche Sensoriali (Sapore: Leggermente dolce, Erbaceo (secco); Consistenza: Gommosa (secco); Colore: Rosso vivo), Caratteristiche Fisiche (Forma: Ovale, Allungata), Uso Culinario (Consumo: Essiccato, Succo, Polvere; Preparazioni: Tè, Zuppe, Mix di frutta secca, Barrette; Abbinamenti: Avena, Yogurt, Noci), Proprietà Nutrizionali (Antiossidanti: Elevato contenuto; Benefici: Superfood, Anti-invecchiamento), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Cina, Himalaya).",
+      "metadata": {
+        "nome_scientifico": "Lycium barbarum",
+        "famiglia": "Solanaceae",
+        "principali_produttori": "Cina (Ningxia)"
+      }
+    },
+    {
+      "name": {
+        "local": "Sambuco",
+        "en": "Elderberry"
+      },
+      "category": "Frutto di Bosco",
+      "description": "Piccole bacche nero-violacee che crescono in grandi corimbi. Crude sono tossiche, ma cotte sviluppano un sapore ricco e profondo. Utilizzate per sciroppi, marmellate e vino, note per le proprietà antivirali. Parole Chiave: Genere (Frutto, Bacca, Frutto di Bosco), Caratteristiche Sensoriali (Sapore: Ricco, Terroso, Dolce-aspro (cotto); Colore: Nero-violaceo), Caratteristiche Fisiche (Crescita: in corimbi), Uso Culinario (Consumo: Solo cotto; Preparazioni: Sciroppi, Marmellate, Vino, Liquori; Abbinamenti: Limone, Zenzero, Cannella), Proprietà Nutrizionali (Antiossidanti: Antociani; Benefici: Antivirale, Rinforza il sistema immunitario), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa, Nord America).",
+      "metadata": {
+        "nome_scientifico": "Sambucus nigra",
+        "famiglia": "Adoxaceae",
+        "principali_produttori": "Europa (spesso selvatico)"
+      }
+    },
+    {
+      "name": {
+        "local": "Sorba",
+        "en": "Sorb Apple"
+      },
+      "category": "Frutto Temperato",
+      "description": "Piccolo frutto simile a una pera in miniatura. Come la nespola, è astringente e deve essere lasciato ammezzire per diventare commestibile. La polpa diventa morbida e dolce, con un sapore complesso. Parole Chiave: Genere (Frutto, Pomo, Temperato), Caratteristiche Sensoriali (Sapore: Dolce, Complesso (ammezzito); Consistenza: Pastosa (ammezzita); Colore: Marrone), Caratteristiche Fisiche (Forma: Piriforme), Uso Culinario (Consumo: Ammezzito; Preparazioni: Marmellate, Liquori, Sidro; Abbinamenti: Formaggio), Proprietà Nutrizionali (Tannini: Elevato contenuto), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Europa, Nord Africa).",
+      "metadata": {
+        "nome_scientifico": "Sorbus domestica",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Coltivazione rara, locale"
+      }
+    },
+    {
+      "name": {
+        "local": "Pesca tabacchiera",
+        "en": "Saturn Peach"
+      },
+      "category": "Frutto Temperato",
+      "description": "Varietà di pesca dalla caratteristica forma piatta e schiacciata. Ha una buccia vellutata e una polpa bianca, molto dolce, succosa e con un aroma intenso. Il nocciolo è piccolo e si stacca facilmente. Parole Chiave: Genere (Frutto, Drupa, Temperato), Caratteristiche Sensoriali (Sapore: Molto dolce, Aromatico; Consistenza: Succosa, Morbida; Profumo: Intenso; Colore Polpa: Bianco), Caratteristiche Fisiche (Forma: Piatta, Schiacciata), Uso Culinario (Consumo: Fresco; Preparazioni: Dolci, Insalate; Abbinamenti: Formaggio fresco, Menta), Proprietà Nutrizionali (Vitamine: Vitamina C), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Cina).",
+      "metadata": {
+        "nome_scientifico": "Prunus persica var. platycarpa",
+        "famiglia": "Rosaceae",
+        "principali_produttori": "Spagna, Italia, Francia, Stati Uniti"
+      }
+    },
+    {
+      "name": {
+        "local": "Uva Fragola",
+        "en": "Concord Grape"
+      },
+      "category": "Frutto Subtropicale",
+      "description": "Varietà di uva con acini scuri e una buccia spessa che si stacca facilmente dalla polpa. È famosa per il suo aroma 'foxy' molto intenso, che ricorda il profumo delle fragole di bosco. Usata per succhi, gelatine e vino. Parole Chiave: Genere (Frutto, Bacca, Ibrido), Caratteristiche Sensoriali (Sapore: Dolce, Aromatico, 'foxy'; Consistenza: Polposa, Gelatinosa; Profumo: Intenso, di fragola; Colore: Viola scuro), Caratteristiche Fisiche (Buccia: Spessa, facile da staccare), Uso Culinario (Consumo: Fresco, Succo; Preparazioni: Gelatine, Vino, Dolci; Abbinamenti: Burro d'arachidi), Proprietà Nutrizionali (Antiossidanti: Polifenoli), Origine e Coltivazione (Zona Climatica: Temperata; Origine Geografica: Nord America).",
+      "metadata": {
+        "nome_scientifico": "Vitis labrusca",
+        "famiglia": "Vitaceae",
+        "principali_produttori": "Stati Uniti"
+      }
+    }
+  ]
+}

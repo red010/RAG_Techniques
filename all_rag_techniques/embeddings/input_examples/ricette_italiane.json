@@ -1,0 +1,429 @@
+{
+  "dataset_info": {
+    "language": "it",
+    "description": "70 ricette italiane iconiche organizzate per categoria"
+  },
+  "items": [
+    {
+      "name": {"local": "Spaghetti alla Carbonara", "en": "Carbonara Spaghetti"},
+      "category": "primi",
+      "description": "Piatto tipico laziale a base di uova, guanciale, pecorino romano e pepe nero",
+      "metadata": {"region": "Lazio", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Bucatini all'Amatriciana", "en": "Amatriciana Bucatini"},
+      "category": "primi",
+      "description": "Pasta con sugo a base di guanciale, pomodoro, pecorino e peperoncino",
+      "metadata": {"region": "Lazio", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Cacio e Pepe", "en": "Cheese and Pepper Pasta"},
+      "category": "primi",
+      "description": "Pasta con pecorino romano e pepe nero, piatto della tradizione romana",
+      "metadata": {"region": "Lazio", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Pasta alla Gricia", "en": "Gricia Pasta"},
+      "category": "primi",
+      "description": "Pasta con guanciale e pecorino romano, progenitore della carbonara",
+      "metadata": {"region": "Lazio", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Lasagne alla Bolognese", "en": "Bolognese Lasagna"},
+      "category": "primi",
+      "description": "Lasagne al forno con ragù bolognese e besciamella",
+      "metadata": {"region": "Emilia-Romagna", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Tagliatelle al Ragù", "en": "Tagliatelle with Meat Sauce"},
+      "category": "primi",
+      "description": "Pasta all'uovo con ragù di carne bolognese",
+      "metadata": {"region": "Emilia-Romagna", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Pesto alla Genovese", "en": "Genoese Pesto"},
+      "category": "primi",
+      "description": "Pasta con salsa a base di basilico, pinoli, aglio, parmigiano e olio",
+      "metadata": {"region": "Liguria", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Spaghetti alle Vongole", "en": "Spaghetti with Clams"},
+      "category": "primi",
+      "description": "Pasta con vongole veraci, aglio, olio e prezzemolo",
+      "metadata": {"region": "Campania", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Pasta alla Norma", "en": "Norma Pasta"},
+      "category": "primi",
+      "description": "Pasta con melanzane fritte, pomodoro e ricotta salata",
+      "metadata": {"region": "Sicilia", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Orecchiette con le cime di rapa", "en": "Orecchiette with Turnip Tops"},
+      "category": "primi",
+      "description": "Pasta tipica pugliese con cime di rapa, aglio e acciughe",
+      "metadata": {"region": "Puglia", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Trofie al Pesto", "en": "Trofie with Pesto"},
+      "category": "primi",
+      "description": "Pasta ligure con pesto alla genovese, patate e fagiolini",
+      "metadata": {"region": "Liguria", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Penne all'Arrabbiata", "en": "Arrabbiata Penne"},
+      "category": "primi",
+      "description": "Pasta con sugo piccante a base di pomodoro, aglio e peperoncino",
+      "metadata": {"region": "Lazio", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Pasta e Fagioli", "en": "Pasta and Beans"},
+      "category": "primi",
+      "description": "Zuppa tradizionale con pasta e fagioli borlotti",
+      "metadata": {"region": "Veneto", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Pasta e Ceci", "en": "Pasta and Chickpeas"},
+      "category": "primi",
+      "description": "Zuppa con pasta e ceci, aglio e rosmarino",
+      "metadata": {"region": "Lazio", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Linguine allo Scoglio", "en": "Seafood Linguine"},
+      "category": "primi",
+      "description": "Pasta con frutti di mare misti in salsa di pomodoro",
+      "metadata": {"region": "Campania", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Risotto alla Milanese", "en": "Milanese Risotto"},
+      "category": "primi",
+      "description": "Risotto cremoso allo zafferano e midollo osseo",
+      "metadata": {"region": "Lombardia", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Risotto ai Funghi Porcini", "en": "Porcini Mushroom Risotto"},
+      "category": "primi",
+      "description": "Risotto con funghi porcini freschi o secchi",
+      "metadata": {"region": "Piemonte", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Risotto al Nero di Seppia", "en": "Squid Ink Risotto"},
+      "category": "primi",
+      "description": "Risotto nero con seppie e il loro inchiostro",
+      "metadata": {"region": "Veneto", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Risotto agli Asparagi", "en": "Asparagus Risotto"},
+      "category": "primi",
+      "description": "Risotto primaverile con asparagi freschi",
+      "metadata": {"region": "Lombardia", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Minestrone alla Genovese", "en": "Genoese Minestrone"},
+      "category": "primi",
+      "description": "Zuppa di verdure con pesto alla genovese",
+      "metadata": {"region": "Liguria", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Ribollita Toscana", "en": "Tuscan Ribollita"},
+      "category": "primi",
+      "description": "Zuppa di pane, cavolo nero e fagioli cannellini",
+      "metadata": {"region": "Toscana", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Bistecca alla Fiorentina", "en": "Florentine Steak"},
+      "category": "secondi_carne",
+      "description": "Bistecca di manzo con l'osso, cotta alla griglia",
+      "metadata": {"region": "Toscana", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Cotoletta alla Milanese", "en": "Milanese Cutlet"},
+      "category": "secondi_carne",
+      "description": "Cotoletta di vitello impanata e fritta nel burro",
+      "metadata": {"region": "Lombardia", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Saltimbocca alla Romana", "en": "Roman Saltimbocca"},
+      "category": "secondi_carne",
+      "description": "Scaloppine di vitello con prosciutto crudo e salvia",
+      "metadata": {"region": "Lazio", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Ossobuco alla Milanese", "en": "Milanese Ossobuco"},
+      "category": "secondi_carne",
+      "description": "Stinco di vitello brasato con gremolada",
+      "metadata": {"region": "Lombardia", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Brasato al Barolo", "en": "Barolo Braised Beef"},
+      "category": "secondi_carne",
+      "description": "Carne di manzo brasata nel vino Barolo",
+      "metadata": {"region": "Piemonte", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Tagliata di Manzo", "en": "Sliced Beef"},
+      "category": "secondi_carne",
+      "description": "Bistecca di manzo tagliata a fette con rucola e grana",
+      "metadata": {"region": "Toscana", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Porchetta", "en": "Roast Pork"},
+      "category": "secondi_carne",
+      "description": "Maiale intero arrostito con erbe aromatiche",
+      "metadata": {"region": "Lazio", "difficulty": "very_hard"}
+    },
+    {
+      "name": {"local": "Polpette al Sugo", "en": "Meatballs in Tomato Sauce"},
+      "category": "secondi_carne",
+      "description": "Polpette di carne in salsa di pomodoro",
+      "metadata": {"region": "Campania", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Spezzatino di Vitello", "en": "Veal Stew"},
+      "category": "secondi_carne",
+      "description": "Spezzatino di vitello con verdure e vino bianco",
+      "metadata": {"region": "Lombardia", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Scaloppine al Limone", "en": "Lemon Scaloppine"},
+      "category": "secondi_carne",
+      "description": "Scaloppine di vitello con salsa al limone",
+      "metadata": {"region": "Veneto", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Branzino al Sale", "en": "Salt-Crusted Sea Bass"},
+      "category": "secondi_pesce",
+      "description": "Branzino intero cotto in crosta di sale",
+      "metadata": {"region": "Liguria", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Fritto Misto di Mare", "en": "Mixed Fried Seafood"},
+      "category": "secondi_pesce",
+      "description": "Frittura di calamari, gamberi e pesciolini",
+      "metadata": {"region": "Campania", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Baccalà alla Vicentina", "en": "Vicenza-Style Cod"},
+      "category": "secondi_pesce",
+      "description": "Merluzzo in umido con latte, cipolle e acciughe",
+      "metadata": {"region": "Veneto", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Seppie in Umido", "en": "Stewed Cuttlefish"},
+      "category": "secondi_pesce",
+      "description": "Seppie cotte in umido con pomodoro e piselli",
+      "metadata": {"region": "Veneto", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Pesce Spada alla Griglia", "en": "Grilled Swordfish"},
+      "category": "secondi_pesce",
+      "description": "Tranci di pesce spada grigliati con salmoriglio",
+      "metadata": {"region": "Sicilia", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Calamari Ripieni", "en": "Stuffed Squid"},
+      "category": "secondi_pesce",
+      "description": "Calamari ripieni di mollica, aglio e prezzemolo",
+      "metadata": {"region": "Puglia", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Alici Marinate", "en": "Marinated Anchovies"},
+      "category": "secondi_pesce",
+      "description": "Alici fresche marinate in aceto e limone",
+      "metadata": {"region": "Campania", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Caponata Siciliana", "en": "Sicilian Caponata"},
+      "category": "contorni",
+      "description": "Melanzane in agrodolce con pomodoro, olive e capperi",
+      "metadata": {"region": "Sicilia", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Parmigiana di Melanzane", "en": "Eggplant Parmigiana"},
+      "category": "contorni",
+      "description": "Melanzane fritte al forno con pomodoro e mozzarella",
+      "metadata": {"region": "Campania", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Peperonata", "en": "Stewed Peppers"},
+      "category": "contorni",
+      "description": "Peperoni in umido con pomodoro e cipolle",
+      "metadata": {"region": "Piemonte", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Cicoria Ripassata", "en": "Sautéed Chicory"},
+      "category": "contorni",
+      "description": "Cicoria bollita e ripassata in padella con aglio",
+      "metadata": {"region": "Lazio", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Carciofi alla Romana", "en": "Roman-Style Artichokes"},
+      "category": "contorni",
+      "description": "Carciofi stufati con mentuccia e aglio",
+      "metadata": {"region": "Lazio", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Carciofi alla Giudia", "en": "Jewish-Style Artichokes"},
+      "category": "contorni",
+      "description": "Carciofi fritti croccanti della tradizione ebraico-romana",
+      "metadata": {"region": "Lazio", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Insalata Caprese", "en": "Caprese Salad"},
+      "category": "contorni",
+      "description": "Mozzarella di bufala, pomodori e basilico",
+      "metadata": {"region": "Campania", "difficulty": "very_easy"}
+    },
+    {
+      "name": {"local": "Pizza Margherita", "en": "Margherita Pizza"},
+      "category": "pizza",
+      "description": "Pizza con pomodoro, mozzarella e basilico",
+      "metadata": {"region": "Campania", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Pizza Marinara", "en": "Marinara Pizza"},
+      "category": "pizza",
+      "description": "Pizza con pomodoro, aglio, origano e olio",
+      "metadata": {"region": "Campania", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Pizza Quattro Stagioni", "en": "Four Seasons Pizza"},
+      "category": "pizza",
+      "description": "Pizza divisa in quattro sezioni con ingredienti diversi",
+      "metadata": {"region": "Campania", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Focaccia di Recco", "en": "Recco Focaccia"},
+      "category": "pizza",
+      "description": "Focaccia ripiena di formaggio crescenza",
+      "metadata": {"region": "Liguria", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Focaccia Genovese", "en": "Genoese Focaccia"},
+      "category": "pizza",
+      "description": "Focaccia morbida con olio d'oliva e sale grosso",
+      "metadata": {"region": "Liguria", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Calzone Napoletano", "en": "Neapolitan Calzone"},
+      "category": "pizza",
+      "description": "Pizza chiusa a mezzaluna ripiena di ricotta e salame",
+      "metadata": {"region": "Campania", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Bruschetta al Pomodoro", "en": "Tomato Bruschetta"},
+      "category": "antipasti",
+      "description": "Pane tostato con pomodori freschi, aglio e basilico",
+      "metadata": {"region": "Lazio", "difficulty": "very_easy"}
+    },
+    {
+      "name": {"local": "Vitello Tonnato", "en": "Veal with Tuna Sauce"},
+      "category": "antipasti",
+      "description": "Vitello freddo con salsa tonnata",
+      "metadata": {"region": "Piemonte", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Carpaccio di Manzo", "en": "Beef Carpaccio"},
+      "category": "antipasti",
+      "description": "Carne di manzo cruda a fette sottili con rucola e grana",
+      "metadata": {"region": "Veneto", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Prosciutto e Melone", "en": "Prosciutto and Melon"},
+      "category": "antipasti",
+      "description": "Prosciutto crudo di Parma con melone cantalupo",
+      "metadata": {"region": "Emilia-Romagna", "difficulty": "very_easy"}
+    },
+    {
+      "name": {"local": "Arancino Siciliano", "en": "Sicilian Arancino"},
+      "category": "antipasti",
+      "description": "Palla di riso fritta ripiena di ragù e piselli",
+      "metadata": {"region": "Sicilia", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Supplì al Telefono", "en": "Supplì"},
+      "category": "antipasti",
+      "description": "Crocchetta di riso al sugo con mozzarella filante",
+      "metadata": {"region": "Lazio", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Tiramisù", "en": "Tiramisu"},
+      "category": "dolci",
+      "description": "Dolce al cucchiaio con savoiardi, mascarpone, caffè e cacao",
+      "metadata": {"region": "Veneto", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Cannolo Siciliano", "en": "Sicilian Cannolo"},
+      "category": "dolci",
+      "description": "Cialda fritta ripiena di ricotta zuccherata",
+      "metadata": {"region": "Sicilia", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Panna Cotta", "en": "Cooked Cream"},
+      "category": "dolci",
+      "description": "Dolce al cucchiaio a base di panna, latte e zucchero",
+      "metadata": {"region": "Piemonte", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Gelato Artigianale", "en": "Artisan Gelato"},
+      "category": "dolci",
+      "description": "Gelato fatto in casa con ingredienti naturali",
+      "metadata": {"region": "Italia", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Sfogliatella", "en": "Sfogliatella"},
+      "category": "dolci",
+      "description": "Pasta sfoglia ripiena di ricotta e semolino",
+      "metadata": {"region": "Campania", "difficulty": "very_hard"}
+    },
+    {
+      "name": {"local": "Babà al Rum", "en": "Rum Baba"},
+      "category": "dolci",
+      "description": "Dolce lievitato imbevuto in sciroppo al rum",
+      "metadata": {"region": "Campania", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Pastiera Napoletana", "en": "Neapolitan Pastiera"},
+      "category": "dolci",
+      "description": "Torta pasquale con grano, ricotta e fiori d'arancio",
+      "metadata": {"region": "Campania", "difficulty": "hard"}
+    },
+    {
+      "name": {"local": "Cassata Siciliana", "en": "Sicilian Cassata"},
+      "category": "dolci",
+      "description": "Torta con pan di spagna, ricotta e frutta candita",
+      "metadata": {"region": "Sicilia", "difficulty": "very_hard"}
+    },
+    {
+      "name": {"local": "Zabaione", "en": "Zabaglione"},
+      "category": "dolci",
+      "description": "Crema dolce a base di tuorli, zucchero e marsala",
+      "metadata": {"region": "Piemonte", "difficulty": "medium"}
+    },
+    {
+      "name": {"local": "Amaretti", "en": "Amaretti Cookies"},
+      "category": "dolci",
+      "description": "Biscotti croccanti alle mandorle amare",
+      "metadata": {"region": "Piemonte", "difficulty": "easy"}
+    },
+    {
+      "name": {"local": "Panettone", "en": "Panettone"},
+      "category": "dolci",
+      "description": "Dolce natalizio con uvetta e canditi",
+      "metadata": {"region": "Lombardia", "difficulty": "very_hard"}
+    },
+    {
+      "name": {"local": "Pandoro", "en": "Pandoro"},
+      "category": "dolci",
+      "description": "Dolce natalizio a forma di stella soffice e burroso",
+      "metadata": {"region": "Veneto", "difficulty": "very_hard"}
+    },
+    {
+      "name": {"local": "Colomba Pasquale", "en": "Easter Dove Cake"},
+      "category": "dolci",
+      "description": "Dolce pasquale a forma di colomba con glassa alle mandorle",
+      "metadata": {"region": "Lombardia", "difficulty": "very_hard"}
+    }
+  ]
+}
+

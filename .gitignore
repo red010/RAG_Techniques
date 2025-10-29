@@ -11,7 +11,13 @@
 !*.png
 !LICENSE
 !*.gif
+!*.html
+!*.js
+!*.json
+!*.css
 !all_rag_techniques
+!all_rag_techniques/embeddings
+!all_rag_techniques/embeddings/**
 !data
 !evaluation
 !images
@@ -22,4 +28,12 @@
 # remove specific files
 __pycache__/
 __init__.py
+
+# Embeddings project - generated files
+all_rag_techniques/embeddings/node_modules/
+all_rag_techniques/embeddings/data_store/
+all_rag_techniques/embeddings/public/data.json
+
+# Secrets and environment variables
+.env
 

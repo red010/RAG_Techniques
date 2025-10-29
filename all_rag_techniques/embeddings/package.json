@@ -1,0 +1,15 @@
+{
+  "name": "3d-recipe-embeddings-viz",
+  "version": "1.0.0",
+  "description": "Interactive 3D visualization of Italian recipe embeddings using three.js",
+  "type": "module",
+  "dependencies": {
+    "three": "^0.160.0"
+  },
+  "scripts": {
+    "install-deps": "npm install"
+  },
+  "author": "",
+  "license": "MIT"
+}
+
