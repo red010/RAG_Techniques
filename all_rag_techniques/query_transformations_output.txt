@@ -1,0 +1,158 @@
+================================================================================
+📋 QUERY ORIGINALE DA TRASFORMARE
+================================================================================
+
+Come influisce il cambiamento climatico sull'agricoltura 
+e quali sono le strategie di adattamento più efficaci?
+
+💡 Questa è una query complessa che:
+   - È multi-aspetto (impatti + soluzioni)
+   - Potrebbe essere troppo ampia (beneficia da rewriting)
+   - Ha bisogno di contesto (beneficia da step-back)
+   - Copre temi diversi (beneficia da decomposition)
+
+================================================================================
+🔧 TECNICA 1: QUERY REWRITING (Riscrittura)
+================================================================================
+
+================================================================================
+🔙 TECNICA 2: STEP-BACK PROMPTING (Generalizzazione)
+================================================================================
+
+================================================================================
+🔀 TECNICA 3: SUB-QUERY DECOMPOSITION (Decomposizione)
+================================================================================
+
+================================================================================
+🔍 FASE 1: Applicazione delle 3 Tecniche
+================================================================================
+
+⏳ Applicazione Query Rewriting...
+⏳ Applicazione Step-back Prompting...
+⏳ Applicazione Sub-query Decomposition...
+
+✅ Tutte le trasformazioni completate!
+
+================================================================================
+📊 FASE 2: Risultati delle Trasformazioni
+================================================================================
+
+--------------------------------------------------------------------------------
+📌 QUERY ORIGINALE:
+--------------------------------------------------------------------------------
+Come influisce il cambiamento climatico sull'agricoltura 
+e quali sono le strategie di adattamento più efficaci?
+
+--------------------------------------------------------------------------------
+✏️  TECNICA 1: QUERY REWRITING
+--------------------------------------------------------------------------------
+Query riscritta: **Quali sono gli impatti specifici del cambiamento climatico (es. aumento delle temperature medie, alterazione dei regimi pluviometrici, eventi meteorologici estremi) sui principali settori agricoli (es. cerealicole, ortofrutticoli, zootecnia) e quali strategie di adattamento basate sull'evidenza scientifica (es. miglioramento genetico, tecniche di irrigazione di precisione, agroforestazione) dimostrano la maggiore efficacia nel mitigare tali effetti in contesti mediterranei?**
+
+💡 Analisi: La query è stata resa più specifica, dettagliata e strutturata.
+
+--------------------------------------------------------------------------------
+🔙 TECNICA 2: STEP-BACK PROMPTING
+--------------------------------------------------------------------------------
+Query step-back (più generale): **Quali sono gli impatti ambientali e socio-economici dei cambiamenti climatici sui sistemi produttivi globali e quali approcci di resilienza sono attualmente in fase di studio o implementazione?**
+
+💡 Analisi: La query è stata generalizzata per recuperare contesto più ampio.
+
+--------------------------------------------------------------------------------
+🔀 TECNICA 3: SUB-QUERY DECOMPOSITION
+--------------------------------------------------------------------------------
+1. Quali sono gli impatti diretti e indiretti del cambiamento climatico sui principali aspetti dell'agricoltura (es. rese, disponibilità idrica, parassiti)?
+2. Quali sono le strategie di adattamento più efficaci che gli agricoltori possono implementare per mitigare gli effetti negativi del cambiamento climatico?
+3. Esistono differenze significative nelle strategie di adattamento necessarie a seconda delle diverse aree geografiche o tipologie di colture?
+
+💡 Analisi: La query complessa è stata scomposta in 3 sotto-query indipendenti.
+
+================================================================================
+🎯 FASE 3: Analisi Comparativa e Use Cases
+================================================================================
+
+📊 CONFRONTO DELLE TECNICHE:
+
+1. QUERY REWRITING:
+   ✅ PRO:
+      - Migliora la specificità e dettaglio
+      - Ottimo per query vaghe o ambigue
+      - Aumenta precision del retrieval
+   ⚠️  CONTRO:
+      - Potrebbe restringere troppo lo scope
+      - Rischio di perdere informazioni correlate
+
+2. STEP-BACK PROMPTING:
+   ✅ PRO:
+      - Recupera contesto essenziale
+      - Ottimo per query troppo specifiche
+      - Fornisce background necessario
+   ⚠️  CONTRO:
+      - Potrebbe essere troppo generale
+      - Rischio di recuperare documenti non rilevanti
+
+3. SUB-QUERY DECOMPOSITION:
+   ✅ PRO:
+      - Copre aspetti multipli della query
+      - Permette retrieval parallelo
+      - Massima completezza della risposta
+   ⚠️  CONTRO:
+      - Costo computazionale più alto
+      - Necessita di aggregazione dei risultati
+
+💡 STRATEGIE DI COMBINAZIONE:
+   • Rewriting + Step-back: Per balance tra specificità e contesto
+   • Decomposition + Rewriting: Scomponi poi affina ogni sotto-query
+   • Tutte e tre: Usa rewriting per query principale, step-back per contesto,
+                 decomposition per aspetti multipli (massima copertura)
+
+🎯 QUANDO USARE COSA:
+
+   QUERY REWRITING:
+      - Query utente vaghe: 'Parlami del clima'
+      - Necessità di specificità: Aggiungere aspetti rilevanti
+      - RAG con documenti molto tecnici
+
+   STEP-BACK PROMPTING:
+      - Query utente troppo specifiche: 'Algoritmo XYZ in contesto ABC'
+      - Prima fase di retrieval a due livelli
+      - Quando il contesto è cruciale per la comprensione
+
+   SUB-QUERY DECOMPOSITION:
+      - Query multi-dominio: 'Impatti, cause e soluzioni di X'
+      - Necessità di copertura completa
+      - Sistemi RAG con retrieval parallelo
+
+================================================================================
+✅ DEMO COMPLETATA: Query Transformations per RAG
+================================================================================
+
+🎓 LEZIONI CHIAVE:
+   1. Le query transformation NON sono mutuamente esclusive
+      → Possono e dovrebbero essere combinate strategicamente
+   2. La scelta della tecnica dipende dal tipo di query
+      → Vaga → Rewriting, Specifica → Step-back, Complessa → Decomposition
+   3. Le trasformazioni aggiungono overhead computazionale
+      → Valuta il trade-off tra qualità e latenza
+   4. Sperimenta con i prompt per il tuo dominio specifico
+      → I template qui sono generici, personalizzali!
+
+🔬 IMPLEMENTAZIONE IN PRODUZIONE:
+   • Caching: Cachea le trasformazioni per query frequenti
+   • Thresholds: Non sempre serve trasformare (es. query già ottimali)
+   • Monitoraggio: Traccia quali trasformazioni migliorano i risultati
+   • A/B Testing: Testa diverse combinazioni di tecniche
+   • Fallback: Usa query originale se la trasformazione fallisce
+
+📚 INTEGRAZIONE CON ALTRE TECNICHE RAG:
+   • Query Transformations + HyDE: Trasforma poi espandi
+   • Query Transformations + Reranking: Trasforma poi riordina
+   • Query Transformations + RSE: Trasforma poi raggruppa segmenti
+   • Query Transformations + CCH: Trasforma poi usa header contestuali
+
+💰 CONSIDERAZIONI SUI COSTI:
+   • Query Rewriting: 1 chiamata LLM per query
+   • Step-back: 1 chiamata LLM per query
+   • Decomposition: 1 chiamata LLM + N retrieval (N = # sotto-query)
+   • Tutte e tre: 3 chiamate LLM per query (considera il budget!)
+
+================================================================================

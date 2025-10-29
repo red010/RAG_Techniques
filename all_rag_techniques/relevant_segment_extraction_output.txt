@@ -1,0 +1,169 @@
+================================================================================
+📚 FASE 1: Caricamento e Chunking Documento
+================================================================================
+
+📋 Query di test:
+   Spiega in dettaglio il fenomeno dell'acidificazione degli oceani: 
+quali sono le cause chimiche, gli effetti sugli organismi marini, 
+e il legame con il cambiamento climatico.
+
+💡 Questa query richiede informazioni da più parti del documento,
+   rendendo RSE particolarmente utile per ricostruire segmenti contigui.
+
+✅ Documento suddiviso in 69 chunk
+   Dimensione chunk: 250 caratteri
+   Overlap: 0 caratteri (ZERO - essenziale per RSE!)
+
+💡 Chunk piccoli e overlap = 0 massimizzano l'effetto di RSE
+
+================================================================================
+🔍 FASE 2: Reranking dei Chunk
+================================================================================
+
+🔄 Reranking 69 chunk con Gemini...
+   (Questo richiederà circa 69 chiamate API)
+   Processati 10/69 chunk...
+   Processati 20/69 chunk...
+   Processati 30/69 chunk...
+   Processati 40/69 chunk...
+   Processati 50/69 chunk...
+   Processati 60/69 chunk...
+✅ Reranking completato
+
+================================================================================
+📊 DISTRIBUZIONE SCORE DI RILEVANZA
+================================================================================
+
+🏆 Top 15 chunk più rilevanti:
+    1. Chunk  11: 0.760 ██████████████████████████████████████
+    2. Chunk   3: 0.655 ████████████████████████████████
+    3. Chunk   8: 0.634 ███████████████████████████████
+    4. Chunk  12: 0.613 ██████████████████████████████
+    5. Chunk   9: 0.438 █████████████████████
+    6. Chunk   0: 0.328 ████████████████
+    7. Chunk   1: 0.317 ███████████████
+    8. Chunk   4: 0.307 ███████████████
+    9. Chunk   6: 0.297 ██████████████
+   10. Chunk  10: 0.287 ██████████████
+   11. Chunk  13: 0.278 █████████████
+   12. Chunk  14: 0.269 █████████████
+   13. Chunk  17: 0.260 ████████████
+   14. Chunk  18: 0.251 ████████████
+   15. Chunk  23: 0.243 ████████████
+
+🔍 Analisi Cluster (chunk consecutivi con score > 0.3):
+   Cluster 1: Chunk 0-1 (lunghezza: 2, score medio: 0.323)
+   Cluster 2: Chunk 3-4 (lunghezza: 2, score medio: 0.481)
+   Cluster 3: Chunk 8-9 (lunghezza: 2, score medio: 0.536)
+   Cluster 4: Chunk 11-12 (lunghezza: 2, score medio: 0.687)
+
+💡 I 4 cluster identificati dimostrano che i chunk rilevanti
+   sono raggruppati, non sparsi casualmente nel documento!
+================================================================================
+
+================================================================================
+🎯 FASE 4: Ottimizzazione RSE - Ricerca Segmenti Ottimali
+================================================================================
+
+⚙️  Parametri RSE:
+   Penalità chunk irrilevanti: 0.2
+   Lunghezza massima segmento: 15 chunk
+   Lunghezza massima totale: 25 chunk
+   Valore minimo segmento: 0.5
+
+💡 La 'penalità chunk irrilevanti' sottrae 0.2 da ogni score,
+   rendendo negativi i chunk irrilevanti e positivi quelli rilevanti.
+   Questo permette di definire il valore di un segmento come somma semplice!
+
+✅ Trovati 1 segmenti ottimali:
+
+   Segmento 1:
+      Chunk: 0-14 (lunghezza: 15)
+      Score totale: 2.182
+      Score medio per chunk: 0.145
+
+================================================================================
+📖 FASE 5: Visualizzazione Segmenti Recuperati
+================================================================================
+
+================================================================================
+SEGMENTO 1 (chunk 0-14, score: 2.182)
+================================================================================
+
+### Un Mosaico di Cause ed Effetti Interconnessi Il cambiamento climatico, quella trasformazione silenziosa e inesorabile che sta ridefinendo il nostro mondo, non è un fenomeno monolitico ma un intricato mosaico di cause ed effetti, una rete complessa dove ogni filo è connesso agli altri in modi spesso controintuitivi. La sua origine, ormai scientificamente acclarata, risiede nell'alterazione antropogenica del ciclo del carbonio, un processo innescato dalla fame di energia della civiltà industriale che, bruciando combustibili fossili come carbone, petrolio e gas naturale, ha rilasciato nell'atmosfera quantità colossali di anidride carbonica (CO2) e altri gas climalteranti, come il metano (CH4) proveniente dagli allevamenti intensivi e dalle risaie, e il protossido di azoto (N2O) legato all'uso massiccio di fertilizzanti sintetici. Questi gas, pur essendo presenti in tracce, agiscono come una coperta sempre più spessa attorno al pianeta, intrappolando il calore che altrimenti verrebbe disperso nello spazio e innescando un riscaldamento globale le cui conseguenze si propagano a cascata in ogni ecosistema. Gli oceani, i grandi e pazienti regolatori del clima terrestre, stanno assorbendo una porzione enorme sia del calore in eccesso sia della CO2 atmosferica, ma questo servizio ecosistemico vitale sta presentando un conto salatissimo. L'aumento della temperatura delle acque superficiali non solo alimenta uragani e tifoni rendendoli più potenti e distruttivi, ma provoca anche il fenomeno dello sbiancamento dei coralli, dove le microalghe simbionti (zooxantelle) che vivono nei tessuti dei coralli e forniscono loro colore e nutrimento vengono espulse a causa dello stress termico, lasciando lo scheletro calcareo bianco e vulnerabile, un cimitero sottomarino che segna la morte di interi ecosistemi brulicanti di vita. Contemporaneamente, l'assorbimento di CO2 sta innescando un processo chimico insidioso: l'acidificazione degli oceani. L'anidride carbonica reagisce con l'acqua formando acido carbonico, che abbassa il pH e riduce la concentrazione di ioni carbonato, i mattoni fondamentali con cui innumerevoli organismi marini, dai microscopici foraminiferi ai molluschi e ai crostacei, costruiscono i loro gusci e scheletri; è una crisi costruttiva su scala planetaria che minaccia le fondamenta stesse della catena alimentare marina. Il ghiaccio del pianeta sta scomparendo: questa semplice e terribile affermazione riassume una delle conseguenze più visibili e potenti del riscaldamento globale.
+
+--------------------------------------------------------------------------------
+
+📊 Analisi Segmento 1:
+   Lunghezza: 2523 caratteri (15 chunk)
+   Score medio chunk: 0.145
+   Chunk ad alta rilevanza (>0.5): 4/15
+   💡 RSE ha incluso 11 chunk intermedi
+      non altamente rilevanti per completare il contesto!
+
+================================================================================
+✅ DEMO COMPLETATA: Relevant Segment Extraction
+================================================================================
+
+🎯 LEZIONI CHIAVE:
+   1. I chunk rilevanti tendono a formare CLUSTER nel documento originale
+      → RSE sfrutta questo pattern per ricostruire segmenti contigui
+   2. RSE include automaticamente chunk intermedi non marcati come rilevanti
+      → Fornisce contesto più completo rispetto al top-k retrieval
+   3. Il chunking SENZA overlap è essenziale per RSE
+      → Permette di ricostruire il testo originale concatenando chunk
+   4. RSE risolve dinamicamente il trade-off chunk piccoli vs grandi
+      → Recupera chunk brevi o segmenti lunghi in base alla query
+
+💡 QUANDO USARE RSE:
+   ✅ Query che richiedono risposte da più paragrafi
+   ✅ Documenti lunghi e strutturati (report, manuali, articoli)
+   ✅ Quando il contesto completo è cruciale per la risposta
+   ✅ In combinazione con reranking di qualità
+
+⚠️  QUANDO RSE HA MENO IMPATTO:
+   - Query che richiedono solo un singolo chunk
+   - Documenti molto brevi
+   - Quando la velocità è più importante della precisione
+
+⚙️  PARAMETRI CHIAVE DA OTTIMIZZARE:
+   • irrelevant_chunk_penalty (0.15-0.25):
+     Controlla quanto i chunk irrilevanti penalizzano un segmento
+   • max_length:
+     Limita la lunghezza di un singolo segmento
+   • overall_max_length:
+     Limita il contesto totale inviato all'LLM (costi)
+   • minimum_value:
+     Soglia minima per considerare un segmento valido
+
+📊 RISULTATI BENCHMARK (KITE):
+   RSE vs Top-k Retrieval (k=20):
+   • AI Papers:            4.5 → 7.9  (+75.6%)
+   • BVP Cloud 10-Ks:      2.6 → 4.4  (+69.2%)
+   • Sourcegraph Handbook: 5.7 → 6.6  (+15.8%)
+   • Supreme Court:        6.1 → 8.0  (+31.1%)
+   • Medio:                4.72 → 6.73 (+42.6%)
+
+🔬 BEST PRACTICES:
+   1. Usa chunk piccoli (200-400 caratteri) per massimizzare precision
+   2. IMPORTANTE: chunk_overlap DEVE essere 0 per RSE
+   3. Assicurati di avere un reranker di alta qualità
+   4. Combina RSE con Contextual Chunk Headers per risultati ottimali
+   5. Monitora la lunghezza dei segmenti per controllare costi LLM
+   6. Sperimenta con irrelevant_chunk_penalty per il tuo caso d'uso
+
+🎓 CONFRONTO CON ALTRE TECNICHE:
+   • Top-k Retrieval: Recupera i k chunk migliori indipendentemente
+     → RSE: Recupera segmenti contigui rispettando l'ordine originale
+   • Contextual Chunk Headers (CCH): Aggiunge contesto agli header
+     → RSE: Ricostruisce segmenti completi includendo chunk intermedi
+   • Combinazione RSE + CCH: Risultati ottimali su benchmark complessi
+
+💰 CONSIDERAZIONI SUI COSTI:
+   Questa demo ha richiesto ~69 chiamate API per il reranking
+   In produzione, considera:
+   • Usa un reranker dedicato (es. Google Vertex AI Ranking)
+   • Cachea i risultati di reranking per query frequenti
+   • Pre-calcola gli score per documenti statici
+
+================================================================================

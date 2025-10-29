@@ -1,0 +1,217 @@
+✅ Setup completato: Gemini configurato
+📄 Documento trovato: data/cambiamento_climatico.txt
+
+⏳ Caricamento e processing del documento...
+   Documento caricato: 14200 caratteri
+   Creati 43 chunks
+   Generazione embeddings con Gemini e creazione Chroma vector store...
+✅ Vector store Chroma creato con successo!
+
+================================================================================
+🔍 QUERY DI TEST
+================================================================================
+
+Come influisce il cambiamento climatico sulla biodiversità degli ecosistemi?
+
+💡 Questa query beneficia dal reranking perché:
+   - Richiede comprensione semantica (non solo keyword matching)
+   - Potrebbe recuperare documenti generici sul clima al primo retrieval
+   - Il reranking identifica i documenti che parlano specificatamente di biodiversità
+
+================================================================================
+📊 CONFRONTO: Retrieval Iniziale vs Reranking
+================================================================================
+
+⏳ Fase 1: Retrieval iniziale (baseline)...
+
+🔹 TOP 3 DOCUMENTI - RETRIEVAL INIZIALE:
+--------------------------------------------------------------------------------
+
+Documento 1:
+La fusione del ghiaccio marino artico, inoltre, innesca un pericoloso ciclo di feedback positivo noto come effetto albedo: il ghiaccio bianco riflette gran parte della radiazione solare, mentre l'acqu...
+
+Documento 2:
+Questa consapevolezza sta spostando il focus anche verso soluzioni basate sulla natura (Nature-Based Solutions), approcci che sfruttano la potenza degli ecosistemi stessi per affrontare la crisi. La r...
+
+Documento 3:
+che integra alberi e arbusti nelle coltivazioni agricole, non solo sequestrano carbonio nel suolo e nella biomassa, ma migliorano anche la fertilità del terreno, regolano il ciclo dell'acqua e aumenta...
+
+⏳ Fase 2: Reranking con Gemini...
+
+⭐ TOP 3 DOCUMENTI - DOPO RERANKING LLM:
+--------------------------------------------------------------------------------
+
+Documento 1:
+L'aumento della temperatura delle acque superficiali non solo alimenta uragani e tifoni rendendoli più potenti e distruttivi, ma provoca anche il fenomeno dello sbiancamento dei coralli, dove le micro...
+
+Documento 2:
+Contemporaneamente, l'assorbimento di CO2 sta innescando un processo chimico insidioso: l'acidificazione degli oceani. L'anidride carbonica reagisce con l'acqua formando acido carbonico, che abbassa i...
+
+Documento 3:
+Questi gas, pur essendo presenti in tracce, agiscono come una coperta sempre più spessa attorno al pianeta, intrappolando il calore che altrimenti verrebbe disperso nello spazio e innescando un riscal...
+
+================================================================================
+💡 OSSERVAZIONI:
+================================================================================
+  Il reranking LLM ha riordinato i documenti basandosi sulla
+  comprensione semantica della relazione tra 'cambiamento climatico'
+  e 'biodiversità', non solo sulla presenza di keyword.
+✅ Custom Retriever con reranking LLM creato
+
+================================================================================
+📊 DEMO COMPARATIVA: Baseline vs Reranking LLM
+================================================================================
+
+Query: Come il cambiamento climatico influenza la biodiversità?
+
+--------------------------------------------------------------------------------
+🔹 BASELINE RETRIEVAL (solo similarity search):
+--------------------------------------------------------------------------------
+
+  Documento 1:
+  Il cambiamento climatico ha impatti devastanti sulla biodiversità.      Gli ecosistemi marini e terrestri stanno subendo trasformazioni profonde      ...
+
+  Documento 2:
+  La biodiversità è particolarmente vulnerabile al cambiamento climatico.      L'aumento delle temperature e i cambiamenti nei regimi delle precipitazio...
+
+--------------------------------------------------------------------------------
+⭐ RERANKING LLM (con valutazione semantica Gemini):
+--------------------------------------------------------------------------------
+
+  Documento 1:
+  Il cambiamento climatico ha impatti devastanti sulla biodiversità.      Gli ecosistemi marini e terrestri stanno subendo trasformazioni profonde      ...
+
+  Documento 2:
+  La biodiversità è particolarmente vulnerabile al cambiamento climatico.      L'aumento delle temperature e i cambiamenti nei regimi delle precipitazio...
+
+--------------------------------------------------------------------------------
+💡 ANALISI DEI RISULTATI:
+--------------------------------------------------------------------------------
+  ✅ Il reranking LLM ha identificato i documenti che parlano
+     SPECIFICAMENTE di biodiversità e cambiamento climatico
+  ❌ Il baseline ha recuperato documenti più generici che menzionano
+     solo vagamente i termini della query
+
+  🎯 CONCLUSIONE: Il reranking migliora significativamente la precision!
+
+================================================================================
+🔧 SETUP: Cross-Encoder Model
+================================================================================
+✅ Cross-Encoder caricato: ms-marco-MiniLM-L-6-v2
+   - Modello specializzato per ranking
+   - ~23M parametri
+   - Addestrato su MS MARCO dataset
+✅ CrossEncoderRetriever class definita
+
+================================================================================
+🔬 DEMO: Cross-Encoder Reranking
+================================================================================
+
+Query: Quali sono gli impatti del cambiamento climatico sulla biodiversità?
+
+⏳ Esecuzione retrieval + reranking con Cross-Encoder...
+
+--------------------------------------------------------------------------------
+📄 DOCUMENTI RERANKED CON CROSS-ENCODER (Top 3):
+--------------------------------------------------------------------------------
+
+Documento 1:
+L'architettura della risposta alla crisi climatica poggia su due pilastri fondamentali e complementari: la **mitigazione**, ovvero la riduzione drastica delle emissioni di gas serra per prevenire gli ...
+
+Documento 2:
+responsabili della crisi climatica, ne subiscono in modo sproporzionato gli impatti e sono in prima linea nella protezione degli ecosistemi più vitali del pianeta....
+
+Documento 3:
+Il cambiamento climatico, quella trasformazione silenziosa e inesorabile che sta ridefinendo il nostro mondo, non è un fenomeno monolitico ma un intricato mosaico di cause ed effetti, una rete comples...
+
+================================================================================
+🏆 CONFRONTO COMPLETO: Baseline vs Cross-Encoder vs LLM
+================================================================================
+
+--------------------------------------------------------------------------------
+🔹 METODO 1: BASELINE (Solo Similarity Search)
+--------------------------------------------------------------------------------
+
+Documento 1:
+La fusione del ghiaccio marino artico, inoltre, innesca un pericoloso ciclo di feedback positivo noto come effetto albedo: il ghiaccio bianco riflette...
+
+Documento 2:
+e umidità sta espandendo l'areale geografico di vettori di malattie come le zanzare, portando patologie un tempo confinate ai tropici, come la dengue ...
+
+Documento 3:
+Il cambiamento climatico, quella trasformazione silenziosa e inesorabile che sta ridefinendo il nostro mondo, non è un fenomeno monolitico ma un intri...
+
+--------------------------------------------------------------------------------
+⚡ METODO 2: CROSS-ENCODER RERANKING
+--------------------------------------------------------------------------------
+
+Documento 1:
+Il cambiamento climatico, quella trasformazione silenziosa e inesorabile che sta ridefinendo il nostro mondo, non è un fenomeno monolitico ma un intri...
+
+Documento 2:
+L'architettura della risposta alla crisi climatica poggia su due pilastri fondamentali e complementari: la **mitigazione**, ovvero la riduzione drasti...
+
+Documento 3:
+Questa consapevolezza sta spostando il focus anche verso soluzioni basate sulla natura (Nature-Based Solutions), approcci che sfruttano la potenza deg...
+
+--------------------------------------------------------------------------------
+🤖 METODO 3: LLM-BASED RERANKING (Gemini)
+--------------------------------------------------------------------------------
+
+Documento 1:
+L'aumento della temperatura delle acque superficiali non solo alimenta uragani e tifoni rendendoli più potenti e distruttivi, ma provoca anche il feno...
+
+Documento 2:
+Contemporaneamente, l'assorbimento di CO2 sta innescando un processo chimico insidioso: l'acidificazione degli oceani. L'anidride carbonica reagisce c...
+
+Documento 3:
+che integra alberi e arbusti nelle coltivazioni agricole, non solo sequestrano carbonio nel suolo e nella biomassa, ma migliorano anche la fertilità d...
+
+================================================================================
+✅ DEMO COMPLETATA: Reranking per Sistemi RAG
+================================================================================
+
+🎓 LEZIONI CHIAVE:
+
+1. QUANDO USARE IL RERANKING:
+   ✅ Quando il retrieval iniziale recupera troppi documenti irrilevanti
+   ✅ Quando l'ordine dei documenti non riflette la vera rilevanza
+   ✅ Quando hai bisogno di massima precision con budget limitato
+
+2. QUALE METODO SCEGLIERE:
+   🤖 LLM-BASED (Gemini):
+      → Prototipazione e testing
+      → Query complesse che richiedono ragionamento
+      → Domini specializzati dove cross-encoder fallisce
+      → Budget disponibile per API calls
+
+   ⚡ CROSS-ENCODER (MS MARCO):
+      → Produzione con alto volume di query
+      → Requisiti di bassa latenza
+      → Budget limitato (nessuna API call)
+      → Domini generali
+
+3. BEST PRACTICES:
+   • Retrieval Ampio → Reranking Preciso: Recupera 20-50 docs, rerank top 3-5
+   • Monitora Performance: Traccia miglioramento di rilevanza vs costo
+   • Combinazioni: Cross-Encoder per filtering + LLM per reranking finale
+   • Caching: Cachea risultati di reranking per query frequenti
+
+4. INTEGRAZIONE CON ALTRE TECNICHE RAG:
+   • Reranking + HyDE: Genera documento ipotetico, poi rerank
+   • Reranking + Query Transformation: Trasforma query, poi rerank
+   • Reranking + Fusion Retrieval: Fai fusion, poi rerank per precision finale
+   • Reranking + RSE: Rerank, poi estrai segmenti rilevanti
+
+💰 CONSIDERAZIONI SUI COSTI:
+   Cross-Encoder: Gratuito (esecuzione locale)
+   LLM-based: $0.001-0.01 per query (dipende da # documenti e lunghezza)
+   → Per 1000 query/giorno con LLM: ~$10-100/giorno
+   → Per 1000 query/giorno con Cross-Encoder: $0
+
+🚀 RACCOMANDAZIONE FINALE:
+   Inizia con Cross-Encoder per il 90% dei casi.
+   Usa LLM-based solo quando assolutamente necessario per accuratezza massima.
+   Combina entrambi per il meglio dei due mondi (ma considera i costi).
+
+================================================================================

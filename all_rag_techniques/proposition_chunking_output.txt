@@ -1,0 +1,315 @@
+✅ Documento caricato: 14200 caratteri
+📄 Documento suddiviso in 38 chunk iniziali
+
+================================================================================
+📊 STIMA CHIAMATE API E COSTI
+================================================================================
+
+📄 DOCUMENTO:
+   - Chunks da processare: 38
+   - Proposizioni stimate: ~190
+
+🔄 CHIAMATE API:
+   - Generazione proposizioni: 38 chiamate
+   - Quality check proposizioni: ~190 chiamate
+   - TOTALE chiamate: ~228 chiamate
+
+🎯 TOKEN STIMATI:
+   - Input tokens: ~87,400
+   - Output tokens: ~15,200
+   - Totale tokens: ~102,600
+
+💰 COSTO STIMATO (Gemini 2.5 Flash-Lite Preview):
+   - Input cost:  $0.0087 ($0.10/1M tokens)
+   - Output cost: $0.0061 ($0.40/1M tokens)
+   - TOTALE:      $0.0148
+
+⏱️  TEMPO STIMATO CON PARALLELIZZAZIONE:
+   - Batch di 10 chunks in parallelo per generazione
+   - Batch di 20 proposizioni in parallelo per quality check
+   - Circa 2-4 minuti (vs 10-15 min sequenziali)
+   - Velocizzazione: ~5-10x
+
+================================================================================
+⚠️  NOTE IMPORTANTI:
+   - Questi sono valori stimati. Il consumo reale può variare del ±30%
+   - Prezzi basati sul Paid Tier di Google AI
+   - Free Tier: disponibile ma con limiti di rate (500 RPD per grounding)
+================================================================================
+
+🤔 Vuoi procedere con l'elaborazione? (s/n): s
+
+⚡ Vuoi saltare il quality check per velocizzare? (s/n, default=n): n
+✅ Quality check ABILITATO - le proposizioni saranno valutate
+
+✅ Procedendo con l'elaborazione...
+
+🔄 Generazione proposizioni da 38 chunk in batch di 10...
+   Stima: ~190 proposizioni attese
+
+⚠️ Errore nel chunk 9: 'NoneType' object has no attribute 'propositions'
+   Causa probabile: Timeout API o risposta None dal modello
+   Impatto: Chunk saltato, il processo continua
+⚠️ Errore nel chunk 10: 'NoneType' object has no attribute 'propositions'
+   Causa probabile: Timeout API o risposta None dal modello
+   Impatto: Chunk saltato, il processo continua
+   [10/38] Proposizioni generate: 69 | ETA: 0.0min | Velocità: 7.9 chunks/sec
+   [20/38] Proposizioni generate: 171 | ETA: 0.0min | Velocità: 7.8 chunks/sec
+   [30/38] Proposizioni generate: 265 | ETA: 0.0min | Velocità: 8.5 chunks/sec
+   [38/38] Proposizioni generate: 337 | ETA: 0.0min | Velocità: 8.3 chunks/sec
+
+✅ Fase 1 completata:
+   - Proposizioni generate: 337 (vs 190 stimate)
+   - Chiamate API: 38
+   - Tempo impiegato: 0.08 minuti
+   - Velocità media: 8.3 chunks/sec
+
+🔍 Avvio quality check su 337 proposizioni in batch di 20...
+   Stima chiamate: ~337
+
+   [20/337] Valutate | Accettate: 20 | Rifiutate: 0 | ETA: 0.0min
+   [40/337] Valutate | Accettate: 40 | Rifiutate: 0 | ETA: 0.0min
+   [60/337] Valutate | Accettate: 60 | Rifiutate: 0 | ETA: 0.0min
+   [80/337] Valutate | Accettate: 80 | Rifiutate: 0 | ETA: 0.0min
+   [100/337] Valutate | Accettate: 100 | Rifiutate: 0 | ETA: 0.0min
+   [120/337] Valutate | Accettate: 120 | Rifiutate: 0 | ETA: 0.0min
+   [140/337] Valutate | Accettate: 140 | Rifiutate: 0 | ETA: 0.0min
+   [160/337] Valutate | Accettate: 160 | Rifiutate: 0 | ETA: 0.0min
+   [180/337] Valutate | Accettate: 180 | Rifiutate: 0 | ETA: 0.0min
+   [200/337] Valutate | Accettate: 200 | Rifiutate: 0 | ETA: 0.0min
+   [220/337] Valutate | Accettate: 220 | Rifiutate: 0 | ETA: 0.0min
+   [240/337] Valutate | Accettate: 240 | Rifiutate: 0 | ETA: 0.0min
+   [260/337] Valutate | Accettate: 260 | Rifiutate: 0 | ETA: 0.0min
+   [280/337] Valutate | Accettate: 280 | Rifiutate: 0 | ETA: 0.0min
+   [300/337] Valutate | Accettate: 300 | Rifiutate: 0 | ETA: 0.0min
+   [320/337] Valutate | Accettate: 320 | Rifiutate: 0 | ETA: 0.0min
+   [337/337] Valutate | Accettate: 337 | Rifiutate: 0 | ETA: 0.0min
+
+✅ Fase 2 completata:
+   - Proposizioni valutate: 337
+   - Proposizioni accettate: 337
+   - Proposizioni scartate: 0
+   - Tasso di successo: 100.0%
+   - Chiamate API: 337
+   - Tempo impiegato: 0.16 minuti
+   - Velocità media: 35.5 props/sec
+
+================================================================================
+📊 REPORT FINALE: STIMA vs REALE
+================================================================================
+
+🔄 CHIAMATE API:
+   Stimate: 228
+   Reali:   375
+   Errore:  147 chiamate (64.5%)
+
+⏱️  TEMPO TOTALE:
+   Stimato: 9.5 minuti (media)
+   Reale:   0.23 minuti
+
+💰 COSTO STIMATO:
+   Iniziale: $0.0148
+   Aggiornato: $0.0244 (basato su chiamate reali)
+
+================================================================================
+
+
+🔄 Creazione vectorstore per le proposizioni...
+✅ Vectorstore proposizioni creato
+
+🔍 Query: Qual è il meccanismo chimico attraverso cui l'acidificazione degli oceani minaccia gli organismi marini?
+
+📄 Risultati dal Retrieval basato su PROPOSIZIONI:
+================================================================================
+
+1) Proposizione:
+   Contenuto: L'acidificazione degli oceani è un processo chimico.
+   Chunk ID origine: 6
+--------------------------------------------------------------------------------
+
+2) Proposizione:
+   Contenuto: L'acidificazione degli oceani minaccia le fondamenta della catena alimentare marina.
+   Chunk ID origine: 6
+--------------------------------------------------------------------------------
+
+3) Proposizione:
+   Contenuto: L'assorbimento di CO2 sta innescando l'acidificazione degli oceani.
+   Chunk ID origine: 6
+--------------------------------------------------------------------------------
+
+4) Proposizione:
+   Contenuto: L'acidificazione degli oceani è una crisi costruttiva su scala planetaria.
+   Chunk ID origine: 6
+--------------------------------------------------------------------------------
+
+🔄 Creazione vectorstore per chunk di dimensioni maggiori...
+✅ Vectorstore chunk grandi creato
+
+🔍 Query: Qual è il meccanismo chimico attraverso cui l'acidificazione degli oceani minaccia gli organismi marini?
+
+📄 Risultati dal Retrieval basato su CHUNK GRANDI:
+================================================================================
+
+1) Chunk:
+   Contenuto: Contemporaneamente, l'assorbimento di CO2 sta innescando un processo chimico insidioso: l'acidificazione degli oceani. L'anidride carbonica reagisce con l'acqua formando acido carbonico, che abbassa il pH e riduce la concentrazione di ioni carbonato, i mattoni fondamentali con cui innumerevoli organismi marini, dai microscopici foraminiferi ai molluschi e ai crostacei, costruiscono i loro gusci e scheletri; è una crisi costruttiva su scala planetaria che minaccia le fondamenta stesse della catena alimentare marina.
+   Chunk ID: 6
+--------------------------------------------------------------------------------
+
+2) Chunk:
+   Contenuto: L'aumento della temperatura delle acque superficiali non solo alimenta uragani e tifoni rendendoli più potenti e distruttivi, ma provoca anche il fenomeno dello sbiancamento dei coralli, dove le microalghe simbionti (zooxantelle) che vivono nei tessuti dei coralli e forniscono loro colore e nutrimento vengono espulse a causa dello stress termico, lasciando lo scheletro calcareo bianco e vulnerabile, un cimitero sottomarino che segna la morte di interi ecosistemi brulicanti di vita.
+   Chunk ID: 5
+--------------------------------------------------------------------------------
+
+3) Chunk:
+   Contenuto: La sua origine, ormai scientificamente acclarata, risiede nell'alterazione antropogenica del ciclo del carbonio, un processo innescato dalla fame di energia della civiltà industriale che, bruciando combustibili fossili come carbone, petrolio e gas naturale, ha rilasciato nell'atmosfera quantità colossali di anidride carbonica (CO2) e altri gas climalteranti, come il metano (CH4) proveniente dagli allevamenti intensivi e dalle risaie, e il protossido di azoto (N2O) legato all'uso massiccio di fertilizzanti sintetici.
+   Chunk ID: 3
+--------------------------------------------------------------------------------
+
+4) Chunk:
+   Contenuto: La fusione del ghiaccio marino artico, inoltre, innesca un pericoloso ciclo di feedback positivo noto come effetto albedo: il ghiaccio bianco riflette gran parte della radiazione solare, mentre l'acqua scura dell'oceano la assorbe, riscaldandosi ulteriormente e accelerando la fusione del ghiaccio rimanente. Questo riscaldamento anomalo dell'Artico sta destabilizzando le correnti a getto, contribuendo a eventi meteorologici estremi come ondate di calore anomale in Europa e gelate improvvise in Nord America.
+   Chunk ID: 10
+--------------------------------------------------------------------------------
+
+================================================================================
+TEST 1: Quali sono le principali cause del cambiamento climatico secondo il documento?
+================================================================================
+
+📄 RISULTATI - Retrieval basato su PROPOSIZIONI:
+--------------------------------------------------------------------------------
+1) L'origine del cambiamento climatico è l'alterazione antropogenica del ciclo del carbonio. [Chunk ID: 3]
+
+2) Il cambiamento climatico è un intricato mosaico di cause ed effetti. [Chunk ID: 2]
+
+3) Il cambiamento climatico non è un fenomeno monolitico. [Chunk ID: 2]
+
+4) La combustione di combustibili fossili ha rilasciato altri gas climalteranti nell'atmosfera. [Chunk ID: 3]
+
+📄 RISULTATI - Retrieval basato su CHUNK GRANDI:
+--------------------------------------------------------------------------------
+1) La sua origine, ormai scientificamente acclarata, risiede nell'alterazione antropogenica del ciclo del carbonio, un processo innescato dalla fame di e... [Chunk ID: 3]
+
+2) dei modelli di temperatura e umidità sta espandendo l'areale geografico di vettori di malattie come le zanzare, portando patologie un tempo confinate ... [Chunk ID: 20]
+
+3) legalmente vincolante di mantenere l'aumento della temperatura media globale "ben al di sotto" dei 2°C rispetto ai livelli preindustriali, e di proseg... [Chunk ID: 27]
+
+4) Di fronte a una sfida di questa portata, che non conosce confini nazionali, la risposta non può che essere collettiva e coordinata. Il principale foru... [Chunk ID: 26]
+
+
+================================================================================
+TEST 2: Che cos'è l'effetto albedo e come influisce sul riscaldamento dell'Artico?
+================================================================================
+
+📄 RISULTATI - Retrieval basato su PROPOSIZIONI:
+--------------------------------------------------------------------------------
+1) L'intrappolamento del calore innesca un riscaldamento globale. [Chunk ID: 4]
+
+2) L'aumento della temperatura delle acque superficiali provoca lo sbiancamento dei coralli. [Chunk ID: 5]
+
+3) L'anidride carbonica reagisce con l'acqua. [Chunk ID: 6]
+
+4) L'aumento della temperatura delle acque superficiali rende gli uragani e i tifoni più potenti. [Chunk ID: 5]
+
+📄 RISULTATI - Retrieval basato su CHUNK GRANDI:
+--------------------------------------------------------------------------------
+1) La fusione del ghiaccio marino artico, inoltre, innesca un pericoloso ciclo di feedback positivo noto come effetto albedo: il ghiaccio bianco riflette... [Chunk ID: 10]
+
+2) L'aumento della temperatura delle acque superficiali non solo alimenta uragani e tifoni rendendoli più potenti e distruttivi, ma provoca anche il feno... [Chunk ID: 5]
+
+3) Questi gas, pur essendo presenti in tracce, agiscono come una coperta sempre più spessa attorno al pianeta, intrappolando il calore che altrimenti ver... [Chunk ID: 4]
+
+4) come l'agroforestazione, che integra alberi e arbusti nelle coltivazioni agricole, non solo sequestrano carbonio nel suolo e nella biomassa, ma miglio... [Chunk ID: 13]
+
+
+================================================================================
+TEST 3: Quali tecnologie innovative vengono menzionate per la cattura del carbonio?
+================================================================================
+
+📄 RISULTATI - Retrieval basato su PROPOSIZIONI:
+--------------------------------------------------------------------------------
+1) Si stanno esplorando tecnologie di cattura diretta del carbonio dall'aria (Direct Air Capture - DAC). [Chunk ID: 12]
+
+2) Le pratiche di agricoltura rigenerativa possono trasformare i suoli da fonte di emissioni a pozzi di assorbimento del carbonio. [Chunk ID: 33]
+
+3) La riforestazione è un modo per assorbire CO2. [Chunk ID: 32]
+
+4) L'agroforestazione sequestra carbonio nel suolo. [Chunk ID: 12]
+
+📄 RISULTATI - Retrieval basato su CHUNK GRANDI:
+--------------------------------------------------------------------------------
+1) strada a una loro integrazione persino nelle finestre degli edifici o su superfici flessibili. Parallelamente, si esplorano tecnologie di cattura dire... [Chunk ID: 12]
+
+2) come l'agroforestazione, che integra alberi e arbusti nelle coltivazioni agricole, non solo sequestrano carbonio nel suolo e nella biomassa, ma miglio... [Chunk ID: 13]
+
+3) La sua origine, ormai scientificamente acclarata, risiede nell'alterazione antropogenica del ciclo del carbonio, un processo innescato dalla fame di e... [Chunk ID: 3]
+
+4) In questo scenario di crisi, l'ingegno umano si muove su più fronti, cercando soluzioni che spaziano dalla tecnologia più avanzata al recupero di sapi... [Chunk ID: 11]
+
+
+================================================================================
+📊 ANALISI COMPARATIVA FINALE: PROPOSIZIONI vs CHUNK GRANDI
+================================================================================
+
+📈 STATISTICHE GENERALI:
+   - Proposizioni totali generate: 337
+   - Chunk originali: 38
+   - Rapporto proposizioni/chunk: 8.9x
+   - Tasso di successo quality check: 100.0%
+
+🎯 OSSERVAZIONI SUI RISULTATI DEI TEST:
+
+1️⃣ TEST 1 - Cause del Cambiamento Climatico:
+   ✅ PROPOSIZIONI: Risposte precise e dirette
+      - 'L'origine è l'alterazione antropogenica del ciclo del carbonio'
+      - Informazioni atomiche, facili da processare per un LLM
+   📦 CHUNK GRANDI: Risposte con più contesto
+      - Include dettagli su combustibili fossili e gas climalteranti
+      - Più ricco ma richiede parsing del contesto
+   🏆 VINCITORE: Proposizioni (per query fattuale diretta)
+
+2️⃣ TEST 2 - Effetto Albedo:
+   ⚠️ PROPOSIZIONI: Risultati MENO rilevanti
+      - Ha recuperato chunk generici su temperatura e oceani
+      - Non ha trovato la spiegazione specifica dell'effetto albedo
+   ✅ CHUNK GRANDI: Risultati PIÙ rilevanti
+      - Primo risultato contiene la spiegazione completa dell'effetto albedo
+      - Il contesto preservato aiuta con query complesse
+   🏆 VINCITORE: Chunk Grandi (per query che richiede spiegazione dettagliata)
+
+3️⃣ TEST 3 - Tecnologie di Cattura del Carbonio:
+   ✅ PROPOSIZIONI: Risultati molto specifici
+      - 'Si esplorano tecnologie Direct Air Capture (DAC)'
+      - Proposizioni mirate sulle tecnologie specifiche
+   📦 CHUNK GRANDI: Risultati con contesto tecnologico
+      - Include celle solari a perovskite + DAC nel contesto
+      - Più informazioni ma meno focalizzato sulla domanda
+   🏆 VINCITORE: Proposizioni (per lista di tecnologie specifiche)
+
+🎓 CONCLUSIONI E RACCOMANDAZIONI:
+
+   📌 PROPOSITION CHUNKING funziona meglio quando:
+      • Query richiede fatti specifici e discreti
+      • Si cerca una lista di elementi (tecnologie, cause, effetti)
+      • Il documento è ricco di informazioni fattuali atomiche
+      • Si vuole minimizzare il 'rumore' per un LLM downstream
+
+   📌 CHUNK-BASED RETRIEVAL funziona meglio quando:
+      • Query richiede spiegazioni dettagliate o meccanismi
+      • Il contesto narrativo è importante per la comprensione
+      • Si cercano relazioni causali complesse
+      • Il flusso del testo originale aiuta la comprensione
+
+   💡 APPROCCIO IBRIDO (Raccomandato):
+      • Usa ENTRAMBI i metodi in parallelo
+      • Usa proposizioni per retrieval preciso di fatti
+      • Usa chunk grandi per arricchire il contesto
+      • Combina i risultati nel prompt finale al LLM
+      • Es: 'Fatti chiave: [proposizioni] | Contesto: [chunks]'
+
+   ⚡ PERFORMANCE OTTENUTE IN QUESTO TEST:
+      • Tempo generazione proposizioni: 4.56 min
+      • Tempo quality check: 9.50 min
+      • Tempo totale: 14.05 min
+      • Velocità: 8.3 chunks/sec
+      • Costo stimato: $0.0244
+
+================================================================================

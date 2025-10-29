@@ -1,0 +1,116 @@
+================================================================================
+🚀 FASE 1: Creazione HyDE Retriever
+================================================================================
+
+📂 Caricamento documento: cambiamento_climatico.txt
+📄 Documento caricato: 14200 caratteri
+✂️  Creati 45 chunk
+   Dimensione media: 365 caratteri
+✅ Vector store creato con indicizzazione standard
+
+✅ Retriever HyDE pronto!
+
+================================================================================
+🧪 FASE 2: Test con Query di Esempio
+================================================================================
+
+📋 Query: Qual è la causa diretta dello sbiancamento dei coralli?
+
+⏳ Generazione documento ipotetico...
+
+================================================================================
+📄 DOCUMENTO IPOTETICO GENERATO (caratteristica chiave di HyDE)
+================================================================================
+
+🤖 Gemini ha generato il seguente documento per rispondere alla query:
+
+--------------------------------------------------------------------------------
+La causa diretta dello sbiancamento dei coralli è l'espulsione delle zooxantelle, alghe simbiotiche essenziali, dovuta a stress ambientali, primariamente l'aumento prolungato della temperatura dell'acqua marina (stress termico). Questo fenomeno, che supera la tolleranza fisiologica del polipo, interrompe la simbiosi mutualistica. Senza le zooxantelle, che forniscono fino al 90% dell'energia al corallo tramite fotosintesi, il tessuto diventa trasparente, rivelando lo scheletro calcareo bianco. Altri fattori aggravanti includono l'acidificazione degli oceani e l'inquinamento.
+--------------------------------------------------------------------------------
+
+📊 Lunghezza: 580 caratteri
+
+================================================================================
+📚 CHUNK RECUPERATI (basati sul documento ipotetico)
+================================================================================
+
+📄 Chunk 1:
+--------------------------------------------------------------------------------
+L'aumento della temperatura delle acque superficiali non solo alimenta uragani e tifoni rendendoli più potenti e distruttivi, ma provoca anche il fenomeno dello sbiancamento dei coralli, dove le microalghe simbionti (zooxantelle) che vivono nei tessuti dei coralli e forniscono loro colore e nutrimento vengono espulse a causa dello stress termico, lasciando lo scheletro calcareo bianco e vulnerabile, un cimitero sottomarino che segna la morte di interi ecosistemi brulicanti di vita.
+--------------------------------------------------------------------------------
+
+📄 Chunk 2:
+--------------------------------------------------------------------------------
+Contemporaneamente, l'assorbimento di CO2 sta innescando un processo chimico insidioso: l'acidificazione degli oceani. L'anidride carbonica reagisce con l'acqua formando acido carbonico, che abbassa il pH e riduce la concentrazione di ioni carbonato, i mattoni fondamentali con cui innumerevoli organismi marini, dai microscopici foraminiferi ai molluschi e ai crostacei, costruiscono i loro gusci e scheletri; è una crisi costruttiva su scala planetaria che minaccia le fondamenta stesse della
+--------------------------------------------------------------------------------
+
+📄 Chunk 3:
+--------------------------------------------------------------------------------
+La fusione del ghiaccio marino artico, inoltre, innesca un pericoloso ciclo di feedback positivo noto come effetto albedo: il ghiaccio bianco riflette gran parte della radiazione solare, mentre l'acqua scura dell'oceano la assorbe, riscaldandosi ulteriormente e accelerando la fusione del ghiaccio rimanente. Questo riscaldamento anomalo dell'Artico sta destabilizzando le correnti a getto, contribuendo a eventi meteorologici estremi come ondate di calore anomale in Europa e gelate improvvise in
+--------------------------------------------------------------------------------
+
+================================================================================
+🧪 FASE 3: Secondo Test - Query su Tecnologie
+================================================================================
+
+📋 Query: Quali sono le tecnologie innovative per combattere il cambiamento climatico?
+
+⏳ Generazione documento ipotetico...
+
+================================================================================
+📄 DOCUMENTO IPOTETICO GENERATO
+================================================================================
+
+🤖 Gemini ha generato:
+
+--------------------------------------------------------------------------------
+Le tecnologie innovative per mitigare il cambiamento climatico spaziano dalla cattura diretta dell'aria (DAC) per la CO2, all'idrogeno verde prodotto tramite elettrolisi rinnovabile. L'energia solare di nuova generazione (perovskiti) e l'eolico offshore galleggiante aumentano la produzione pulita. Sono cruciali anche lo stoccaggio energetico avanzato (batterie allo stato solido) e l'agricoltura di precisione basata su IA per ridurre le emissioni di metano e ottimizzare l'uso delle risorse idriche.
+--------------------------------------------------------------------------------
+
+📊 Lunghezza: 502 caratteri
+
+================================================================================
+📚 CHUNK RECUPERATI
+================================================================================
+
+📄 Chunk 1:
+--------------------------------------------------------------------------------
+tradizionale, aprendo la strada a una loro integrazione persino nelle finestre degli edifici o su superfici flessibili. Parallelamente, si esplorano tecnologie di cattura diretta del carbonio dall'aria (Direct Air Capture - DAC), macchine complesse che agiscono come "alberi artificiali" per ridurre la concentrazione di CO2 già presente in atmosfera. Tuttavia, molte delle soluzioni più resilienti ed eque potrebbero non venire da laboratori high-tech, ma dalla terra stessa. Pratiche come
+--------------------------------------------------------------------------------
+
+📄 Chunk 2:
+--------------------------------------------------------------------------------
+ed eque potrebbero non venire da laboratori high-tech, ma dalla terra stessa. Pratiche come l'agroforestazione, che integra alberi e arbusti nelle coltivazioni agricole, non solo sequestrano carbonio nel suolo e nella biomassa, ma migliorano anche la fertilità del terreno, regolano il ciclo dell'acqua e aumentano la biodiversità, offrendo un'alternativa sostenibile alla monocoltura industriale. Queste tecniche spesso si basano su conoscenze ecologiche tradizionali custodite per generazioni da
+--------------------------------------------------------------------------------
+
+📄 Chunk 3:
+--------------------------------------------------------------------------------
+energetica è il campo di battaglia principale, una corsa tecnologica per decarbonizzare la nostra economia dove l'innovazione procede a un ritmo vertiginoso. Le tecnologie per l'energia solare ed eolica sono diventate non solo competitive, ma spesso più economiche dei combustibili fossili in molte parti del mondo, ma la loro natura intermittente pone una sfida cruciale per la stabilità delle reti elettriche; per questo, lo sviluppo di sistemi di accumulo energetico su larga scala è altrettanto
+--------------------------------------------------------------------------------
+
+================================================================================
+✅ DEMO COMPLETATA: HyDE - Hypothetical Document Embeddings
+================================================================================
+
+🎯 LEZIONI CHIAVE:
+   1. HyDE genera documenti ipotetici A RUNTIME per ogni query
+      → Trasforma query brevi in documenti dettagliati
+   2. Il retrieval usa l'embedding del documento ipotetico
+      → Elimina il mismatch query-documento
+   3. L'indicizzazione è standard (embeddings normali dei chunk)
+      → La 'magia' avviene solo al momento della query
+   4. Trade-off: precisione aumentata vs latenza query
+      → Ogni query richiede una chiamata LLM aggiuntiva
+
+💡 QUANDO USARE HyDE:
+   ✅ Query complesse che richiedono risposte dettagliate
+   ✅ Domini tecnici dove espandere la query aiuta
+   ✅ Quando la precisione è prioritaria rispetto alla latenza
+   ✅ Documenti lunghi e dettagliati nel vector store
+
+⚠️  QUANDO HyDE HA MENO IMPATTO:
+   - Query già dettagliate o documenti brevi
+   - Necessità di latenza minima (HyDE aggiunge overhead)
+   - Budget limitato per chiamate LLM (costa ad ogni query)
+
+================================================================================

@@ -1,9 +1,3 @@
-from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import FAISS
-from pydantic import BaseModel, Field
-from langchain_core.prompts import PromptTemplate
 from openai import RateLimitError
 from typing import List
 from rank_bm25 import BM25Okapi
@@ -64,174 +58,16 @@ def get_file_hash(filepath):
     return hash_sha256.hexdigest()
 
 
-def encode_pdf(path, chunk_size=1000, chunk_overlap=200):
-    """
-    Pipeline PDF → chunking → pulizia testo.
-
-    Args:
-        path: Percorso file PDF.
-        chunk_size: Dimensione chunk caratteri.
-        chunk_overlap: Sovrapposizione tra chunk.
-
-    Returns:
-        Documenti processati e puliti (pronti per embeddings).
-    """
-
-    # Caricamento PDF
-    loader = PyPDFLoader(path)
-    documents = loader.load()
-
-    # Chunking testo
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=chunk_size, chunk_overlap=chunk_overlap, length_function=len
-    )
-    texts = text_splitter.split_documents(documents)
-    cleaned_texts = replace_t_with_space(texts)
-
-    return cleaned_texts
 
 
-def encode_from_string(content, chunk_size=1000, chunk_overlap=200):
-    """
-    Pipeline testo → vector store OpenAI.
-
-    Args:
-        content (str): Testo da processare.
-        chunk_size (int): Dimensione chunk.
-        chunk_overlap (int): Sovrapposizione chunk.
-
-    Returns:
-        FAISS vector store con contenuto embedded.
-
-    Raises:
-        ValueError: Per input non validi.
-        RuntimeError: Per errori durante encoding.
-    """
-
-    if not isinstance(content, str) or not content.strip():
-        raise ValueError("Content deve essere stringa non vuota.")
-
-    if not isinstance(chunk_size, int) or chunk_size <= 0:
-        raise ValueError("chunk_size deve essere intero positivo.")
-
-    if not isinstance(chunk_overlap, int) or chunk_overlap < 0:
-        raise ValueError("chunk_overlap deve essere intero non negativo.")
-
-    try:
-        # Chunking contenuto
-        text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=chunk_size,
-            chunk_overlap=chunk_overlap,
-            length_function=len,
-            is_separator_regex=False,
-        )
-        chunks = text_splitter.create_documents([content])
-
-        # Metadata per chunk
-        for chunk in chunks:
-            chunk.metadata['relevance_score'] = 1.0
-
-        # Embeddings e vector store
-        embeddings = OpenAIEmbeddings()
-        vectorstore = FAISS.from_documents(chunks, embeddings)
-
-    except Exception as e:
-        raise RuntimeError(f"Errore durante encoding: {str(e)}")
-
-    return vectorstore
 
 
-def retrieve_context_per_question(question, chunks_query_retriever):
-    """
-    Retrieval contesto per domanda.
-
-    Args:
-        question: Domanda utente.
-        chunks_query_retriever: Retriever per ricerca similarità.
-
-    Returns:
-        Lista contenuti documenti rilevanti.
-    """
-
-    # Ricerca documenti rilevanti
-    docs = chunks_query_retriever.invoke(question)
-
-    # Estrazione contenuti
-    context = [doc.page_content for doc in docs]
-
-    return context
 
 
-class QuestionAnswerFromContext(BaseModel):
-    """
-    Modello per risposta basata su contesto.
-
-    Attributes:
-        answer_based_on_content (str): Risposta generata dal contesto.
-    """
-    answer_based_on_content: str = Field(description="Genera risposta alla domanda basata sul contesto fornito.")
 
 
-def create_question_answer_from_context_chain(llm):
-    # Configurazione LLM per risposte contestuali
-    question_answer_from_context_llm = llm
-
-    # Template prompt per risposte basate su contesto
-    question_answer_prompt_template = """
-    Fornisci risposta concisa basata SOLO sul contesto fornito:
-    {context}
-    Domanda
-    {question}
-    """
-
-    # Creazione prompt template
-    question_answer_from_context_prompt = PromptTemplate(
-        template=question_answer_prompt_template,
-        input_variables=["context", "question"],
-    )
-
-    # Chain: prompt + LLM con output strutturato
-    question_answer_from_context_cot_chain = question_answer_from_context_prompt | question_answer_from_context_llm.with_structured_output(
-        QuestionAnswerFromContext)
-    return question_answer_from_context_cot_chain
 
 
-def answer_question_from_context(question, context, question_answer_from_context_chain):
-    """
-    Risponde domanda usando contesto fornito.
-
-    Args:
-        question: Domanda da rispondere.
-        context: Contesto per risposta.
-        question_answer_from_context_chain: Chain LLM per risposte.
-
-    Returns:
-        Dict con risposta, contesto e domanda.
-    """
-    input_data = {
-        "question": question,
-        "context": context
-    }
-    print("Risposta basata su contesto recuperato...")
-
-    output = question_answer_from_context_chain.invoke(input_data)
-    answer = output.answer_based_on_content
-    return {"answer": answer, "context": context, "question": question}
-
-
-def show_context(context):
-    """
-    Visualizza lista contesti recuperati.
-
-    Args:
-        context (list): Lista contesti da mostrare.
-
-    Visualizza ogni contesto con numerazione.
-    """
-    for i, c in enumerate(context):
-        print(f"Context {i + 1}:")
-        print(c)
-        print("\n")
 
 
 def read_pdf_to_string(path):
@@ -379,52 +215,6 @@ def get_langchain_embedding_provider(provider: EmbeddingProvider, model_id: str 
         raise ValueError(f"Provider embeddings non supportato: {provider}")
 
 
-def load_or_create_vectorstore(pdf_path, chunk_size=1000, chunk_overlap=200, embedding_provider=EmbeddingProvider.GOOGLE):
-    """
-    Gestisce caricamento/creazione vector store con caching intelligente basato su parametri.
-
-    Args:
-        pdf_path (str): Percorso PDF.
-        chunk_size (int): Dimensione chunk.
-        chunk_overlap (int): Overlap chunk.
-        embedding_provider (EmbeddingProvider): Provider embeddings.
-
-    Returns:
-        Chroma: Vector store pronto.
-    """
-    # Setup directory e path caching basato su parametri
-    persist_dir = os.path.join(os.path.dirname(pdf_path), ".vector_stores")
-    os.makedirs(persist_dir, exist_ok=True)
-
-    # Crea chiave unica che include parametri di chunking e provider embeddings
-    file_hash = get_file_hash(pdf_path)
-    param_hash = hashlib.md5(f"{chunk_size}_{chunk_overlap}_{embedding_provider.value}".encode()).hexdigest()[:8]
-    vectorstore_path = os.path.join(persist_dir, f"pdf_{file_hash[:8]}_c{chunk_size}_o{chunk_overlap}_{embedding_provider.value[:4]}")
-
-    # Ottieni funzione embeddings
-    embeddings = get_langchain_embedding_provider(embedding_provider)
-
-    # Carica vector store esistente se valido per questi parametri
-    if os.path.exists(vectorstore_path):
-        try:
-            from langchain_chroma import Chroma
-            vectorstore = Chroma(persist_directory=vectorstore_path, embedding_function=embeddings)
-            if vectorstore._collection.count() > 0:
-                print(f"✅ Carico vector store esistente per chunk_size={chunk_size}, overlap={chunk_overlap}: {vectorstore._collection.count()} documenti")
-                return vectorstore
-        except Exception:
-            pass  # Ricrea se errore
-
-    # Crea nuovo vector store con parametri attuali
-    print(f"🔄 Creo nuovo vector store per {os.path.basename(pdf_path)} (chunk_size={chunk_size}, overlap={chunk_overlap})")
-    documents = encode_pdf(pdf_path, chunk_size, chunk_overlap)
-    from langchain_chroma import Chroma
-    vectorstore = Chroma.from_documents(documents, embeddings, persist_directory=vectorstore_path)
-    print(f"✅ Vector store creato: {vectorstore._collection.count()} documenti")
-
-    return vectorstore
-
-
 def get_langchain_model_provider(provider: ModelProvider, model_id: str = None, temperature: float = 0.7):
     """
     Factory provider modelli LLM LangChain.
@@ -458,61 +248,3 @@ def get_langchain_model_provider(provider: ModelProvider, model_id: str = None, 
     else:
         raise ValueError(f"Provider modello non supportato: {provider}")
 
-
-def validate_args(args):
-    """
-    Valida parametri CLI per RAG.
-
-    Args:
-        args: Argomenti da validare.
-
-    Returns:
-        args: Parametri validati.
-
-    Raises:
-        ValueError: Per parametri invalidi.
-    """
-    if args.chunk_size <= 0:
-        raise ValueError("chunk_size deve essere > 0")
-    if args.chunk_overlap < 0:
-        raise ValueError("chunk_overlap deve essere >= 0")
-    if args.n_retrieved <= 0:
-        raise ValueError("n_retrieved deve essere > 0")
-    return args
-
-
-def create_rag_parser(default_pdf="data/Understanding_Climate_Change.pdf"):
-    """
-    Crea parser CLI per script RAG.
-
-    Args:
-        default_pdf (str): PDF di default.
-
-    Returns:
-        ArgumentParser configurato.
-    """
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="Sistema RAG per processamento PDF.",
-        epilog="""
-Esempi:
-  python script.py --path data/document.pdf --query "Cos'è il machine learning?"
-  python script.py --chunk_size 500 --chunk_overlap 100 --n_retrieved 3
-        """
-    )
-
-    parser.add_argument("--path", type=str, default=default_pdf,
-                        help="Percorso file PDF da processare.")
-    parser.add_argument("--chunk_size", type=int, default=1000,
-                        help="Dimensione chunk (default: 1000).")
-    parser.add_argument("--chunk_overlap", type=int, default=200,
-                        help="Overlap chunk (default: 200).")
-    parser.add_argument("--n_retrieved", type=int, default=2,
-                        help="Chunk da recuperare (default: 2).")
-    parser.add_argument("--query", type=str, default="What is the main cause of climate change?",
-                        help="Query di test.")
-    parser.add_argument("--evaluate", action="store_true",
-                        help="Abilita valutazione prestazioni RAG.")
-
-    return parser

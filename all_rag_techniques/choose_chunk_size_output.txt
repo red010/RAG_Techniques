@@ -1,0 +1,178 @@
+================================================================================
+🔬 SISTEMA DI VALUTAZIONE CHUNK SIZE PER RAG
+================================================================================
+📖 Testo: 'Sei personaggi in cerca d'autore' - Luigi Pirandello
+🤖 Modello LLM: Google Gemini 2.5 Flash (supporto nativo italiano)
+🧮 Modello Embeddings: Google embedding-001
+❓ Domande: 5 domande hardcoded specifiche sul testo
+📏 Chunk sizes da testare: [256, 1024, 2048, 4096]
+================================================================================
+
+
+📄 Caricato documento: sei_personaggi_in_cerca d_autore.txt
+   📑 Numero pagine/sezioni: 1
+   📏 Lunghezza totale: 118,915 caratteri
+
+================================================================================
+AVVIO VALUTAZIONE DIMENSIONI CHUNK RAG
+================================================================================
+📄 Documento: sei_personaggi_in_cerca d_autore.txt
+📏 Chunk sizes da valutare: [256, 1024, 2048, 4096]
+❓ Numero domande di valutazione: 5
+
+────────────────────────────────────────────────────────────────────────────────
+DOMANDE DI VALUTAZIONE:
+────────────────────────────────────────────────────────────────────────────────
+
+1. Quale commedia stavano provando gli Attori della Compagnia prima
+   dell'arrivo dei Sei Personaggi e chi ne è l'autore?
+
+2. Come viene "evocata" Madama Pace sul palcoscenico e quale oggetto
+   specifico, legato al suo commercio, ne innesca l'apparizione?
+
+3. Quali sono le versioni contrastanti fornite dal Padre, dalla Madre e dalla
+   Figliastra riguardo all'allontanamento della Madre dalla casa coniugale?
+
+4. Spiega l'argomentazione del Padre sul perché i Personaggi sono "più reali"
+   degli Attori. Qual è la differenza fondamentale tra la loro "realtà" e
+   quella di un essere umano come il Capocomico?
+
+5. Analizzando il finale, dal colpo di rivoltella fino all'ultima indicazione
+   di scena, in che modo il confine tra "realtà" e "finzione" viene
+   definitivamente distrutto, lasciando il Capocomico e il pubblico
+   nell'incertezza?
+
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+⚙️  VALUTAZIONE CHUNK SIZE: 256
+────────────────────────────────────────────────────────────────────────────────
+✂️  Creati 645 chunks (overlap: 10%)
+
+⏱️  Misurazione tempo di risposta per 5 domande...
+   Domanda 1/5: 0.290s
+   Domanda 2/5: 0.285s
+   Domanda 3/5: 0.265s
+   Domanda 4/5: 0.254s
+   Domanda 5/5: 0.250s
+   ⏱️  Tempo medio: 0.269s
+
+📊 Esecuzione metriche di valutazione qualitativa...
+🔬 Usando LangSmith evaluators con gemini-2.5-flash
+📝 Uso 5 domande custom fornite
+   Prima domanda: Quale commedia stavano provando gli Attori della Compagnia p...
+📊 Avviando valutazione diretta su 5 domande...
+🔍 Valutando domanda 1/5: Quale commedia stavano provando gli Attori della C...
+🔍 Valutando domanda 2/5: Come viene "evocata" Madama Pace sul palcoscenico ...
+🔍 Valutando domanda 3/5: Quali sono le versioni contrastanti fornite dal Pa...
+🔍 Valutando domanda 4/5: Spiega l'argomentazione del Padre sul perché i Per...
+🔍 Valutando domanda 5/5: Analizzando il finale, dal colpo di rivoltella fin...
+
+✅ Valutazione completata:
+   ⏱️  Tempo medio risposta: 0.269s
+   🎯 Fedeltà media: 1.000
+   📍 Rilevanza media: 0.610
+
+────────────────────────────────────────────────────────────────────────────────
+⚙️  VALUTAZIONE CHUNK SIZE: 1024
+────────────────────────────────────────────────────────────────────────────────
+✂️  Creati 141 chunks (overlap: 10%)
+
+⏱️  Misurazione tempo di risposta per 5 domande...
+   Domanda 1/5: 0.247s
+   Domanda 2/5: 0.249s
+   Domanda 3/5: 0.247s
+   Domanda 4/5: 0.244s
+   Domanda 5/5: 0.248s
+   ⏱️  Tempo medio: 0.247s
+
+📊 Esecuzione metriche di valutazione qualitativa...
+🔬 Usando LangSmith evaluators con gemini-2.5-flash
+📝 Uso 5 domande custom fornite
+   Prima domanda: Quale commedia stavano provando gli Attori della Compagnia p...
+📊 Avviando valutazione diretta su 5 domande...
+🔍 Valutando domanda 1/5: Quale commedia stavano provando gli Attori della C...
+🔍 Valutando domanda 2/5: Come viene "evocata" Madama Pace sul palcoscenico ...
+🔍 Valutando domanda 3/5: Quali sono le versioni contrastanti fornite dal Pa...
+🔍 Valutando domanda 4/5: Spiega l'argomentazione del Padre sul perché i Per...
+🔍 Valutando domanda 5/5: Analizzando il finale, dal colpo di rivoltella fin...
+
+✅ Valutazione completata:
+   ⏱️  Tempo medio risposta: 0.247s
+   🎯 Fedeltà media: 1.000
+   📍 Rilevanza media: 0.660
+
+────────────────────────────────────────────────────────────────────────────────
+⚙️  VALUTAZIONE CHUNK SIZE: 2048
+────────────────────────────────────────────────────────────────────────────────
+✂️  Creati 68 chunks (overlap: 10%)
+
+⏱️  Misurazione tempo di risposta per 5 domande...
+   Domanda 1/5: 0.244s
+   Domanda 2/5: 0.253s
+   Domanda 3/5: 0.248s
+   Domanda 4/5: 0.253s
+   Domanda 5/5: 0.248s
+   ⏱️  Tempo medio: 0.249s
+
+📊 Esecuzione metriche di valutazione qualitativa...
+🔬 Usando LangSmith evaluators con gemini-2.5-flash
+📝 Uso 5 domande custom fornite
+   Prima domanda: Quale commedia stavano provando gli Attori della Compagnia p...
+📊 Avviando valutazione diretta su 5 domande...
+🔍 Valutando domanda 1/5: Quale commedia stavano provando gli Attori della C...
+🔍 Valutando domanda 2/5: Come viene "evocata" Madama Pace sul palcoscenico ...
+🔍 Valutando domanda 3/5: Quali sono le versioni contrastanti fornite dal Pa...
+🔍 Valutando domanda 4/5: Spiega l'argomentazione del Padre sul perché i Per...
+🔍 Valutando domanda 5/5: Analizzando il finale, dal colpo di rivoltella fin...
+
+✅ Valutazione completata:
+   ⏱️  Tempo medio risposta: 0.249s
+   🎯 Fedeltà media: 0.820
+   📍 Rilevanza media: 0.630
+
+────────────────────────────────────────────────────────────────────────────────
+⚙️  VALUTAZIONE CHUNK SIZE: 4096
+────────────────────────────────────────────────────────────────────────────────
+✂️  Creati 33 chunks (overlap: 10%)
+
+⏱️  Misurazione tempo di risposta per 5 domande...
+   Domanda 1/5: 0.256s
+   Domanda 2/5: 0.248s
+   Domanda 3/5: 0.303s
+   Domanda 4/5: 0.246s
+   Domanda 5/5: 0.244s
+   ⏱️  Tempo medio: 0.259s
+
+📊 Esecuzione metriche di valutazione qualitativa...
+🔬 Usando LangSmith evaluators con gemini-2.5-flash
+📝 Uso 5 domande custom fornite
+   Prima domanda: Quale commedia stavano provando gli Attori della Compagnia p...
+📊 Avviando valutazione diretta su 5 domande...
+🔍 Valutando domanda 1/5: Quale commedia stavano provando gli Attori della C...
+🔍 Valutando domanda 2/5: Come viene "evocata" Madama Pace sul palcoscenico ...
+🔍 Valutando domanda 3/5: Quali sono le versioni contrastanti fornite dal Pa...
+🔍 Valutando domanda 4/5: Spiega l'argomentazione del Padre sul perché i Per...
+🔍 Valutando domanda 5/5: Analizzando il finale, dal colpo di rivoltella fin...
+
+✅ Valutazione completata:
+   ⏱️  Tempo medio risposta: 0.259s
+   🎯 Fedeltà media: 0.820
+   📍 Rilevanza media: 0.720
+
+================================================================================
+📊 RIEPILOGO COMPARATIVO RISULTATI
+================================================================================
+
+Chunk Size   Tempo (s)    Fedeltà      Rilevanza    Score Totale
+────────────────────────────────────────────────────────────────────────────────
+256          0.269        1.000        0.610        0.805       
+1024         0.247        1.000        0.660        0.830       
+2048         0.249        0.820        0.630        0.725       
+4096         0.259        0.820        0.720        0.770       
+
+────────────────────────────────────────────────────────────────────────────────
+🏆 Migliore per qualità: Chunk size 1024 (score: 0.830)
+⚡ Più veloce: Chunk size 1024 (tempo: 0.247s)
+================================================================================

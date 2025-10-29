@@ -1,0 +1,194 @@
+======================================================================
+🏗️ SETUP RAG: Configurazione sistema con Gemini
+======================================================================
+
+📄 FASE 1/4 - Caricamento documento PDF
+----------------------------------------------------------------------
+   ✓ Documento caricato: 33 pagine
+   ⏱️  Tempo: 0.36s
+
+✂️  FASE 2/4 - Suddivisione in chunk
+----------------------------------------------------------------------
+   ✓ Chunk creati: 97
+   📊 Parametri: size=1000, overlap=200
+   ⏱️  Tempo: 0.00s
+
+🧮 FASE 3/4 - Creazione embeddings e vector store
+----------------------------------------------------------------------
+   ✓ Vector store caricato da cache
+   📦 Documenti in cache: 97
+   ⏱️  Tempo: 0.17s
+
+🔍 FASE 4/4 - Configurazione retriever
+----------------------------------------------------------------------
+   ✓ Retriever configurato
+   🎯 Top-K documenti: 3
+
+======================================================================
+✅ SETUP COMPLETATO
+   ⏱️  Tempo totale: 0.53s
+======================================================================
+
+
+🤖 SISTEMA RAG ATTIVO - Elaborazione in corso...
+
+======================================================================
+🔍 QUERY UTENTE
+======================================================================
+❓ What is the main cause of climate change?
+======================================================================
+
+🔎 Ricerca chunk rilevanti nel vector store...
+   ✓ 3 chunk recuperati in 0.41s
+
+======================================================================
+📄 CHUNK RECUPERATI (3 risultati)
+======================================================================
+
+──────────────────────────────────────────────────────────────────────
+📌 CHUNK #1
+──────────────────────────────────────────────────────────────────────
+Most of these climate changes are attributed to very small variations in Earth's orbit that 
+change the amount of solar energy our planet receives. During the Holocene epoch, which 
+began at the end of the last ice age, human societies flourished, but the industrial era has seen 
+unprecedented changes. 
+Modern Observations 
+Modern scientific observations indicate a rapid increase in global temperatures, sea levels, 
+and extreme weather events. The Intergovernmental Panel on Climate Change (IPCC) has 
+documented these changes extensively. Ice core samples, tree rings, and ocean sediments 
+provide a historical record that scientists use to understand past climate conditions and 
+predict future trends. The evidence overwhelmingly shows that recent changes are primarily 
+driven by human activities, particularly the emission of greenhouse gases. 
+Chapter 2: Causes of Climate Change 
+Greenhouse Gases 
+The primary cause of recent climate change is the increase in greenhouse gases in the
+
+📊 Metadata:
+   • author: Nir
+   • page_label: 1
+   • source: data/Understanding_Climate_Change.pdf
+   • moddate: 2024-07-13T20:17:34+03:00
+   • producer: Microsoft® Word 2021
+   • total_pages: 33
+   • creator: Microsoft® Word 2021
+   • creationdate: 2024-07-13T20:17:34+03:00
+   • page: 0
+
+
+──────────────────────────────────────────────────────────────────────
+📌 CHUNK #2
+──────────────────────────────────────────────────────────────────────
+Chapter 2: Causes of Climate Change 
+Greenhouse Gases 
+The primary cause of recent climate change is the increase in greenhouse gases in the 
+atmosphere. Greenhouse gases, such as carbon dioxide (CO2), methane (CH4), and nitrous 
+oxide (N2O), trap heat from the sun, creating a "greenhouse effect." This effect is essential 
+for life on Earth, as it keeps the planet warm enough to support life. However, human 
+activities have intensified this natural process, leading to a warmer climate. 
+Fossil Fuels 
+Burning fossil fuels for energy releases large amounts of CO2. This includes coal, oil, and 
+natural gas used for electricity, heating, and transportation. The industrial revolution marked 
+the beginning of a significant increase in fossil fuel consumption, which continues to rise 
+today. 
+Coal
+
+📊 Metadata:
+   • author: Nir
+   • page_label: 1
+   • creationdate: 2024-07-13T20:17:34+03:00
+   • moddate: 2024-07-13T20:17:34+03:00
+   • page: 0
+   • source: data/Understanding_Climate_Change.pdf
+   • producer: Microsoft® Word 2021
+   • creator: Microsoft® Word 2021
+   • total_pages: 33
+
+
+──────────────────────────────────────────────────────────────────────
+📌 CHUNK #3
+──────────────────────────────────────────────────────────────────────
+Understanding Climate Change 
+Chapter 1: Introduction to Climate Change 
+Climate change refers to significant, long-term changes in the global climate. The term 
+"global climate" encompasses the planet's overall weather patterns, including temperature, 
+precipitation, and wind patterns, over an extended period. Over the past century, human 
+activities, particularly the burning of fossil fuels and deforestation, have significantly 
+contributed to climate change. 
+Historical Context 
+The Earth's climate has changed throughout history. Over the past 650,000 years, there have 
+been seven cycles of glacial advance and retreat, with the abrupt end of the last ice age about 
+11,700 years ago marking the beginning of the modern climate era and human civilization. 
+Most of these climate changes are attributed to very small variations in Earth's orbit that 
+change the amount of solar energy our planet receives. During the Holocene epoch, which
+
+📊 Metadata:
+   • author: Nir
+   • moddate: 2024-07-13T20:17:34+03:00
+   • page_label: 1
+   • creator: Microsoft® Word 2021
+   • source: data/Understanding_Climate_Change.pdf
+   • page: 0
+   • total_pages: 33
+   • creationdate: 2024-07-13T20:17:34+03:00
+   • producer: Microsoft® Word 2021
+
+
+======================================================================
+✅ RETRIEVAL COMPLETATO
+   ⏱️  Tempo: 0.41s
+======================================================================
+
+
+--- 📈 VALUTAZIONE PRESTAZIONI RAG ---
+🔬 Usando LangSmith evaluators con gemini-2.5-flash
+🔄 Generazione automatica di 3 domande...
+✅ Generate 3 domande automaticamente
+📊 Avviando valutazione diretta su 3 domande...
+🔍 Valutando domanda 1/3: What is the overarching vision that working togeth...
+🔍 Valutando domanda 2/3: What are some specific examples of positive narrat...
+🔍 Valutando domanda 3/3: How does the text suggest empowering young people ...
+📊 Tipo valutazione: direct_langsmith_evaluators
+🤖 Modello usato: gemini-2.5-flash
+❓ Domande valutate: 3
+
+📈 PUNTEGGI MEDI (0-1, più alto = migliore):
+• Correttezza: 0.717
+• Fedeltà: 0.933
+• Rilevanza: 0.833
+
+📋 RISULTATI DETTAGLIATI:
+
+1. ❓ 'What is the overarching vision that working together aims to...'
+   📊 Punteggi numerici:
+      • Correttezza: 0.250
+      • Fedeltà: 1.000
+      • Rilevanza: 1.000
+   📝 Valutazioni testuali:
+      • Correttezza: The provided "answer" is a verbatim copy of the entire context. While the inform...
+      • Fedeltà: The answer is a verbatim copy of the provided context. Therefore, all informatio...
+      • Rilevanza: The context explicitly states, "A shared global vision for a sustainable future ...
+   📏 Contesto: 2806 caratteri
+
+2. ❓ 'What are some specific examples of positive narratives that ...'
+   📊 Punteggi numerici:
+      • Correttezza: 0.900
+      • Fedeltà: 0.800
+      • Rilevanza: 0.500
+   📝 Valutazioni testuali:
+      • Correttezza: The answer is correct and accurate as it includes the specific examples of posit...
+      • Fedeltà: The answer directly quotes the context for the definition of positive narratives...
+      • Rilevanza: The context defines what positive narratives are and what they include (e.g., st...
+   📏 Contesto: 2018 caratteri
+
+3. ❓ 'How does the text suggest empowering young people to drive t...'
+   📊 Punteggi numerici:
+      • Correttezza: 1.000
+      • Fedeltà: 1.000
+      • Rilevanza: 1.000
+   📝 Valutazioni testuali:
+      • Correttezza: The answer provided is the entire context. The context itself directly states ho...
+      • Fedeltà: The answer provided is the entire context, which directly contains the informati...
+      • Rilevanza: The context directly addresses how to empower young people, explicitly stating "...
+   📏 Contesto: 2770 caratteri
+
+📝 Riepilogo: Evaluated 3 questions using direct LangSmith evaluators with gemini-2.5-flash. Average scores: Correctness=0.717, Faithfulness=0.933, Relevance=0.833

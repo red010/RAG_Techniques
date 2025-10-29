@@ -1,0 +1,119 @@
+✅ Ambiente configurato correttamente
+   Python: 3.12.11
+   Working directory: /Users/enricobusto/Documents/SOFTWARE/GitHub/RAG_Techniques
+
+📋 Configurazione:
+   Documento: cambiamento_climatico.txt
+   LLM: gemini-2.5-flash-lite-preview-09-2025
+   Embedding: models/embedding-001
+   Chunk size: 500 caratteri
+   Chunk overlap: 100 caratteri
+
+================================================================================
+🚀 FASE 1: Creazione HyPE Vector Store
+================================================================================
+📂 Caricamento documento: cambiamento_climatico.txt
+📄 Documento caricato: 14200 caratteri
+✂️  Creati 45 chunk
+   Dimensione media: 365 caratteri
+
+📊 Generazione domande ipotetiche per 45 chunk...
+   (Questo può richiedere alcuni minuti)
+100%|████████████████████████████████████████████████████████████████████| 45/45 [00:09<00:00,  4.57it/s]
+✅ Generate 196 domande ipotetiche totali
+   Media: 4.4 domande per chunk
+
+================================================================================
+📝 ESEMPI DI DOMANDE GENERATE (Primi 2 Chunk)
+================================================================================
+
+🔹 CHUNK #1:
+   Testo (primi 150 caratteri): Il cambiamento climatico, quella trasformazione silenziosa e inesorabile che sta ridefinendo il nostro mondo, non è un fenomeno monolitico ma un intri...
+
+   Domande generate (3):
+   1. Che cos'è il cambiamento climatico secondo la descrizione fornita?
+   2. In che modo viene descritto il fenomeno del cambiamento climatico?
+   3. Qual è la natura del cambiamento climatico descritta nel testo?
+
+🔹 CHUNK #2:
+   Testo (primi 150 caratteri): Questi gas, pur essendo presenti in tracce, agiscono come una coperta sempre più spessa attorno al pianeta, intrappolando il calore che altrimenti ver...
+
+   Domande generate (5):
+   1. Qual è l'effetto principale dei gas menzionati nonostante la loro presenza in tracce?
+   2. Cosa intrappolano questi gas attorno al pianeta?
+   3. Quale fenomeno viene innescato dall'intrappolamento del calore?
+   4. Dove verrebbe disperso il calore se non fosse intrappolato?
+   5. Qual è l'impatto generale del riscaldamento globale innescato?
+
+================================================================================
+
+🔧 Creazione vector store Chroma...
+✅ Vector store Chroma creato con successo!
+
+✅ Vector store creato con successo!
+
+================================================================================
+🔍 FASE 2: Configurazione Retriever
+================================================================================
+✅ Retriever configurato per recuperare top-3 chunk più rilevanti
+
+================================================================================
+🧪 FASE 3: Test del Retriever con Query di Esempio
+================================================================================
+
+📋 Query 1: Qual è la causa diretta dello sbiancamento dei coralli?
+✅ Recuperati 3 chunk rilevanti
+
+📄 Primo chunk recuperato:
+   L'aumento della temperatura delle acque superficiali non solo alimenta uragani e tifoni rendendoli più potenti e distruttivi, ma provoca anche il fenomeno dello sbiancamento dei coralli, dove le micro...
+
+📋 Query 2: Quali sono le tecnologie innovative per combattere il cambiamento climatico?
+✅ Recuperati 3 chunk rilevanti
+
+📄 Primo chunk recuperato:
+   ed eque potrebbero non venire da laboratori high-tech, ma dalla terra stessa. Pratiche come l'agroforestazione, che integra alberi e arbusti nelle coltivazioni agricole, non solo sequestrano carbonio ...
+
+================================================================================
+📊 FASE 4: Valutazione del Sistema RAG con HyPE
+================================================================================
+
+Avvio valutazione con LangSmith...
+(Questo genererà domande di test e valuterà faithfulness e relevancy)
+
+🔬 Usando LangSmith evaluators con gemini-2.5-flash
+🔄 Generazione automatica di 3 domande...
+✅ Generate 3 domande automaticamente
+📊 Avviando valutazione diretta su 3 domande...
+🔍 Valutando domanda 1/3: Quali comunità, anche all'interno delle nazioni pi...
+🔍 Valutando domanda 2/3: A cosa è attribuita la sproporzionata esposizione ...
+🔍 Valutando domanda 3/3: Quali sono i principali ruoli di cui le donne sono...
+
+✅ Valutazione completata!
+   Controlla i risultati su LangSmith dashboard
+
+================================================================================
+✅ DEMO COMPLETATA: HyPE - Hypothetical Prompt Embeddings
+================================================================================
+
+🎯 LEZIONI CHIAVE:
+   1. HyPE trasforma il retrieval in matching domanda-domanda
+      → Elimina il mismatch di stile query-documento
+   2. Le domande ipotetiche sono generate OFFLINE durante l'indicizzazione
+      → Zero overhead a runtime, retrieval veloce come RAG standard
+   3. Ogni chunk ha rappresentazioni multiple (multi-vector)
+      → Maggiore flessibilità e copertura semantica
+   4. Combinabile con altre tecniche RAG avanzate
+      → Reranking, query expansion, hybrid search
+
+💡 QUANDO USARE HyPE:
+   ✅ Query degli utenti variano molto nello stile
+   ✅ Documenti tecnici con terminologia specifica
+   ✅ Necessità di alta precisione nel retrieval
+   ✅ Possibilità di indicizzazione offline
+
+⚠️  QUANDO HyPE HA MENO IMPATTO:
+   - Query e documenti già ben allineati nello stile
+   - Documenti molto brevi o semplici
+   - Necessità di aggiornamenti frequenti (costoso rigenerare domande)
+
+================================================================================

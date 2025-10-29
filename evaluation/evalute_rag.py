@@ -34,11 +34,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
-from helper_functions import (
-    create_question_answer_from_context_chain,
-    answer_question_from_context,
-    retrieve_context_per_question
-)
+# Note: ModelProvider and get_langchain_model_provider are imported locally where needed
 
 
 def create_langsmith_evaluators():
@@ -148,14 +144,15 @@ def create_langsmith_evaluators():
     return evaluators
 
 
-def evaluate_rag(retriever, llm=None, num_questions: int = 3) -> Dict[str, Any]:
+def evaluate_rag(retriever, llm=None, num_questions: int = 3, custom_questions: list = None) -> Dict[str, Any]:
     """
     Evaluates a RAG system using LangSmith evaluators with gemini-2.5-flash.
 
     Args:
         retriever: The retriever component to evaluate
         llm: Language model to use for evaluation (defaults to gemini-2.5-flash)
-        num_questions: Number of test questions to generate
+        num_questions: Number of test questions to generate (ignored if custom_questions provided)
+        custom_questions: Optional list of custom questions to use instead of generating them
 
     Returns:
         Dict containing evaluation metrics with numerical scores
@@ -166,57 +163,71 @@ def evaluate_rag(retriever, llm=None, num_questions: int = 3) -> Dict[str, Any]:
     # Create evaluators
     evaluators = create_langsmith_evaluators()
 
-    # Generate test questions using the LLM
-    question_prompt = f"""Generate exactly {num_questions} diverse questions about climate change.
+    # Use custom questions if provided, otherwise generate them
+    if custom_questions:
+        questions = custom_questions
+        print(f"📝 Uso {len(questions)} domande custom fornite")
+        print(f"   Prima domanda: {questions[0][:60]}...")
+    else:
+        # Generate questions automatically
+        print(f"🔄 Generazione automatica di {num_questions} domande...")
+        try:
+            # Get sample content from retriever to understand the document context
+            # Use a generic query to get representative documents
+            sample_query = "context overview summary"
+            sample_docs = retriever.invoke(sample_query)
+            
+            # Combine first few documents to understand the context
+            sample_text = "\n".join([doc.page_content[:500] for doc in sample_docs[:3]])
+            
+            question_prompt = f"""Based on the following text content, generate exactly {num_questions} diverse, specific questions that can be answered using this content.
 Return each question on a separate line, numbered 1 to {num_questions}.
 Do not include any other text or explanations.
+The questions should be in the same language as the text provided.
 
-Example format:
-1. What is climate change?
-2. What are the main causes of climate change?
-3. How can we reduce climate change?
+Text content:
+{sample_text}
+
+Generate {num_questions} questions:
 """
-    try:
-        # Use the same LLM instance for question generation
-        from helper_functions import ModelProvider, get_langchain_model_provider
-        if llm is None:
-            gen_llm = get_langchain_model_provider(ModelProvider.GOOGLE, model_id="gemini-2.5-flash", temperature=0.7)
-        else:
-            gen_llm = llm
+            # Use the same LLM instance for question generation
+            from helper_functions import ModelProvider, get_langchain_model_provider
+            if llm is None:
+                gen_llm = get_langchain_model_provider(ModelProvider.GOOGLE, model_id="gemini-2.5-flash", temperature=0.7)
+            else:
+                gen_llm = llm
 
-        questions_response = gen_llm.invoke(question_prompt)
-        response_text = str(questions_response.content).strip()
+            questions_response = gen_llm.invoke(question_prompt)
+            response_text = str(questions_response.content).strip()
 
-        # Extract questions that start with numbers
-        lines = response_text.split('\n')
-        questions = []
-        for line in lines:
-            line = line.strip()
-            if line and any(line.startswith(f"{i}.") for i in range(1, num_questions + 1)):
-                # Remove the number prefix
-                question = line.split('.', 1)[1].strip()
-                if question:
-                    questions.append(question)
+            # Extract questions that start with numbers
+            lines = response_text.split('\n')
+            questions = []
+            for line in lines:
+                line = line.strip()
+                if line and any(line.startswith(f"{i}.") for i in range(1, num_questions + 1)):
+                    # Remove the number prefix
+                    question = line.split('.', 1)[1].strip()
+                    if question:
+                        questions.append(question)
 
-        # If we didn't get enough questions, use fallback
-        if len(questions) < num_questions:
+            # If we didn't get enough questions, generate generic questions
+            if len(questions) < num_questions:
+                questions = [
+                    "What is the main topic of this document?",
+                    "What are the key points discussed?",
+                    "What conclusions can be drawn?"
+                ][:num_questions]
+
+        except Exception as e:
+            print(f"⚠️ Errore generazione domande: {e}, uso fallback")
             questions = [
-                "What is climate change?",
-                "What are the main causes of climate change?",
-                "How can we reduce climate change?",
-                "What are the effects of climate change?",
-                "What is being done to combat climate change?"
+                "What is the main topic of this document?",
+                "What are the key points discussed?",
+                "What conclusions can be drawn?"
             ][:num_questions]
-
-    except Exception as e:
-        print(f"⚠️ Errore generazione domande: {e}, uso fallback")
-        questions = [
-            "What is climate change?",
-            "What are the main causes of climate change?",
-            "How can we reduce climate change?"
-        ][:num_questions]
-
-    print(f"📝 Generate {len(questions)} domande di test")
+        
+        print(f"✅ Generate {len(questions)} domande automaticamente")
 
     # Evaluate each question directly using the evaluators
     results = []

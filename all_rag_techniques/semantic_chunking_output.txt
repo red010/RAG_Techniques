@@ -1,0 +1,69 @@
+================================================================================
+🔬 SEMANTIC CHUNKING RAG - Modalità Standard
+================================================================================
+
+📖 Documento: cambiamento_climatico.txt
+🔍 Query di test: 'Qual è la differenza tra la causa diretta dello sbiancamento dei coralli e il meccanismo chimico che porta all'acidificazione degli oceani?'
+⚙️  Breakpoint: gradient (60)
+📊 Chunk da recuperare: 3
+
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+🔬 INIZIALIZZAZIONE SEMANTIC CHUNKING RAG
+────────────────────────────────────────────────────────────────────────────────
+📖 Caricamento documento: cambiamento_climatico.txt
+   ✓ Caricato file TXT
+   ✓ 14,200 caratteri totali
+   ✓ Modello embeddings: Gemini models/embedding-001
+   ✓ Breakpoint: gradient (60)
+
+✂️  Esecuzione semantic chunking...
+   ✓ Completato in 1.77 secondi
+   ✓ Creati 23 chunks semantici
+   📊 Dimensioni chunk: min=118, avg=615, max=1812
+
+💾 Creazione vector store Chroma e indicizzazione...
+   ✓ Vector store creato in 0.80 secondi
+   ✓ Retriever configurato (k=3)
+
+================================================================================
+🔍 ESECUZIONE QUERY
+================================================================================
+
+🔍 Query: 'Qual è la differenza tra la causa diretta dello sbiancamento dei coralli e il meccanismo chimico che porta all'acidificazione degli oceani?'
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Tempo Retrieval: 0.271 secondi
+
+📄 Recuperati 3 chunks rilevanti:
+
+================================================================================
+📄 CHUNK 1 | Lunghezza: 996 caratteri
+================================================================================
+Questi gas, pur essendo presenti in tracce, agiscono come una coperta sempre più spessa attorno al pianeta, intrappolando il calore che altrimenti verrebbe disperso nello spazio e innescando un riscaldamento globale le cui conseguenze si propagano a cascata in ogni ecosistema. Gli oceani, i grandi e pazienti regolatori del clima terrestre, stanno assorbendo una porzione enorme sia del calore in eccesso sia della CO2 atmosferica, ma questo servizio ecosistemico vitale sta presentando un conto salatissimo. L'aumento della temperatura delle acque superficiali non solo alimenta uragani e tifoni rendendoli più potenti e distruttivi, ma provoca anche il fenomeno dello sbiancamento dei coralli, dove le microalghe simbionti (zooxantelle) che vivono nei tessuti dei coralli e forniscono loro colore e nutrimento vengono espulse a causa dello stress termico, lasciando lo scheletro calcareo bianco e vulnerabile, un cimitero sottomarino che segna la morte di interi ecosistemi brulicanti di vita.
+================================================================================
+
+================================================================================
+📄 CHUNK 2 | Lunghezza: 564 caratteri
+================================================================================
+L'anidride carbonica reagisce con l'acqua formando acido carbonico, che abbassa il pH e riduce la concentrazione di ioni carbonato, i mattoni fondamentali con cui innumerevoli organismi marini, dai microscopici foraminiferi ai molluschi e ai crostacei, costruiscono i loro gusci e scheletri; è una crisi costruttiva su scala planetaria che minaccia le fondamenta stesse della catena alimentare marina. Il ghiaccio del pianeta sta scomparendo: questa semplice e terribile affermazione riassume una delle conseguenze più visibili e potenti del riscaldamento globale.
+================================================================================
+
+================================================================================
+📄 CHUNK 3 | Lunghezza: 308 caratteri
+================================================================================
+La fusione del ghiaccio marino artico, inoltre, innesca un pericoloso ciclo di feedback positivo noto come effetto albedo: il ghiaccio bianco riflette gran parte della radiazione solare, mentre l'acqua scura dell'oceano la assorbe, riscaldandosi ulteriormente e accelerando la fusione del ghiaccio rimanente.
+================================================================================
+
+
+================================================================================
+📊 RIEPILOGO PERFORMANCE
+================================================================================
+⏱️  Tempo chunking:  1.767s
+⏱️  Tempo retrieval: 0.271s
+⏱️  Tempo totale:    2.039s
+✂️  Chunks creati:   23
+📄 Chunks recuperati: 3
+================================================================================
+
+💡 Suggerimento: Usa --experiment per confrontare con simple chunking!
