@@ -20,6 +20,8 @@ import argparse
 import subprocess
 from pathlib import Path
 from datetime import datetime
+from http.server import SimpleHTTPRequestHandler
+import socketserver
 from dotenv import load_dotenv
 import numpy as np
 
@@ -460,6 +462,9 @@ def cmd_activate(args):
         print(f"   Items: {metadata['item_count']}")
         print(f"   Description: {metadata['description']}")
         print()
+        print("💡 Tip: If the server is running, restart it to see the changes:")
+        print("   python prepare_data.py run --port 8000")
+        print()
     except ValueError as e:
         print(f"\n❌ Error: {str(e)}")
         print("   Use 'list' command to see available datasets")
@@ -516,6 +521,27 @@ def cmd_delete(args):
         print("   No active dataset (all datasets deleted)")
     print()
 
+class QuietHTTPRequestHandler(SimpleHTTPRequestHandler):
+    """Custom HTTP handler that suppresses 404 errors for favicon.ico."""
+    
+    def log_message(self, format, *args):
+        """Override to suppress favicon 404 errors."""
+        # Suppress favicon 404 errors
+        if len(args) >= 2 and args[0] == '/favicon.ico' and '404' in str(args[1]):
+            return
+        # Log everything else normally
+        super().log_message(format, *args)
+    
+    def do_GET(self):
+        """Override GET to handle favicon gracefully."""
+        if self.path == '/favicon.ico':
+            # Return empty 204 No Content for favicon
+            self.send_response(204)
+            self.end_headers()
+            return
+        # Handle all other requests normally
+        super().do_GET()
+
 def cmd_run(args):
     """Start visualization server."""
     port = args.port
@@ -549,18 +575,19 @@ def cmd_run(args):
         print(f"\n❌ Error copying dataset: {str(e)}")
         sys.exit(1)
     
-    # Start server
+    # Start server with custom handler
     print(f"\n🌐 Server running at: http://localhost:{port}")
     print()
     print("   Press Ctrl+C to stop")
     print()
     
     try:
-        subprocess.run(
-            [sys.executable, "-m", "http.server", str(port)],
-            cwd=SCRIPT_DIR,
-            check=True
-        )
+        # Change to script directory to serve files
+        os.chdir(SCRIPT_DIR)
+        
+        # Create server with custom handler
+        with socketserver.TCPServer(("", port), QuietHTTPRequestHandler) as httpd:
+            httpd.serve_forever()
     except KeyboardInterrupt:
         print("\n\n👋 Server stopped. Goodbye!")
     except Exception as e:

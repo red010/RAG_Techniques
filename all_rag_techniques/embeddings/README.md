@@ -275,6 +275,12 @@ python prepare_data.py activate ricette_italiane
 - **No recomputation** - switching is instant!
 - Previous active dataset remains in storage
 
+**⚠️ Important:** If the visualization server is already running, you must **restart it** to see the changes:
+```bash
+# Stop the server (Ctrl+C), then restart:
+python prepare_data.py run --port 8000
+```
+
 **Use Cases:**
 - Quickly switch between visualizations
 - Compare different datasets
@@ -283,6 +289,7 @@ python prepare_data.py activate ricette_italiane
 
 **Common Errors:**
 - `Dataset not found`: Check spelling with `list` command
+- `Visualization not updating`: Restart the server after activating a new dataset
 
 ---
 
